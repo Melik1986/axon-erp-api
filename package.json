@@ -1,0 +1,79 @@
+{
+  "name": "axon-erp-api",
+  "version": "1.0.0",
+  "description": "CAP warehouse OData mock for Axon SAP connector",
+  "scripts": {
+    "start": "cds-serve",
+    "watch": "cds watch",
+    "build": "cds build --production",
+    "deploy": "cds deploy --to sqlite"
+  },
+  "dependencies": {
+    "@cap-js/hana": "^2",
+    "@cap-js/sqlite": "^2.4",
+    "@cap-js/postgres": "^2",
+    "@sap/cds": "^9",
+    "@sap/xssec": "^4"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^2.4",
+    "@sap/cds-dk": "^9"
+  },
+  "private": true,
+  "cds": {
+    "requires": {
+      "[production]": {
+        "auth": "xsuaa"
+      },
+      "db": {
+        "[development]": {
+          "kind": "sqlite",
+          "credentials": {
+            "url": "db/axon-warehouse.sqlite"
+          }
+        },
+        "[production]": {
+          "kind": "sqlite",
+          "credentials": {
+            "url": "axon-odata-api.db"
+          }
+        }
+      },
+      "auth": {
+        "[development]": {
+          "kind": "mocked",
+          "users": {
+            "admin": {
+              "password": "admin",
+              "roles": [
+                "Admin",
+                "authenticated-user"
+              ]
+            }
+          }
+        },
+        "[production]": {
+          "kind": "xsuaa"
+        }
+      },
+      "html5-repo": true,
+      "portal": true
+    },
+    "odata": {
+      "version": "v4"
+    },
+    "build": {
+      "target": "gen",
+      "tasks": [
+        {
+          "for": "postgres",
+          "src": "db"
+        },
+        {
+          "for": "nodejs",
+          "src": "srv"
+        }
+      ]
+    }
+  }
+}
