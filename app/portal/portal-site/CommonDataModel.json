@@ -15,13 +15,93 @@
           "entityType": "catalog",
           "i18n": "i18n/catalog.properties"
         },
-        "payload": {
-          "viz": [
-          ]
-        }
-      }
-    ],
-    "groups": [
+        "viz": [
+          {
+            "appId": "axon.warehouse.products",
+            "vizId": "axon.warehouse.products-tile",
+            "vizConfig": {
+              "sap.flp": {
+                "target": {
+                  "appId": "axon.warehouse.products",
+                  "inboundId": "Products-display"
+                }
+              },
+              "sap.ui": {
+                "icons": {
+                  "icon": "sap-icon://product"
+                }
+              },
+              "sap.app": {
+                "title": "Products",
+                "subTitle": "Coffee catalogue"
+              }
+            }
+          },
+          {
+            "appId": "axon.warehouse.stocklevels",
+            "vizId": "axon.warehouse.stocklevels-tile",
+            "vizConfig": {
+              "sap.flp": {
+                "target": {
+                  "appId": "axon.warehouse.stocklevels",
+                  "inboundId": "StockLevels-display"
+                }
+              },
+              "sap.ui": {
+                "icons": {
+                  "icon": "sap-icon://inventory"
+                }
+              },
+              "sap.app": {
+                "title": "Stock Levels",
+                "subTitle": "Warehouse overview"
+              }
+            }
+          },
+          {
+            "appId": "axon.warehouse.invoices",
+            "vizId": "axon.warehouse.invoices-tile",
+            "vizConfig": {
+              "sap.flp": {
+                "target": {
+                  "appId": "axon.warehouse.invoices",
+                  "inboundId": "Invoices-display"
+                }
+              },
+              "sap.ui": {
+                "icons": {
+                  "icon": "sap-icon://document"
+                }
+              },
+              "sap.app": {
+                "title": "Invoices",
+                "subTitle": "Open & posted invoices"
+              }
+            }
+          },
+          {
+            "appId": "axon.warehouse.businesspartners",
+            "vizId": "axon.warehouse.businesspartners-tile",
+            "vizConfig": {
+              "sap.flp": {
+                "target": {
+                  "appId": "axon.warehouse.businesspartners",
+                  "inboundId": "BusinessPartner-display"
+                }
+              },
+              "sap.ui": {
+                "icons": {
+                  "icon": "sap-icon://business-partner"
+                }
+              },
+              "sap.app": {
+                "title": "Business Partners",
+                "subTitle": "Suppliers & customers"
+              }
+            }
+          }
+        ]
+      },
       {
         "_version": "3.0.0",
         "identification": {
@@ -32,6 +112,22 @@
         },
         "payload": {
           "viz": [
+            {
+              "appId": "axon.warehouse.products",
+              "vizId": "axon.warehouse.products-tile"
+            },
+            {
+              "appId": "axon.warehouse.stocklevels",
+              "vizId": "axon.warehouse.stocklevels-tile"
+            },
+            {
+              "appId": "axon.warehouse.invoices",
+              "vizId": "axon.warehouse.invoices-tile"
+            },
+            {
+              "appId": "axon.warehouse.businesspartners",
+              "vizId": "axon.warehouse.businesspartners-tile"
+            }
           ]
         }
       }
@@ -65,7 +161,9 @@
               }
             }
           },
-          "groupsOrder": ["axon-erp-api-group"],
+          "groupsOrder": [
+            "axon-erp-api-group"
+          ],
           "sap.cloud.portal": {
             "config": {
               "theme.id": "sap_horizon",

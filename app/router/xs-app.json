@@ -8,7 +8,7 @@
       "authenticationType": "xsuaa"
     },
     {
-      "source": "^/odata/(.*)$",
+      "source": "^/odata/v4/(.*)$",
       "destination": "srv-api",
       "authenticationType": "xsuaa"
     },

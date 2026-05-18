@@ -2,3 +2,5 @@ BusinessPartner;AddressID;CityName;StreetName;PostalCode;Country
 1000001;1;Berlin;Friedrichstr. 100;10117;DE
 1000002;1;Stockholm;Kungsgatan 12;11143;SE
 1000003;1;London;Baker Street 221B;NW16XE;GB
+1000004;1;Milan;Via Montenapoleone 8;20121;IT
+1000005;1;Chicago;North Michigan Ave 350;60601;US

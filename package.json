@@ -7,7 +7,10 @@
     "watch": "cds watch",
     "build": "cds build --production",
     "deploy": "cds deploy --to sqlite",
-    "deploy:cf": "npm run build && mbt build && cf deploy mta_archives/axon-odata-api_1.0.0.mtar -f"
+    "verify:seed": "powershell -File scripts/verify-seed.ps1",
+    "verify:cf": "powershell -File scripts/verify-seed.ps1 -UseCf",
+    "build:mtar": "npm run build && mbt build -p=cf",
+    "deploy:cf": "npm run build:mtar && cf deploy mta_archives/axon-odata-api_1.0.0.mtar -f"
   },
   "engines": {
     "node": ">=20"
@@ -33,7 +36,7 @@
         "[development]": {
           "kind": "sqlite",
           "credentials": {
-            "url": "db/axon-warehouse.sqlite"
+            "url": "db.sqlite"
           }
         },
         "[production]": {

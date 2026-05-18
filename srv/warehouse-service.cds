@@ -1,13 +1,13 @@
-using {axon.warehouse as db} from '../db/schema';
+using {axon.warehouse as wh} from '../db/schema';
 
 @path: 'warehouse'
 service WarehouseService @(requires: 'authenticated-user') {
-  entity Products              as projection on db.Products;
-  entity StockLevels           as projection on db.StockLevels;
-  entity Suppliers             as projection on db.Suppliers;
-  entity PurchaseOrders        as projection on db.PurchaseOrders;
-  entity Invoices              as projection on db.Invoices;
-  entity A_BusinessPartner     as projection on db.A_BusinessPartner;
-  entity A_BusinessPartnerAddress as projection on db.A_BusinessPartnerAddress;
-  entity A_BusinessPartnerRole as projection on db.A_BusinessPartnerRole;
+  entity Products                 as select from wh.Products;
+  entity StockLevels              as select from wh.StockLevels;
+  entity Suppliers                as select from wh.Suppliers;
+  entity PurchaseOrders           as select from wh.PurchaseOrders;
+  entity Invoices                 as select from wh.Invoices;
+  entity A_BusinessPartner        as select from wh.A_BusinessPartner;
+  entity A_BusinessPartnerAddress as select from wh.A_BusinessPartnerAddress;
+  entity A_BusinessPartnerRole    as select from wh.A_BusinessPartnerRole;
 }

@@ -9,7 +9,7 @@ entity Suppliers : cuid, managed {
 }
 
 entity Products : cuid, managed {
-  name        : String(120);
+  Name        : String(120);
   description : String(500);
   price       : Decimal(15, 2);
   currency    : String(3);
@@ -17,9 +17,8 @@ entity Products : cuid, managed {
 }
 
 entity StockLevels : cuid, managed {
-  @title: 'Product name'
-  name              : String(120);
-  quantity          : Integer default 0;
+  Name              : String(120);
+  Quantity          : Integer default 0;
   warehouseLocation : String(40);
   product           : Association to Products;
 }
@@ -48,19 +47,19 @@ entity A_BusinessPartner : managed {
 }
 
 entity A_BusinessPartnerAddress : managed {
-  key BusinessPartner      : String(10);
-  key AddressID            : String(10);
-      CityName               : String(40);
-      StreetName             : String(60);
-      PostalCode             : String(10);
-      Country                : String(3);
-      businessPartner        : Association to A_BusinessPartner
-                                 on businessPartner.BusinessPartner = BusinessPartner;
+  key BusinessPartner : String(10);
+  key AddressID         : String(10);
+      CityName          : String(40);
+      StreetName        : String(60);
+      PostalCode        : String(10);
+      Country           : String(3);
+      businessPartner   : Association to A_BusinessPartner
+                            on businessPartner.BusinessPartner = BusinessPartner;
 }
 
 entity A_BusinessPartnerRole : managed {
-  key BusinessPartner : String(10);
+  key BusinessPartner     : String(10);
   key BusinessPartnerRole : String(6);
-      businessPartner   : Association to A_BusinessPartner
-                            on businessPartner.BusinessPartner = BusinessPartner;
+      businessPartner       : Association to A_BusinessPartner
+                                on businessPartner.BusinessPartner = BusinessPartner;
 }

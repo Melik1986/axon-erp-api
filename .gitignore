@@ -6,4 +6,9 @@ gen/
 db.sqlite
 db/*.sqlite
 mta_archives/
+.axon-erp-api_mta_build_tmp/
+db.sqlite
 .cdsrc-private.json
+*.sqlite-shm
+*.sqlite-wal
+app/router/default-env.json
