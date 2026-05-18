@@ -13,7 +13,7 @@
     "deploy:cf": "npm run build:mtar && cf deploy mta_archives/axon-odata-api_1.0.0.mtar -f"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=24"
   },
   "dependencies": {
     "@cap-js/hana": "^2",
