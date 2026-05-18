@@ -23,7 +23,6 @@
     "@sap/xssec": "^4"
   },
   "devDependencies": {
-    "@cap-js/sqlite": "^2.4",
     "@sap/cds-dk": "^9"
   },
   "private": true,
