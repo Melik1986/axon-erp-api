@@ -3,6 +3,7 @@ app/router/node_modules/
 gen/
 .gen/
 *.db
+db.sqlite
 db/*.sqlite
 mta_archives/
 .cdsrc-private.json
