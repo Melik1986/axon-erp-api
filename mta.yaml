@@ -12,6 +12,7 @@ build-parameters:
       commands:
         - npm ci
         - npx cds build --production
+        - node scripts/patch-gen-srv.js
 
 modules:
   - name: axon-odata-api
