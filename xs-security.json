@@ -1,5 +1,32 @@
 {
-  "scopes": [],
-  "attributes": [],
-  "role-templates": []
+  "$schema": "https://raw.githubusercontent.com/SAP/cloud-security-xsuaa-integration/master/xs-security-schema.json",
+  "xsappname": "axon-integration",
+  "tenant-mode": "dedicated",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.admin",
+      "description": "Admin"
+    },
+    {
+      "name": "$XSAPPNAME.user",
+      "description": "Authenticated OData user"
+    }
+  ],
+  "role-templates": [
+    {
+      "name": "Admin",
+      "scope-references": ["$XSAPPNAME.admin", "$XSAPPNAME.user"]
+    },
+    {
+      "name": "User",
+      "scope-references": ["$XSAPPNAME.user"]
+    }
+  ],
+  "oauth2-configuration": {
+    "redirect-uris": [
+      "https://*.cfapps.*.hana.ondemand.com/**",
+      "https://*.applicationstudio.cloud.sap/**",
+      "http://localhost:*/**"
+    ]
+  }
 }

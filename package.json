@@ -6,7 +6,11 @@
     "start": "cds-serve",
     "watch": "cds watch",
     "build": "cds build --production",
-    "deploy": "cds deploy --to sqlite"
+    "deploy": "cds deploy --to sqlite",
+    "deploy:cf": "npm run build && mbt build && cf deploy mta_archives/axon-odata-api_1.0.0.mtar -f"
+  },
+  "engines": {
+    "node": ">=20"
   },
   "dependencies": {
     "@cap-js/hana": "^2",

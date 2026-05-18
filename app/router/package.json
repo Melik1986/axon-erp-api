@@ -1,9 +1,14 @@
 {
-  "name": "approuter",
+  "name": "axon-odata-api-approuter",
+  "version": "1.0.0",
+  "private": true,
   "dependencies": {
-    "@sap/approuter": "^21.0.0"
+    "@sap/approuter": "^20"
   },
   "scripts": {
     "start": "node node_modules/@sap/approuter/approuter.js"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }

@@ -1,11 +1,21 @@
 {
-  "welcomeFile": "/cp.portal",
+  "welcomeFile": "/index.html",
+  "authenticationMethod": "route",
   "routes": [
     {
-      "source": "^/(.*)$",
-      "target": "$1",
+      "source": "^/index.html$",
+      "localDir": "resources",
+      "authenticationType": "xsuaa"
+    },
+    {
+      "source": "^/odata/(.*)$",
       "destination": "srv-api",
-      "csrfProtection": true
+      "authenticationType": "xsuaa"
+    },
+    {
+      "source": "^/resources/(.*)$",
+      "localDir": "resources",
+      "authenticationType": "none"
     }
   ]
 }
