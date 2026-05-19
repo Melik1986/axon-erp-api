@@ -19,11 +19,19 @@
     "@cap-js/hana": "^2",
     "@cap-js/sqlite": "^2.4",
     "@cap-js/postgres": "^2",
-    "@sap/cds": "^9",
+    "@sap/cds": "9.9.1",
     "@sap/xssec": "^4"
   },
   "devDependencies": {
     "@sap/cds-dk": "^9"
+  },
+  "overrides": {
+    "qs": ">=6.15.2",
+    "ws": ">=8.20.1",
+    "@sap/cds-dk": {
+      "qs": ">=6.15.2",
+      "ws": ">=8.20.1"
+    }
   },
   "private": true,
   "cds": {

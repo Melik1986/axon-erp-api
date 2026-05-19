@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "@sap/approuter": "^20"
+    "@sap/approuter": "21.5.0"
+  },
+  "overrides": {
+    "qs": ">=6.15.2"
   },
   "scripts": {
     "start": "node node_modules/@sap/approuter/approuter.js"

@@ -23,7 +23,7 @@ modules:
       disk-quota: 512M
       command: >-
         rm -f axon-odata-api.db db.sqlite &&
-        ./node_modules/.bin/cds-deploy --to sqlite --profile production &&
+        ./node_modules/.bin/cds-deploy --to sqlite &&
         cp -f db.sqlite axon-odata-api.db &&
         npm start
     build-parameters:
