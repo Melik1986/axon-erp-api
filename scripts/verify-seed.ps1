@@ -19,6 +19,7 @@ $expected = [ordered]@{
   StockLevels = 6
   Suppliers = 4
   Invoices = 4
+  InvoiceItems = 4
   PurchaseOrders = 3
   A_BusinessPartner = 5
   A_BusinessPartnerAddress = 5

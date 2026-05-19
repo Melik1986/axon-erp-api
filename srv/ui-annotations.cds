@@ -8,12 +8,15 @@ annotate WarehouseService.Products with @(UI: {
     Title         : {Value: Name},
     Description   : {Value: description}
   },
-  SelectionFields: [Name, supplier_ID],
+  SelectionFields: [Name, Sku, supplier_ID],
   LineItem: [
     {Value: Name,              Label: 'Product Name'},
+    {Value: Sku,               Label: 'SKU'},
     {Value: description,       Label: 'Description'},
-    {Value: price,             Label: 'Price'},
+    {Value: Price,             Label: 'Price'},
     {Value: currency,          Label: 'Currency'},
+    {Value: Quantity,          Label: 'Available Qty'},
+    {Value: Unit,              Label: 'Unit'},
     {Value: supplier.name,     Label: 'Supplier'}
   ],
   Facets: [{
@@ -25,9 +28,12 @@ annotate WarehouseService.Products with @(UI: {
     Label: 'Product Details',
     Data : [
       {Value: Name,          Label: 'Product Name'},
+      {Value: Sku,           Label: 'SKU'},
       {Value: description,   Label: 'Description'},
-      {Value: price,         Label: 'Price'},
+      {Value: Price,         Label: 'Price'},
       {Value: currency,      Label: 'Currency'},
+      {Value: Quantity,      Label: 'Available Qty'},
+      {Value: Unit,          Label: 'Unit'},
       {Value: supplier.name, Label: 'Supplier'},
       {Value: supplier.country, Label: 'Supplier Country'}
     ]
@@ -45,7 +51,24 @@ annotate WarehouseService.StockLevels with @(UI: {
   SelectionFields: [Name, warehouseLocation],
   LineItem: [
     {Value: Name,              Label: 'Product Name'},
-    {Value: Quantity,          Label: 'Quantity', Criticality: Criticality},
+    {
+      Value      : Quantity,
+      Label      : 'Quantity',
+      Criticality: {
+        $edmJson: {
+          $If: [
+            {$Lt: [{$Path: 'Quantity'}, 50]},
+            1,
+            {$If: [
+              {$Lt: [{$Path: 'Quantity'}, 100]},
+              2,
+              3
+            ]}
+          ]
+        }
+      }
+    },
+    {Value: Unit,              Label: 'Unit'},
     {Value: warehouseLocation, Label: 'Warehouse Location'},
     {Value: product.description, Label: 'Description'}
   ],
@@ -59,6 +82,7 @@ annotate WarehouseService.StockLevels with @(UI: {
     Data : [
       {Value: Name,              Label: 'Product Name'},
       {Value: Quantity,          Label: 'Quantity on Hand'},
+      {Value: Unit,              Label: 'Unit'},
       {Value: warehouseLocation, Label: 'Warehouse Location'},
       {Value: product.description, Label: 'Product Description'}
     ]
@@ -148,12 +172,16 @@ annotate WarehouseService.Invoices with @(UI: {
   HeaderInfo: {
     TypeName      : 'Invoice',
     TypeNamePlural: 'Invoices',
-    Title         : {Value: amount},
-    Description   : {Value: status}
+    Title         : {Value: Number},
+    Description   : {Value: CustomerName}
   },
-  SelectionFields: [status, supplier_ID],
+  SelectionFields: [Number, CustomerName, status, supplier_ID],
   LineItem: [
+    {Value: Number,        Label: 'Invoice No.'},
+    {Value: Date,          Label: 'Date'},
+    {Value: CustomerName,  Label: 'Customer / Supplier'},
     {Value: amount,        Label: 'Amount'},
+    {Value: Total,         Label: 'Total'},
     {Value: currency,      Label: 'Currency'},
     {
       Value      : status,
@@ -183,12 +211,31 @@ annotate WarehouseService.Invoices with @(UI: {
     Label: 'Invoice Details',
     Data : [
       {Value: amount,        Label: 'Amount'},
+      {Value: Total,         Label: 'Total'},
       {Value: currency,      Label: 'Currency'},
       {Value: status,        Label: 'Status'},
+      {Value: CustomerName,  Label: 'Customer / Supplier'},
+      {Value: Comment,       Label: 'Comment'},
       {Value: supplier.name, Label: 'Supplier'},
       {Value: supplier.country, Label: 'Supplier Country'}
     ]
   }
+});
+
+// ─── InvoiceItems ───────────────────────────────────────────────────────────
+annotate WarehouseService.InvoiceItems with @(UI: {
+  HeaderInfo: {
+    TypeName      : 'Invoice Item',
+    TypeNamePlural: 'Invoice Items',
+    Title         : {Value: ProductName},
+    Description   : {Value: Price}
+  },
+  SelectionFields: [ProductName],
+  LineItem: [
+    {Value: ProductName, Label: 'Product'},
+    {Value: Quantity,    Label: 'Quantity'},
+    {Value: Price,       Label: 'Price'}
+  ]
 });
 
 // ─── A_BusinessPartner ───────────────────────────────────────────────────────
@@ -203,6 +250,7 @@ annotate WarehouseService.A_BusinessPartner with @(UI: {
   LineItem: [
     {Value: BusinessPartner,         Label: 'Partner ID'},
     {Value: BusinessPartnerFullName, Label: 'Full Name'},
+    {Value: OrganizationBPName1,     Label: 'Organization Name'},
     {Value: BusinessPartnerCategory, Label: 'Category'},
     {Value: Country,                 Label: 'Country'},
     {Value: CityName,                Label: 'City'}
@@ -219,6 +267,7 @@ annotate WarehouseService.A_BusinessPartner with @(UI: {
     Data : [
       {Value: BusinessPartner,         Label: 'Partner ID'},
       {Value: BusinessPartnerFullName, Label: 'Full Name'},
+      {Value: OrganizationBPName1,     Label: 'Organization Name'},
       {Value: BusinessPartnerCategory, Label: 'Category (1=Person, 2=Org)'},
       {Value: Country,                 Label: 'Country'},
       {Value: CityName,                Label: 'City'}

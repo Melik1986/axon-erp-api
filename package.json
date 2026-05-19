@@ -7,8 +7,9 @@
     "watch": "cds watch",
     "build": "cds build --production",
     "deploy": "cds deploy --to sqlite",
-    "verify:seed": "powershell -File scripts/verify-seed.ps1",
-    "verify:cf": "powershell -File scripts/verify-seed.ps1 -UseCf",
+    "verify:seed": "node scripts/verify-seed.mjs",
+    "verify:cf": "node scripts/verify-seed.mjs --base-url https://axon-odata-api.cfapps.us10-001.hana.ondemand.com/odata/v4/warehouse",
+    "verify:seed:ps": "powershell -File scripts/verify-seed.ps1",
     "build:mtar": "npm run build && mbt build -p=cf",
     "deploy:cf": "npm run build:mtar && cf deploy mta_archives/axon-odata-api_1.0.0.mtar -f"
   },

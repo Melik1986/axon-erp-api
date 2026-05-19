@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axon Warehouse Fiori Demo</title>
+  <script
+    id="sap-ui-bootstrap"
+    src="https://sdk.openui5.org/resources/sap-ui-core.js"
+    data-sap-ui-theme="sap_horizon"
+    data-sap-ui-libs="sap.m,sap.f,sap.ui.layout"
+    data-sap-ui-async="true"
+    data-sap-ui-compat-version="edge"
+  ></script>
+  <style>
+    html, body, #content { height: 100%; margin: 0; }
+    .sapUiDemoHeader { padding: 1rem 1.5rem 0.4rem; }
+    .sapUiDemoKpi { min-width: 9rem; }
+  </style>
+</head>
+<body class="sapUiBody" id="content">
+  <script>
+    sap.ui.getCore().attachInit(async function () {
+      const root = "/odata/v4/warehouse";
+      const jsonHeaders = { Accept: "application/json" };
+
+      async function load(path) {
+        const response = await fetch(root + path, { headers: jsonHeaders });
+        if (!response.ok) {
+          throw new Error(path + " -> HTTP " + response.status);
+        }
+        const data = await response.json();
+        return data.value || [];
+      }
+
+      const [
+        products,
+        stock,
+        invoices,
+        partners,
+        addresses,
+        roles,
+      ] = await Promise.all([
+        load("/Products?$expand=supplier"),
+        load("/StockLevels?$expand=product"),
+        load("/Invoices?$expand=supplier,Items"),
+        load("/A_BusinessPartner"),
+        load("/A_BusinessPartnerAddress"),
+        load("/A_BusinessPartnerRole"),
+      ]);
+
+      const model = new sap.ui.model.json.JSONModel({
+        products,
+        stock,
+        invoices,
+        partners,
+        addresses,
+        roles,
+      });
+      sap.ui.getCore().setModel(model);
+
+      function textCell(path) {
+        return new sap.m.Text({ text: "{" + path + "}", wrapping: false });
+      }
+
+      function makeColumn(label) {
+        return new sap.m.Column({ header: new sap.m.Label({ text: label }) });
+      }
+
+      function makeTable(title, path, columns, cells) {
+        return new sap.m.Table({
+          headerToolbar: new sap.m.OverflowToolbar({
+            content: [
+              new sap.m.Title({ text: title, level: "H2" }),
+              new sap.m.ToolbarSpacer(),
+              new sap.m.ObjectStatus({ text: "Live OData", state: "Success" }),
+            ],
+          }),
+          growing: true,
+          growingThreshold: 20,
+          columns: columns.map(makeColumn),
+          items: {
+            path,
+            template: new sap.m.ColumnListItem({ cells }),
+          },
+        });
+      }
+
+      function kpi(title, value, unit) {
+        return new sap.m.GenericTile({
+          class: "sapUiTinyMarginEnd sapUiTinyMarginBottom sapUiDemoKpi",
+          header: title,
+          tileContent: [
+            new sap.m.TileContent({
+              unit,
+              content: new sap.m.NumericContent({ value }),
+            }),
+          ],
+        });
+      }
+
+      const arabica = stock.find((row) => /Arabica/i.test(row.Name)) || {};
+      const openInvoices = invoices.filter((row) => row.status === "OPEN");
+
+      const productsTable = makeTable(
+        "Products",
+        "/products",
+        ["SKU", "Product", "Supplier", "Price", "Stock"],
+        [
+          textCell("Sku"),
+          textCell("Name"),
+          textCell("supplier/name"),
+          textCell("Price"),
+          textCell("Quantity"),
+        ],
+      );
+
+      const stockTable = makeTable(
+        "Stock Levels",
+        "/stock",
+        ["Product", "Quantity", "Unit", "Warehouse"],
+        [
+          textCell("Name"),
+          textCell("Quantity"),
+          textCell("Unit"),
+          textCell("warehouseLocation"),
+        ],
+      );
+
+      const invoicesTable = makeTable(
+        "Invoices Created From Axon",
+        "/invoices",
+        ["Number", "Date", "Partner", "Total", "Status"],
+        [
+          textCell("Number"),
+          textCell("Date"),
+          textCell("CustomerName"),
+          textCell("Total"),
+          textCell("status"),
+        ],
+      );
+
+      const partnersTable = makeTable(
+        "Business Partners",
+        "/partners",
+        ["BP", "Name", "Country", "City"],
+        [
+          textCell("BusinessPartner"),
+          textCell("BusinessPartnerFullName"),
+          textCell("Country"),
+          textCell("CityName"),
+        ],
+      );
+
+      const page = new sap.m.Page({
+        title: "Axon Warehouse Demo",
+        content: [
+          new sap.m.VBox({
+            class: "sapUiDemoHeader",
+            items: [
+              new sap.m.Title({
+                text: "Investor Demo: Axon AI creates and reads SAP OData records",
+                level: "H1",
+              }),
+              new sap.m.Text({
+                text: "Use this screen while the mobile app creates invoices from photos and answers stock questions by voice.",
+              }),
+              new sap.m.HBox({
+                wrap: "Wrap",
+                class: "sapUiMediumMarginTop",
+                items: [
+                  kpi("Arabica Stock", arabica.Quantity || 0, arabica.Unit || "kg"),
+                  kpi("Products", products.length, "items"),
+                  kpi("Open Invoices", openInvoices.length, "docs"),
+                  kpi("Business Partners", partners.length, "BP"),
+                ],
+              }),
+            ],
+          }),
+          new sap.m.IconTabBar({
+            expanded: true,
+            items: [
+              new sap.m.IconTabFilter({
+                text: "Products",
+                icon: "sap-icon://product",
+                content: [productsTable],
+              }),
+              new sap.m.IconTabFilter({
+                text: "Stock",
+                icon: "sap-icon://inventory",
+                content: [stockTable],
+              }),
+              new sap.m.IconTabFilter({
+                text: "Invoices",
+                icon: "sap-icon://document",
+                content: [invoicesTable],
+              }),
+              new sap.m.IconTabFilter({
+                text: "Business Partners",
+                icon: "sap-icon://business-partner",
+                content: [partnersTable],
+              }),
+            ],
+          }),
+        ],
+      });
+
+      new sap.m.App({ pages: [page] }).placeAt("content");
+    });
+  </script>
+</body>
+</html>

@@ -1,7 +1,7 @@
-ID;Name;description;price;currency;supplier_ID
-22222222-2222-2222-2222-222222222201;AX-2025-01 Arabica Premium 1kg;Single-origin Ethiopian arabica coffee beans, medium roast;24.90;EUR;11111111-1111-1111-1111-111111111101
-22222222-2222-2222-2222-222222222202;ABC GmbH Robusta Classic 1kg;Classic robusta espresso blend by ABC GmbH, dark roast;18.50;EUR;11111111-1111-1111-1111-111111111101
-22222222-2222-2222-2222-222222222203;AX-2025-03 Colombian Blend 250g;Colombian single-origin medium roast ground coffee 250g;12.90;EUR;11111111-1111-1111-1111-111111111102
-22222222-2222-2222-2222-222222222204;AX-2025-04 Paper Cups 400ml;Eco-friendly paper cups for hot beverages box of 1000;89.00;EUR;11111111-1111-1111-1111-111111111102
-22222222-2222-2222-2222-222222222205;AX-2025-05 Oat Milk 1L;Barista-grade oat milk for lattes and cappuccinos;2.99;EUR;11111111-1111-1111-1111-111111111103
-22222222-2222-2222-2222-222222222206;AX-2025-06 Vanilla Syrup 750ml;Natural vanilla flavoring syrup for coffee and bakery;8.50;EUR;11111111-1111-1111-1111-111111111104
+ID;Name;description;Price;currency;Sku;Quantity;Unit;IsService;IdempotencyKey;supplier_ID
+22222222-2222-2222-2222-222222222201;AX-2025-01 Arabica Premium 1kg;Single-origin Ethiopian arabica coffee beans, medium roast;24.90;EUR;AX-2025-01;420;kg;false;;11111111-1111-1111-1111-111111111101
+22222222-2222-2222-2222-222222222202;ABC GmbH Robusta Classic 1kg;Classic robusta espresso blend by ABC GmbH, dark roast;18.50;EUR;AX-2025-02;180;kg;false;;11111111-1111-1111-1111-111111111101
+22222222-2222-2222-2222-222222222203;AX-2025-03 Colombian Blend 250g;Colombian single-origin medium roast ground coffee 250g;12.90;EUR;AX-2025-03;65;kg;false;;11111111-1111-1111-1111-111111111102
+22222222-2222-2222-2222-222222222204;AX-2025-04 Paper Cups 400ml;Eco-friendly paper cups for hot beverages box of 1000;89.00;EUR;AX-2025-04;1200;pcs;false;;11111111-1111-1111-1111-111111111102
+22222222-2222-2222-2222-222222222205;AX-2025-05 Oat Milk 1L;Barista-grade oat milk for lattes and cappuccinos;2.99;EUR;AX-2025-05;48;l;false;;11111111-1111-1111-1111-111111111103
+22222222-2222-2222-2222-222222222206;AX-2025-06 Vanilla Syrup 750ml;Natural vanilla flavoring syrup for coffee and bakery;8.50;EUR;AX-2025-06;24;pcs;false;;11111111-1111-1111-1111-111111111104

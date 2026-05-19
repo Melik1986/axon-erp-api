@@ -8,6 +8,11 @@
       "authenticationType": "xsuaa"
     },
     {
+      "source": "^/fiori.html$",
+      "localDir": "resources",
+      "authenticationType": "xsuaa"
+    },
+    {
       "source": "^/odata/v4/(.*)$",
       "destination": "srv-api",
       "authenticationType": "xsuaa"

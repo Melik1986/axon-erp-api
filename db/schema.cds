@@ -11,14 +11,20 @@ entity Suppliers : cuid, managed {
 entity Products : cuid, managed {
   Name        : String(120);
   description : String(500);
-  price       : Decimal(15, 2);
+  Price       : Decimal(15, 2);
   currency    : String(3);
+  Sku         : String(80);
+  Quantity    : Integer default 0;
+  Unit        : String(10) default 'pcs';
+  IsService   : Boolean default false;
+  IdempotencyKey : String(120);
   supplier    : Association to Suppliers;
 }
 
 entity StockLevels : cuid, managed {
   Name              : String(120);
   Quantity          : Integer default 0;
+  Unit              : String(10) default 'pcs';
   warehouseLocation : String(40);
   product           : Association to Products;
 }
@@ -32,18 +38,35 @@ entity PurchaseOrders : cuid, managed {
 }
 
 entity Invoices : cuid, managed {
-  amount   : Decimal(15, 2);
-  currency : String(3);
-  status   : String(20) default 'OPEN';
-  supplier : Association to Suppliers;
+  Number         : String(40);
+  Date           : Date;
+  CustomerName   : String(120);
+  Comment        : String(500);
+  IdempotencyKey : String(120);
+  Total          : Decimal(15, 2);
+  amount         : Decimal(15, 2);
+  currency       : String(3) default 'EUR';
+  status         : String(20) default 'OPEN';
+  supplier       : Association to Suppliers;
+  Items          : Composition of many InvoiceItems on Items.invoice = $self;
+}
+
+entity InvoiceItems : cuid, managed {
+  invoice     : Association to Invoices;
+  ProductName : String(120);
+  Quantity    : Integer default 1;
+  Price       : Decimal(15, 2);
 }
 
 entity A_BusinessPartner : managed {
   key BusinessPartner         : String(10);
       BusinessPartnerFullName : String(80);
+      OrganizationBPName1     : String(80);
       BusinessPartnerCategory : String(1) default '2';
       Country                 : String(3);
       CityName                : String(40);
+      to_BusinessPartnerAddress : Association to many A_BusinessPartnerAddress
+                                    on to_BusinessPartnerAddress.BusinessPartner = BusinessPartner;
 }
 
 entity A_BusinessPartnerAddress : managed {
