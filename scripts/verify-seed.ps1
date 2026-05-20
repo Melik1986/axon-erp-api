@@ -1,7 +1,7 @@
 # Plan §4.3 — OData counts after deploy (local or CF).
 param(
   [string]$BaseUrl = 'http://localhost:4004/odata/v4/warehouse',
-  [string]$CfBaseUrl = 'https://axon-odata-api.cfapps.us10-001.hana.ondemand.com/odata/v4/warehouse',
+  [string]$CfBaseUrl = 'https://590c8b3dtrial-590c8b3dtrial-dev-axon-odata-api.cfapps.us10-001.hana.ondemand.com/odata/v4/warehouse',
   [switch]$UseCf,
   [string]$Token
 )
