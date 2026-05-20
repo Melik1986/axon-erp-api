@@ -116,8 +116,23 @@ modules:
               ServiceKeyName: axon-auth-key
               sap.cloud.service: axon.warehouse.ops
 
+  # Portal content deployer: pushes CDM (cdm.json) to SAP Build Work Zone Standard
+  # so that catalog, group, and site are created automatically on deploy.
+  - name: axon-portal-deployer
+    type: com.sap.portal.content
+    path: app/workzone
+    requires:
+      - name: axon-launchpad
+        parameters:
+          content-target: true
+      - name: axon-html5-rt
+
 resources:
   - name: axon-auth
+    type: org.cloudfoundry.existing-service
+
+  # SAP Build Work Zone Standard — existing service instance created via BTP cockpit
+  - name: axon-launchpad
     type: org.cloudfoundry.existing-service
 
   - name: axon-destination
