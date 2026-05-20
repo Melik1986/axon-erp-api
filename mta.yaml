@@ -51,14 +51,104 @@ modules:
           url: ~{srv-url}
           forwardAuthToken: true
       - name: axon-auth
+      - name: axon-destination
+      - name: axon-html5-rt
     provides:
       - name: app-api
         properties:
           app-url: ${default-url}
 
+  - name: axon-warehouse-ops
+    type: html5
+    path: app/warehouse-ops
+    build-parameters:
+      builder: custom
+      build-result: dist
+      commands:
+        - npm install
+        - npm run build
+      supported-platforms: []
+
+  - name: axon-warehouse-ops-content
+    type: com.sap.application.content
+    path: app/warehouse-ops-content
+    requires:
+      - name: axon-html5-host
+        parameters:
+          content-target: true
+    build-parameters:
+      build-result: app-content
+      requires:
+        - name: axon-warehouse-ops
+          artifacts:
+            - warehouse-ops.zip
+          target-path: app-content/
+
+  - name: axon-destinations
+    type: com.sap.application.content
+    requires:
+      - name: axon-destination
+        parameters:
+          content-target: true
+      - name: axon-html5-host
+        parameters:
+          service-key:
+            name: axon-html5-host-key
+      - name: axon-auth
+        parameters:
+          service-key:
+            name: axon-auth-key
+      - name: srv-api
+    build-parameters:
+      no-source: true
+    parameters:
+      content:
+        instance:
+          existing_destinations_policy: update
+          destinations:
+            - Name: axon-warehouse-ops-html5-repository
+              ServiceInstanceName: axon-html5-host
+              ServiceKeyName: axon-html5-host-key
+              sap.cloud.service: axon.warehouse.ops
+            - Name: axon-warehouse-ops-auth
+              Authentication: OAuth2UserTokenExchange
+              ServiceInstanceName: axon-auth
+              ServiceKeyName: axon-auth-key
+              sap.cloud.service: axon.warehouse.ops
+
 resources:
   - name: axon-auth
     type: org.cloudfoundry.existing-service
+
+  - name: axon-destination
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: destination
+      service-plan: lite
+      config:
+        HTML5Runtime_enabled: true
+        init_data:
+          subaccount:
+            existing_destinations_policy: update
+            destinations:
+              - Name: axon-workzone-runtime
+                Authentication: NoAuthentication
+                Type: HTTP
+                ProxyType: Internet
+                URL: https://590c8b3dtrial.dt.launchpad.cfapps.us10.hana.ondemand.com
+                CEP.HTML5contentprovider: true
+
+  - name: axon-html5-host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-host
+
+  - name: axon-html5-rt
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-runtime
 
   # Uncomment after `cf create-service html5-apps-repo app-host axon-html5-host`
   # and `cf create-service html5-apps-repo app-runtime axon-html5-rt`, then add

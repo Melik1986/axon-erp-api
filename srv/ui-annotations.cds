@@ -19,11 +19,28 @@ annotate WarehouseService.Products with @(UI: {
     {Value: Unit,              Label: 'Unit'},
     {Value: supplier.name,     Label: 'Supplier'}
   ],
-  Facets: [{
-    $Type : 'UI.ReferenceFacet',
-    Label : 'Product Details',
-    Target: '@UI.FieldGroup#Main'
-  }],
+  Facets: [
+    {
+      $Type : 'UI.ReferenceFacet',
+      Label : 'Product Details',
+      Target: '@UI.FieldGroup#Main'
+    },
+    {
+      $Type : 'UI.ReferenceFacet',
+      Label : 'Supplier Context',
+      Target: 'supplier/@UI.FieldGroup#Main'
+    },
+    {
+      $Type : 'UI.ReferenceFacet',
+      Label : 'Stock Levels',
+      Target: 'stockLevels/@UI.LineItem'
+    },
+    {
+      $Type : 'UI.ReferenceFacet',
+      Label : 'Replenishment Orders',
+      Target: 'supplier/purchaseOrders/@UI.LineItem'
+    }
+  ],
   FieldGroup#Main: {
     Label: 'Product Details',
     Data : [

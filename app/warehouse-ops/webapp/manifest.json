@@ -1,0 +1,139 @@
+{
+  "_version": "1.60.0",
+  "sap.app": {
+    "id": "axon.warehouse.ops",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "1.0.0"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/warehouse/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "4.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "WarehouseOps-display": {
+          "semanticObject": "WarehouseOps",
+          "action": "display",
+          "title": "{{warehouseOpsTileTitle}}",
+          "subTitle": "{{warehouseOpsTileSubtitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "axon.warehouse.ops"
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "dependencies": {
+      "minUI5Version": "1.120.0",
+      "libs": {
+        "sap.fe.templates": {},
+        "sap.fe.core": {},
+        "sap.f": {},
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+    "models": {
+      "": {
+        "dataSource": "mainService",
+        "settings": {
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "axon.warehouse.ops.i18n.i18n"
+        }
+      }
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.f.routing.Router"
+      },
+      "routes": [
+        {
+          "pattern": "",
+          "name": "WarehouseOpsList",
+          "target": ["WarehouseOpsList"]
+        },
+        {
+          "pattern": "Products({key}):?query:",
+          "name": "WarehouseProductDetail",
+          "target": ["WarehouseOpsList", "WarehouseProductDetail"]
+        }
+      ],
+      "targets": {
+        "WarehouseOpsList": {
+          "type": "Component",
+          "id": "WarehouseOpsList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "contextPath": "/Products",
+              "variantManagement": "Page",
+              "initialLoad": true,
+              "navigation": {
+                "Products": {
+                  "detail": {
+                    "route": "WarehouseProductDetail"
+                  }
+                }
+              },
+              "tableSettings": {
+                "type": "ResponsiveTable",
+                "selectAll": true,
+                "selectionMode": "Multi"
+              }
+            }
+          }
+        },
+        "WarehouseProductDetail": {
+          "type": "Component",
+          "id": "WarehouseProductDetail",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "contextPath": "/Products",
+              "editableHeaderContent": true
+            }
+          }
+        }
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  }
+}

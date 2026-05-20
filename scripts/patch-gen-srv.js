@@ -11,6 +11,8 @@ const path = require('path');
 
 const genSrvPkg = path.join(__dirname, '..', 'gen', 'srv', 'package.json');
 const genSrvLock = path.join(__dirname, '..', 'gen', 'srv', 'package-lock.json');
+const sourceDbData = path.join(__dirname, '..', 'db', 'data');
+const targetDbData = path.join(__dirname, '..', 'gen', 'srv', 'db', 'data');
 
 function ensureSqliteDependency(container) {
   if (!container) return false;
@@ -34,6 +36,19 @@ function ensureSqliteDependency(container) {
   return changed;
 }
 
+function ensureSeedData() {
+  if (!fs.existsSync(sourceDbData)) {
+    console.warn('patch-gen-srv: seed source not found:', sourceDbData);
+    return false;
+  }
+
+  fs.mkdirSync(path.dirname(targetDbData), { recursive: true });
+  fs.rmSync(targetDbData, { recursive: true, force: true });
+  fs.cpSync(sourceDbData, targetDbData, { recursive: true });
+  console.log('patch-gen-srv: copied db/data into gen/srv');
+  return true;
+}
+
 if (!fs.existsSync(genSrvPkg)) {
   console.error('patch-gen-srv: file not found:', genSrvPkg);
   process.exit(1);
@@ -46,6 +61,8 @@ if (ensureSqliteDependency(pkg)) {
 } else {
   console.log('patch-gen-srv: @cap-js/sqlite already present in gen/srv/package.json');
 }
+
+ensureSeedData();
 
 if (!fs.existsSync(genSrvLock)) {
   console.warn('patch-gen-srv: file not found:', genSrvLock);

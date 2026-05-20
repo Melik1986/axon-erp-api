@@ -16,6 +16,12 @@
       "source": "^/resources/(.*)$",
       "localDir": "resources",
       "authenticationType": "none"
+    },
+    {
+      "source": "^(.*)$",
+      "target": "$1",
+      "service": "html5-apps-repo-rt",
+      "authenticationType": "xsuaa"
     }
   ]
 }

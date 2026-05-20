@@ -1,0 +1,236 @@
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:41:00.860426] Updated app with guid fbe7a60c-9d59-4646-9863-1fb8863709b6 ({"lifecycle"=>{"data"=>{"buildpacks"=>[]}, "type"=>"buildpack"}}) (STDOUT, API)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:41:00.978145] Updating process: "web" (STDOUT, API)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:41:30.862204] Uploading app package for app with guid fbe7a60c-9d59-4646-9863-1fb8863709b6 (STDOUT, API)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:41:31.103849] Updated app with guid fbe7a60c-9d59-4646-9863-1fb8863709b6 ({"environment_variables"=>"[PRIVATE DATA HIDDEN]"}) (STDOUT, API)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:01.732966] Updated app with guid fbe7a60c-9d59-4646-9863-1fb8863709b6 ({"lifecycle"=>{"data"=>{"buildpacks"=>[]}, "type"=>"buildpack"}}) (STDOUT, API)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:01.855322] Updating process: "web" (STDOUT, API)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:31.752002] Uploading app package for app with guid fbe7a60c-9d59-4646-9863-1fb8863709b6 (STDOUT, API)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:31.987185] Updated app with guid fbe7a60c-9d59-4646-9863-1fb8863709b6 ({"environment_variables"=>"[PRIVATE DATA HIDDEN]"}) (STDOUT, API)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:42.174525] Stopping app with guid fbe7a60c-9d59-4646-9863-1fb8863709b6 (STDOUT, API)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:42.215295] Cell d1cc041a-d5a1-41d6-b9f6-6cda736ce3f0 stopping instance 38bab7a8-5369-42cf-63bb-b947 (STDOUT, CELL)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:42.629189] Creating build for app with guid fbe7a60c-9d59-4646-9863-1fb8863709b6 (STDOUT, API)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:44.876586] Downloading zero_trust_sidecar_buildpack_1_16... (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:44.876599] Downloading staticfile_buildpack... (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:44.876670] Downloading sap_java_buildpack_jakarta... (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:44.876690] Downloading sap_java_buildpack_jakarta_2_58... (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:44.892613] Downloading sap_java_buildpack_jakarta_2_56... (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:44.929027] Downloaded staticfile_buildpack (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:44.929085] Downloading sap_java_buildpack_jakarta_2_55... (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:44.933748] Downloaded zero_trust_sidecar_buildpack_1_16 (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:44.933782] Downloading sap_java_buildpack_jakarta_2_53... (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:44.936359] Downloaded sap_java_buildpack_jakarta_2_56 (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:44.936399] Downloading zero_trust_sidecar_buildpack_1_14... (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:44.937771] Downloaded sap_java_buildpack_jakarta (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:44.937817] Downloading zero_trust_sidecar_buildpack_1_15... (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:44.942004] Downloaded sap_java_buildpack_jakarta_2_58 (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:44.942045] Downloading zero_trust_sidecar_buildpack... (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:44.986522] Downloaded zero_trust_sidecar_buildpack (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:44.986567] Downloading python_buildpack... (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:44.987594] Downloaded zero_trust_sidecar_buildpack_1_15 (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:44.987622] Downloading java_buildpack... (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:44.992373] Downloaded sap_java_buildpack_jakarta_2_53 (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:44.992403] Downloading nodejs_buildpack... (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:44.996611] Downloaded zero_trust_sidecar_buildpack_1_14 (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:44.996641] Downloading go_buildpack... (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:44.997548] Downloaded sap_java_buildpack_jakarta_2_55 (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:44.997568] Downloading nginx_buildpack... (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:45.034233] Downloaded java_buildpack (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:45.034273] Downloading php_buildpack... (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:45.042201] Downloaded nginx_buildpack (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:45.042240] Downloading binary_buildpack... (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:45.042432] Downloaded python_buildpack (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:45.043738] Downloaded go_buildpack (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:45.066649] Downloaded nodejs_buildpack (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:45.086014] Downloaded php_buildpack (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:45.094036] Downloaded binary_buildpack (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:45.094141] Cell d1cc041a-d5a1-41d6-b9f6-6cda736ce3f0 creating container for instance 843a47d3-d602-46d7-89e5-f0cef602611b (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:46.029529] Security group rules were updated (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:46.153751] Cell d1cc041a-d5a1-41d6-b9f6-6cda736ce3f0 successfully created container for instance 843a47d3-d602-46d7-89e5-f0cef602611b (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:46.496232] Downloading app package... (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:46.496260] Downloading build artifacts cache... (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:46.652186] Downloaded build artifacts cache (225B) (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:47.835381] Downloaded app package (7M) (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:48.667848] -----> Nodejs Buildpack version 1.8.44 (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:49.125138] -----> Bootstrapping python (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:49.125171] -----> Installing python 3.11.14 (STDOUT, STG)#
+#2026 05 20 17:42:51.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-10789#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:49.125212] Copy [/tmp/buildpacks/978cee5ec9c58000/dependencies/b5e0345ae0ae1932e7d56fffaa49a487/python_3.11.14_linux_x64_cflinuxfs4_66f53248.tgz] (STDOUT, STG)#
+#2026 05 20 17:43:01.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12442#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:53.406432] -----> Installing binaries (STDOUT, STG)#
+#2026 05 20 17:43:01.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12442#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:53.406521] engines.node (package.json): >=20 (STDOUT, STG)#
+#2026 05 20 17:43:01.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12442#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:53.406614] engines.npm (package.json): unspecified (use default) (STDOUT, STG)#
+#2026 05 20 17:43:01.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12442#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:53.406628] [31;1m**WARNING**[0m Dangerous semver range (>) in engines.node. See: http://docs.cloudfoundry.org/buildpacks/node/node-tips.html (STDOUT, STG)#
+#2026 05 20 17:43:01.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12442#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:53.406682] -----> Installing node 24.13.0 (STDOUT, STG)#
+#2026 05 20 17:43:01.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12442#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:53.406959] Copy [/tmp/buildpacks/978cee5ec9c58000/dependencies/2f5692219fecc3eee6e6d507a6bfe7b9/node_24.13.0_linux_x64_cflinuxfs4_a816dee1.tgz] (STDOUT, STG)#
+#2026 05 20 17:43:01.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12442#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:56.082081] Using default npm version: 11.6.2 (STDOUT, STG)#
+#2026 05 20 17:43:01.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12442#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:56.082109] -----> Installing yarn 1.22.22 (STDOUT, STG)#
+#2026 05 20 17:43:01.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12442#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:56.082209] Copy [/tmp/buildpacks/978cee5ec9c58000/dependencies/e3a39aedd1236924d69cc2d0637a8ed2/yarn_1.22.22_linux_noarch_any-stack_4911d0a6.tgz] (STDOUT, STG)#
+#2026 05 20 17:43:01.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12442#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:56.441008] Installed yarn 1.22.22 (STDOUT, STG)#
+#2026 05 20 17:43:01.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12442#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:56.441048] -----> Creating runtime environment (STDOUT, STG)#
+#2026 05 20 17:43:01.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12442#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:56.443199] NODE_ENV=production (STDOUT, STG)#
+#2026 05 20 17:43:01.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12442#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:56.443224] NODE_HOME=/tmp/contents1337766614/deps/0/node (STDOUT, STG)#
+#2026 05 20 17:43:01.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12442#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:56.443232] NODE_MODULES_CACHE=true (STDOUT, STG)#
+#2026 05 20 17:43:01.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12442#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:56.443327] NODE_VERBOSE=false (STDOUT, STG)#
+#2026 05 20 17:43:01.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12442#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:56.443383] NPM_CONFIG_LOGLEVEL=error (STDOUT, STG)#
+#2026 05 20 17:43:01.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12442#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:56.443438] NPM_CONFIG_PRODUCTION=true (STDOUT, STG)#
+#2026 05 20 17:43:01.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12442#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:56.443604] -----> Building dependencies (STDOUT, STG)#
+#2026 05 20 17:43:01.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12442#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:56.443652] Prebuild detected (node_modules already exists) (STDOUT, STG)#
+#2026 05 20 17:43:01.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12442#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:56.443764] Rebuilding any native modules (STDOUT, STG)#
+#2026 05 20 17:43:01.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12442#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:57.396037] rebuilt dependencies successfully (STDOUT, STG)#
+#2026 05 20 17:43:01.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12442#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:57.397993] npm notice (STDOUT, STG)#
+#2026 05 20 17:43:01.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12442#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:57.398013] npm notice New minor version of npm available! 11.6.2 -> 11.14.1 (STDOUT, STG)#
+#2026 05 20 17:43:01.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12442#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:57.398017] npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.14.1 (STDOUT, STG)#
+#2026 05 20 17:43:01.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12442#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:57.398020] npm notice To update run: npm install -g npm@11.14.1 (STDOUT, STG)#
+#2026 05 20 17:43:01.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12442#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:57.398026] npm notice (STDOUT, STG)#
+#2026 05 20 17:43:01.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12442#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:57.474270] Installing any new modules (package.json + package-lock.json) (STDOUT, STG)#
+#2026 05 20 17:43:01.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12442#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:58.292022] up to date in 737ms (STDOUT, STG)#
+#2026 05 20 17:43:01.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12442#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:58.292245] 31 packages are looking for funding (STDOUT, STG)#
+#2026 05 20 17:43:01.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12442#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:58.292365] run `npm fund` for details (STDOUT, STG)#
+#2026 05 20 17:43:01.569#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12442#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:42:59.497069] Contrast Security no credentials found. Will not write environment files. (STDOUT, STG)#
+#2026 05 20 17:43:11.707#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12449#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:43:10.979687] Exit status 0 (STDOUT, STG)#
+#2026 05 20 17:43:11.707#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12449#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:43:10.979746] Uploading droplet, build artifacts cache... (STDOUT, STG)#
+#2026 05 20 17:43:11.707#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12449#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:43:10.979787] Uploading build artifacts cache... (STDOUT, STG)#
+#2026 05 20 17:43:11.707#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12449#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:43:10.979812] Uploading droplet... (STDOUT, STG)#
+#2026 05 20 17:43:11.707#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12449#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:43:11.013454] Uploaded build artifacts cache (227B) (STDOUT, STG)#
+#2026 05 20 17:43:21.805#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12450#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:43:11.867616] Creating droplet for app with guid fbe7a60c-9d59-4646-9863-1fb8863709b6 (STDOUT, API)#
+#2026 05 20 17:43:21.805#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12450#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:43:13.946611] Uploaded droplet (61.6M) (STDOUT, STG)#
+#2026 05 20 17:43:21.805#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12450#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:43:13.966652] Uploading complete (STDOUT, STG)#
+#2026 05 20 17:43:21.805#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12450#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:43:15.433148] Cell d1cc041a-d5a1-41d6-b9f6-6cda736ce3f0 stopping instance 843a47d3-d602-46d7-89e5-f0cef602611b (STDOUT, STG)#
+#2026 05 20 17:43:21.805#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12450#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:43:15.433192] Cell d1cc041a-d5a1-41d6-b9f6-6cda736ce3f0 destroying container for instance 843a47d3-d602-46d7-89e5-f0cef602611b (STDOUT, STG)#
+#2026 05 20 17:43:21.805#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12450#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:43:15.488768] Staging complete for build 843a47d3-d602-46d7-89e5-f0cef602611b (STDOUT, API)#
+#2026 05 20 17:43:21.805#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12450#
+[PollStageAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:43:19.137011] Cell d1cc041a-d5a1-41d6-b9f6-6cda736ce3f0 successfully destroyed container for instance 843a47d3-d602-46d7-89e5-f0cef602611b (STDOUT, STG)#
+#2026 05 20 17:43:31.912#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-11382#
+[PollStartAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:43:21.896579] Updated app with guid fbe7a60c-9d59-4646-9863-1fb8863709b6 ({:droplet_guid=>"56837d76-72b6-4d74-b729-e63cb64aa544"}) (STDOUT, API)#
+#2026 05 20 17:43:31.912#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-11382#
+[PollStartAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:43:22.113018] Creating revision for app with guid fbe7a60c-9d59-4646-9863-1fb8863709b6 (STDOUT, API)#
+#2026 05 20 17:43:31.912#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-11382#
+[PollStartAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:43:22.153069] Starting app with guid fbe7a60c-9d59-4646-9863-1fb8863709b6 (STDOUT, API)#
+#2026 05 20 17:43:31.912#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-11382#
+[PollStartAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:43:22.482914] Cell 77283d80-dfa7-40ba-ba4e-265aef112085 creating container for instance c27d82cf-b0b2-42fa-504b-3642 (STDOUT, CELL)#
+#2026 05 20 17:43:31.912#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-11382#
+[PollStartAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:43:23.463951] Security group rules were updated (STDOUT, CELL)#
+#2026 05 20 17:43:31.912#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-11382#
+[PollStartAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:43:23.576893] Cell 77283d80-dfa7-40ba-ba4e-265aef112085 successfully created container for instance c27d82cf-b0b2-42fa-504b-3642 (STDOUT, CELL)#
+#2026 05 20 17:43:31.912#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-11382#
+[PollStartAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:43:24.100560] Downloading droplet... (STDOUT, CELL)#
+#2026 05 20 17:43:31.912#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-11382#
+[PollStartAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:43:29.115068] Downloaded droplet (61.6M) (STDOUT, CELL)#
+#2026 05 20 17:43:31.912#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-11382#
+[PollStartAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:43:29.115332] Starting health monitoring of container (STDOUT, CELL)#
+#2026 05 20 17:43:31.912#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-11382#
+[PollStartAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:43:29.339211] Invoking pre-start scripts. (STDOUT, APP/PROC/WEB)#
+#2026 05 20 17:43:31.912#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-11382#
+[PollStartAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:43:29.595839] Invoking start command. (STDOUT, APP/PROC/WEB)#
+#2026 05 20 17:43:31.912#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-11382#
+[PollStartAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:43:30.146647] > axon-odata-api-approuter@1.0.0 start (STDOUT, APP/PROC/WEB)#
+#2026 05 20 17:43:31.912#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-11382#
+[PollStartAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:43:30.146672] > node node_modules/@sap/approuter/approuter.js (STDOUT, APP/PROC/WEB)#
+#2026 05 20 17:43:31.912#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-11382#
+[PollStartAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:43:30.384948] {"written_at":"2026-05-20T17:43:30.382Z","written_ts":1779299010382000000,"csn_component":"-","correlation_id":"-","type":"log","logger":"nodejs-logger","layer":"/LoggingLibrary","level":"warning","container_id":"10.32.3.6","component_type":"application","component_id":"fbe7a60c-9d59-4646-9863-1fb8863709b6","component_name":"axon-odata-api-app","component_instance":-1,"source_instance":-1,"organization_id":"88230758-1103-4d78-aabf-593fe928b154","organization_name":"590c8b3dtrial_590c8b3dtrial","space_id":"46c5c819-922f-41a0-b344-dcdeaecd2987","space_name":"dev","context_id":"","msg":"Dynamic log level switching not available"} (STDOUT, APP/PROC/WEB)#
+#2026 05 20 17:43:31.912#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-11382#
+[PollStartAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:43:31.001526] {"written_at":"2026-05-20T17:43:31.000Z","written_ts":1779299011000000000,"csn_component":"-","correlation_id":"mpecovjt","type":"log","logger":"nodejs-logger","layer":"/approuter","level":"info","container_id":"10.32.3.6","component_type":"application","component_id":"fbe7a60c-9d59-4646-9863-1fb8863709b6","component_name":"axon-odata-api-app","component_instance":-1,"source_instance":-1,"organization_id":"88230758-1103-4d78-aabf-593fe928b154","organization_name":"590c8b3dtrial_590c8b3dtrial","space_id":"46c5c819-922f-41a0-b344-dcdeaecd2987","space_name":"dev","context_id":"mpecovjt","msg":"Application router version 21.5.0"} (STDOUT, APP/PROC/WEB)#
+#2026 05 20 17:43:31.912#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-11382#
+[PollStartAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:43:31.005598] {"written_at":"2026-05-20T17:43:31.004Z","written_ts":1779299011004000000,"csn_component":"-","correlation_id":"mpecovjx","type":"log","logger":"nodejs-logger","layer":"/Configuration","level":"info","container_id":"10.32.3.6","component_type":"application","component_id":"fbe7a60c-9d59-4646-9863-1fb8863709b6","component_name":"axon-odata-api-app","component_instance":-1,"source_instance":-1,"organization_id":"88230758-1103-4d78-aabf-593fe928b154","organization_name":"590c8b3dtrial_590c8b3dtrial","space_id":"46c5c819-922f-41a0-b344-dcdeaecd2987","space_name":"dev","context_id":"mpecovjx","msg":"No COOKIES environment variable"} (STDOUT, APP/PROC/WEB)#
+#2026 05 20 17:43:31.912#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-11382#
+[PollStartAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:43:31.065649] {"written_at":"2026-05-20T17:43:31.064Z","written_ts":1779299011064000000,"csn_component":"-","correlation_id":"mpecovjt","type":"log","logger":"nodejs-logger","layer":"/approuter","level":"info","container_id":"10.32.3.6","component_type":"application","component_id":"fbe7a60c-9d59-4646-9863-1fb8863709b6","component_name":"axon-odata-api-app","component_instance":-1,"source_instance":-1,"organization_id":"88230758-1103-4d78-aabf-593fe928b154","organization_name":"590c8b3dtrial_590c8b3dtrial","space_id":"46c5c819-922f-41a0-b344-dcdeaecd2987","space_name":"dev","context_id":"mpecovjt","msg":"Application router is listening on port: 8080"} (STDOUT, APP/PROC/WEB)#
+#2026 05 20 17:43:41.888#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12470#
+[PollStartAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:43:32.814797] Container became healthy (STDOUT, CELL)#
+#2026 05 20 17:43:41.888#Z#DEBUG#2e5dd6e9-5473-11f1-b19a-eeee0a964b2e.axon-odata-api-app#flowable-async-job-executor-thread-12470#
+[PollStartAppStatusExecution] fbe7a60c-9d59-4646-9863-1fb8863709b6 [2026-05-20T17:43:32.849334] Process became ready with guid fbe7a60c-9d59-4646-9863-1fb8863709b6 payload: {"instance"=>"c27d82cf-b0b2-42fa-504b-3642", "index"=>0, "cell_id"=>"77283d80-dfa7-40ba-ba4e-265aef112085", "ready"=>true, "version"=>"2b39a042-d5fb-4abd-8193-aa778584dd51"} (STDOUT, API)#

@@ -5,7 +5,7 @@
   "scripts": {
     "start": "cds-serve",
     "watch": "cds watch",
-    "build": "cds build --production",
+    "build": "cds build --production && node scripts/patch-gen-srv.js",
     "deploy": "cds deploy --to sqlite",
     "verify:seed": "node scripts/verify-seed.mjs",
     "verify:cf": "node scripts/verify-seed.mjs --base-url https://590c8b3dtrial-590c8b3dtrial-dev-axon-odata-api.cfapps.us10-001.hana.ondemand.com/odata/v4/warehouse",
@@ -72,6 +72,7 @@
         }
       },
       "html5-repo": true,
+      "workzone": true,
       "portal": true
     },
     "odata": {
