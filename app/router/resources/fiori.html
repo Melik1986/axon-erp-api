@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Axon Warehouse Fiori Demo</title>
+  <title>Axon Warehouse SAP UI</title>
   <script
     id="sap-ui-bootstrap"
     src="https://sdk.openui5.org/resources/sap-ui-core.js"
@@ -14,198 +14,709 @@
   ></script>
   <style>
     html, body, #content { height: 100%; margin: 0; }
-    .sapUiDemoHeader { padding: 1rem 1.5rem 0.4rem; }
-    .sapUiDemoKpi { min-width: 9rem; }
+    body { background: #f4f7fa; }
+    #content { min-height: 100%; }
+    .axonPageShell { padding: 1rem 1.5rem 1.5rem; gap: 1rem; }
+    .axonIntroText { color: #5b738b; }
+    .axonSummaryRow { gap: 0.75rem; flex-wrap: wrap; }
+    .axonMetricGrid { width: 100%; }
+    .axonMetricTile { min-width: 12rem; }
+    .axonTabBar { margin-top: 0.75rem; }
+    .axonMessage { margin-top: 0.25rem; }
   </style>
 </head>
 <body class="sapUiBody" id="content">
   <script>
     sap.ui.getCore().attachInit(async function () {
-      const root = "/odata/v4/warehouse";
-      const jsonHeaders = { Accept: "application/json" };
+      var root = "/odata/v4/warehouse";
+      var headers = { Accept: "application/json" };
 
-      async function load(path) {
-        const response = await fetch(root + path, { headers: jsonHeaders });
-        if (!response.ok) {
-          throw new Error(path + " -> HTTP " + response.status);
-        }
-        const data = await response.json();
-        return data.value || [];
+      function createEmptyState() {
+        return {
+          busy: true,
+          error: "",
+          metrics: {
+            entitySetCount: 9,
+            productCount: 0,
+            stockCount: 0,
+            supplierCount: 0,
+            purchaseOrderCount: 0,
+            invoiceCount: 0,
+            invoiceItemCount: 0,
+            partnerCount: 0,
+            addressCount: 0,
+            roleCount: 0,
+            lowStockCount: 0,
+            openInvoiceCount: 0,
+            arabicaQuantity: 0,
+            arabicaUnit: "kg",
+            totalRecords: 0
+          },
+          products: [],
+          stockLevels: [],
+          suppliers: [],
+          purchaseOrders: [],
+          invoices: [],
+          invoiceItems: [],
+          partners: [],
+          addresses: [],
+          roles: []
+        };
       }
 
-      const [
-        products,
-        stock,
-        invoices,
-        partners,
-        addresses,
-        roles,
-      ] = await Promise.all([
-        load("/Products?$expand=supplier"),
-        load("/StockLevels?$expand=product"),
-        load("/Invoices?$expand=supplier,Items"),
-        load("/A_BusinessPartner"),
-        load("/A_BusinessPartnerAddress"),
-        load("/A_BusinessPartnerRole"),
-      ]);
-
-      const model = new sap.ui.model.json.JSONModel({
-        products,
-        stock,
-        invoices,
-        partners,
-        addresses,
-        roles,
-      });
+      var model = new sap.ui.model.json.JSONModel(createEmptyState());
+      model.setSizeLimit(2000);
       sap.ui.getCore().setModel(model);
 
-      function textCell(path) {
-        return new sap.m.Text({ text: "{" + path + "}", wrapping: false });
+      function asText(value) {
+        return value === null || value === undefined || value === "" ? "-" : String(value);
       }
 
-      function makeColumn(label) {
-        return new sap.m.Column({ header: new sap.m.Label({ text: label }) });
+      function toNumber(value) {
+        var number = Number(value);
+        return Number.isFinite(number) ? number : 0;
       }
 
-      function makeTable(title, path, columns, cells) {
+      function formatInteger(value) {
+        return new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 }).format(toNumber(value));
+      }
+
+      function formatMoney(value, currency) {
+        var number = Number(value);
+        if (!Number.isFinite(number)) {
+          return "-";
+        }
+        var formatted = new Intl.NumberFormat("en-US", {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        }).format(number);
+        return formatted + (currency ? " " + currency : "");
+      }
+
+      function formatDate(value) {
+        if (!value) {
+          return "-";
+        }
+        return String(value).split("T")[0];
+      }
+
+      function quantityState(value) {
+        var quantity = toNumber(value);
+        if (quantity < 50) {
+          return "Error";
+        }
+        if (quantity < 100) {
+          return "Warning";
+        }
+        return "Success";
+      }
+
+      function purchaseOrderState(value) {
+        var status = String(value || "").toUpperCase();
+        if (status === "DELIVERED") {
+          return "Success";
+        }
+        if (status === "IN_TRANSIT") {
+          return "Warning";
+        }
+        return "Error";
+      }
+
+      function invoiceState(value) {
+        var status = String(value || "").toUpperCase();
+        if (status === "PAID") {
+          return "Success";
+        }
+        if (status === "POSTED") {
+          return "Warning";
+        }
+        return "Error";
+      }
+
+      function businessPartnerCategory(value) {
+        if (String(value) === "1") {
+          return "Person";
+        }
+        if (String(value) === "2") {
+          return "Organization";
+        }
+        return asText(value);
+      }
+
+      function lineCount(value) {
+        return Array.isArray(value) ? formatInteger(value.length) + " lines" : "0 lines";
+      }
+
+      function createTextCell(path, formatter) {
+        return new sap.m.Text({
+          text: formatter ? { path: path, formatter: formatter } : "{" + path + "}",
+          wrapping: false
+        });
+      }
+
+      function createObjectNumberCell(path, unitPath, formatter, stateFormatter) {
+        var settings = {
+          number: formatter ? { path: path, formatter: formatter } : { path: path, formatter: formatInteger },
+          state: stateFormatter ? { path: path, formatter: stateFormatter } : "None"
+        };
+        if (unitPath) {
+          settings.unit = "{" + unitPath + "}";
+        }
+        return new sap.m.ObjectNumber(settings);
+      }
+
+      function createObjectStatusCell(path, textFormatter, stateFormatter) {
+        return new sap.m.ObjectStatus({
+          text: textFormatter ? { path: path, formatter: textFormatter } : { path: path, formatter: asText },
+          state: stateFormatter ? { path: path, formatter: stateFormatter } : "None"
+        });
+      }
+
+      function createMetricTile(title, valuePath, unit, valueColor) {
+        var tile = new sap.m.GenericTile({
+          header: title,
+          tileContent: [
+            new sap.m.TileContent({
+              unit: unit || "",
+              content: new sap.m.NumericContent({
+                value: { path: valuePath },
+                valueColor: valueColor || "Neutral"
+              })
+            })
+          ]
+        });
+        tile.addStyleClass("axonMetricTile");
+        return tile;
+      }
+
+      function createTable(title, noDataText, columns, path) {
         return new sap.m.Table({
+          growing: true,
+          growingThreshold: 25,
+          sticky: [sap.m.Sticky.ColumnHeaders],
+          noDataText: noDataText,
           headerToolbar: new sap.m.OverflowToolbar({
             content: [
               new sap.m.Title({ text: title, level: "H2" }),
               new sap.m.ToolbarSpacer(),
-              new sap.m.ObjectStatus({ text: "Live OData", state: "Success" }),
-            ],
+              new sap.m.ObjectStatus({ text: "Live OData", state: "Success" })
+            ]
           }),
-          growing: true,
-          growingThreshold: 20,
-          columns: columns.map(makeColumn),
+          columns: columns.map(function (column) {
+            return new sap.m.Column({
+              header: new sap.m.Label({ text: column.label }),
+              demandPopin: true
+            });
+          }),
           items: {
-            path,
-            template: new sap.m.ColumnListItem({ cells }),
-          },
+            path: path,
+            template: new sap.m.ColumnListItem({
+              cells: columns.map(function (column) {
+                return column.cell;
+              })
+            })
+          }
         });
       }
 
-      function kpi(title, value, unit) {
-        return new sap.m.GenericTile({
-          class: "sapUiTinyMarginEnd sapUiTinyMarginBottom sapUiDemoKpi",
-          header: title,
-          tileContent: [
-            new sap.m.TileContent({
-              unit,
-              content: new sap.m.NumericContent({ value }),
-            }),
-          ],
-        });
+      function computeMetrics(data) {
+        var arabicaStock = data.stockLevels.find(function (row) {
+          var name = String(row.Name || "");
+          var linkedName = row.product && row.product.Name ? String(row.product.Name) : "";
+          return /arabica/i.test(name) || /arabica/i.test(linkedName);
+        }) || {};
+
+        var openInvoices = data.invoices.filter(function (row) {
+          return String(row.status || "").toUpperCase() === "OPEN";
+        }).length;
+
+        var lowStock = data.stockLevels.filter(function (row) {
+          return toNumber(row.Quantity) < 100;
+        }).length;
+
+        var productCount = data.products.length;
+        var stockCount = data.stockLevels.length;
+        var supplierCount = data.suppliers.length;
+        var purchaseOrderCount = data.purchaseOrders.length;
+        var invoiceCount = data.invoices.length;
+        var invoiceItemCount = data.invoiceItems.length;
+        var partnerCount = data.partners.length;
+        var addressCount = data.addresses.length;
+        var roleCount = data.roles.length;
+
+        return {
+          entitySetCount: 9,
+          productCount: productCount,
+          stockCount: stockCount,
+          supplierCount: supplierCount,
+          purchaseOrderCount: purchaseOrderCount,
+          invoiceCount: invoiceCount,
+          invoiceItemCount: invoiceItemCount,
+          partnerCount: partnerCount,
+          addressCount: addressCount,
+          roleCount: roleCount,
+          lowStockCount: lowStock,
+          openInvoiceCount: openInvoices,
+          arabicaQuantity: arabicaStock.Quantity || 0,
+          arabicaUnit: arabicaStock.Unit || (arabicaStock.product && arabicaStock.product.Unit) || "kg",
+          totalRecords: productCount + stockCount + supplierCount + purchaseOrderCount + invoiceCount + invoiceItemCount + partnerCount + addressCount + roleCount
+        };
       }
 
-      const arabica = stock.find((row) => /Arabica/i.test(row.Name)) || {};
-      const openInvoices = invoices.filter((row) => row.status === "OPEN");
+      var summaryStrip = new sap.m.MessageStrip({
+        visible: false,
+        type: "Error",
+        showIcon: true,
+        showCloseButton: false,
+        text: ""
+      });
+      summaryStrip.addStyleClass("axonMessage");
 
-      const productsTable = makeTable(
-        "Products",
-        "/products",
-        ["SKU", "Product", "Supplier", "Price", "Stock"],
-        [
-          textCell("Sku"),
-          textCell("Name"),
-          textCell("supplier/name"),
-          textCell("Price"),
-          textCell("Quantity"),
-        ],
-      );
-
-      const stockTable = makeTable(
-        "Stock Levels",
-        "/stock",
-        ["Product", "Quantity", "Unit", "Warehouse"],
-        [
-          textCell("Name"),
-          textCell("Quantity"),
-          textCell("Unit"),
-          textCell("warehouseLocation"),
-        ],
-      );
-
-      const invoicesTable = makeTable(
-        "Invoices Created From Axon",
-        "/invoices",
-        ["Number", "Date", "Partner", "Total", "Status"],
-        [
-          textCell("Number"),
-          textCell("Date"),
-          textCell("CustomerName"),
-          textCell("Total"),
-          textCell("status"),
-        ],
-      );
-
-      const partnersTable = makeTable(
-        "Business Partners",
-        "/partners",
-        ["BP", "Name", "Country", "City"],
-        [
-          textCell("BusinessPartner"),
-          textCell("BusinessPartnerFullName"),
-          textCell("Country"),
-          textCell("CityName"),
-        ],
-      );
-
-      const page = new sap.m.Page({
-        title: "Axon Warehouse Demo",
-        content: [
-          new sap.m.VBox({
-            class: "sapUiDemoHeader",
-            items: [
-              new sap.m.Title({
-                text: "Investor Demo: Axon AI creates and reads SAP OData records",
-                level: "H1",
-              }),
-              new sap.m.Text({
-                text: "Use this screen while the mobile app creates invoices from photos and answers stock questions by voice.",
-              }),
-              new sap.m.HBox({
-                wrap: "Wrap",
-                class: "sapUiMediumMarginTop",
-                items: [
-                  kpi("Arabica Stock", arabica.Quantity || 0, arabica.Unit || "kg"),
-                  kpi("Products", products.length, "items"),
-                  kpi("Open Invoices", openInvoices.length, "docs"),
-                  kpi("Business Partners", partners.length, "BP"),
-                ],
-              }),
-            ],
-          }),
-          new sap.m.IconTabBar({
-            expanded: true,
-            items: [
-              new sap.m.IconTabFilter({
-                text: "Products",
-                icon: "sap-icon://product",
-                content: [productsTable],
-              }),
-              new sap.m.IconTabFilter({
-                text: "Stock",
-                icon: "sap-icon://inventory",
-                content: [stockTable],
-              }),
-              new sap.m.IconTabFilter({
-                text: "Invoices",
-                icon: "sap-icon://document",
-                content: [invoicesTable],
-              }),
-              new sap.m.IconTabFilter({
-                text: "Business Partners",
-                icon: "sap-icon://business-partner",
-                content: [partnersTable],
-              }),
-            ],
-          }),
-        ],
+      var totalStatus = new sap.m.ObjectStatus({
+        text: {
+          parts: ["/metrics/totalRecords", "/metrics/entitySetCount"],
+          formatter: function (total, sets) {
+            return "Loaded " + formatInteger(total) + " records across " + formatInteger(sets) + " entity sets";
+          }
+        },
+        state: "Success"
       });
 
-      new sap.m.App({ pages: [page] }).placeAt("content");
+      var arabicaStatus = new sap.m.ObjectStatus({
+        text: {
+          parts: ["/metrics/arabicaQuantity", "/metrics/arabicaUnit"],
+          formatter: function (quantity, unit) {
+            return "Arabica stock " + formatInteger(quantity) + " " + asText(unit);
+          }
+        },
+        state: {
+          parts: ["/metrics/arabicaQuantity"],
+          formatter: function (quantity) {
+            return toNumber(quantity) < 100 ? "Warning" : "Success";
+          }
+        }
+      });
+
+      var openInvoicesStatus = new sap.m.ObjectStatus({
+        text: {
+          parts: ["/metrics/openInvoiceCount"],
+          formatter: function (count) {
+            return "Open invoices " + formatInteger(count);
+          }
+        },
+        state: {
+          parts: ["/metrics/openInvoiceCount"],
+          formatter: function (count) {
+            return toNumber(count) > 0 ? "Warning" : "Success";
+          }
+        }
+      });
+
+      var lowStockStatus = new sap.m.ObjectStatus({
+        text: {
+          parts: ["/metrics/lowStockCount"],
+          formatter: function (count) {
+            return "Low stock lines " + formatInteger(count);
+          }
+        },
+        state: {
+          parts: ["/metrics/lowStockCount"],
+          formatter: function (count) {
+            return toNumber(count) > 0 ? "Warning" : "Success";
+          }
+        }
+      });
+
+      var summaryRow = new sap.m.HBox({
+        wrap: "Wrap",
+        items: [totalStatus, arabicaStatus, openInvoicesStatus, lowStockStatus]
+      });
+      summaryRow.addStyleClass("axonSummaryRow");
+
+      var metricGrid = new sap.ui.layout.Grid({
+        defaultSpan: "XL4 L4 M6 S12",
+        hSpacing: 1,
+        vSpacing: 1,
+        content: [
+          createMetricTile("Products", "/metrics/productCount", "items", "Good"),
+          createMetricTile("Stock Levels", "/metrics/stockCount", "lines", "Good"),
+          createMetricTile("Suppliers", "/metrics/supplierCount", "companies", "Good"),
+          createMetricTile("Purchase Orders", "/metrics/purchaseOrderCount", "docs", "Good"),
+          createMetricTile("Invoices", "/metrics/invoiceCount", "docs", "Good"),
+          createMetricTile("Invoice Items", "/metrics/invoiceItemCount", "lines", "Good"),
+          createMetricTile("Business Partners", "/metrics/partnerCount", "BPs", "Good"),
+          createMetricTile("BP Addresses", "/metrics/addressCount", "rows", "Good"),
+          createMetricTile("BP Roles", "/metrics/roleCount", "rows", "Good")
+        ]
+      });
+      metricGrid.addStyleClass("axonMetricGrid");
+
+      var productsTable = createTable(
+        "Products",
+        "No products loaded.",
+        [
+          { label: "Name", cell: createTextCell("Name") },
+          { label: "SKU", cell: createTextCell("Sku") },
+          { label: "Supplier", cell: createTextCell("supplier/name") },
+          { label: "Price", cell: createObjectNumberCell("Price", "currency", formatMoney) },
+          { label: "Quantity", cell: createObjectNumberCell("Quantity", "Unit", formatInteger, quantityState) },
+          { label: "Description", cell: createTextCell("description") }
+        ],
+        "/products"
+      );
+
+      var stockTable = createTable(
+        "Stock Levels",
+        "No stock levels loaded.",
+        [
+          { label: "Name", cell: createTextCell("Name") },
+          { label: "Linked Product", cell: createTextCell("product/Name") },
+          { label: "Quantity", cell: createObjectNumberCell("Quantity", "Unit", formatInteger, quantityState) },
+          { label: "Unit", cell: createTextCell("Unit") },
+          { label: "Warehouse", cell: createTextCell("warehouseLocation") },
+          { label: "Product Description", cell: createTextCell("product/description") }
+        ],
+        "/stockLevels"
+      );
+
+      var suppliersTable = createTable(
+        "Suppliers",
+        "No suppliers loaded.",
+        [
+          { label: "Name", cell: createTextCell("name") },
+          { label: "Country", cell: createTextCell("country") },
+          { label: "Email", cell: createTextCell("email") }
+        ],
+        "/suppliers"
+      );
+
+      var purchaseOrdersTable = createTable(
+        "Purchase Orders",
+        "No purchase orders loaded.",
+        [
+          { label: "Status", cell: createObjectStatusCell("status", asText, purchaseOrderState) },
+          { label: "Delivery Date", cell: createTextCell("deliveryDate", formatDate) },
+          { label: "Total Amount", cell: createObjectNumberCell("totalAmount", "currency", formatMoney) },
+          { label: "Currency", cell: createTextCell("currency") },
+          { label: "Supplier", cell: createTextCell("supplier/name") }
+        ],
+        "/purchaseOrders"
+      );
+
+      var invoicesTable = createTable(
+        "Invoices",
+        "No invoices loaded.",
+        [
+          { label: "Number", cell: createTextCell("Number") },
+          { label: "Date", cell: createTextCell("Date", formatDate) },
+          { label: "Customer / Supplier", cell: createTextCell("CustomerName") },
+          { label: "Amount", cell: createObjectNumberCell("amount", "currency", formatMoney) },
+          { label: "Total", cell: createObjectNumberCell("Total", "currency", formatMoney) },
+          { label: "Currency", cell: createTextCell("currency") },
+          { label: "Status", cell: createObjectStatusCell("status", asText, invoiceState) },
+          { label: "Supplier", cell: createTextCell("supplier/name") },
+          { label: "Items", cell: createTextCell("Items", lineCount) }
+        ],
+        "/invoices"
+      );
+
+      var invoiceItemsTable = createTable(
+        "Invoice Items",
+        "No invoice items loaded.",
+        [
+          { label: "Invoice", cell: createTextCell("invoice/Number") },
+          { label: "Product", cell: createTextCell("ProductName") },
+          { label: "Quantity", cell: createObjectNumberCell("Quantity", null, formatInteger) },
+          { label: "Price", cell: createObjectNumberCell("Price", null, formatMoney) }
+        ],
+        "/invoiceItems"
+      );
+
+      var partnersTable = createTable(
+        "Business Partners",
+        "No business partners loaded.",
+        [
+          { label: "Partner ID", cell: createTextCell("BusinessPartner") },
+          { label: "Full Name", cell: createTextCell("BusinessPartnerFullName") },
+          { label: "Organization Name", cell: createTextCell("OrganizationBPName1") },
+          { label: "Category", cell: createTextCell("BusinessPartnerCategory", businessPartnerCategory) },
+          { label: "Country", cell: createTextCell("Country") },
+          { label: "City", cell: createTextCell("CityName") }
+        ],
+        "/partners"
+      );
+
+      var addressesTable = createTable(
+        "Business Partner Addresses",
+        "No business partner addresses loaded.",
+        [
+          { label: "Partner ID", cell: createTextCell("BusinessPartner") },
+          { label: "Partner Name", cell: createTextCell("businessPartner/BusinessPartnerFullName") },
+          { label: "Address ID", cell: createTextCell("AddressID") },
+          { label: "Street", cell: createTextCell("StreetName") },
+          { label: "City", cell: createTextCell("CityName") },
+          { label: "Postal Code", cell: createTextCell("PostalCode") },
+          { label: "Country", cell: createTextCell("Country") }
+        ],
+        "/addresses"
+      );
+
+      var rolesTable = createTable(
+        "Business Partner Roles",
+        "No business partner roles loaded.",
+        [
+          { label: "Partner ID", cell: createTextCell("BusinessPartner") },
+          { label: "Partner Name", cell: createTextCell("businessPartner/BusinessPartnerFullName") },
+          { label: "Role Code", cell: createTextCell("BusinessPartnerRole") }
+        ],
+        "/roles"
+      );
+
+      var tabs = new sap.m.IconTabBar({
+        expanded: true,
+        items: [
+          new sap.m.IconTabFilter({
+            text: "Products",
+            count: { path: "/metrics/productCount", formatter: formatInteger },
+            content: [productsTable]
+          }),
+          new sap.m.IconTabFilter({
+            text: "Stock Levels",
+            count: { path: "/metrics/stockCount", formatter: formatInteger },
+            content: [stockTable]
+          }),
+          new sap.m.IconTabFilter({
+            text: "Suppliers",
+            count: { path: "/metrics/supplierCount", formatter: formatInteger },
+            content: [suppliersTable]
+          }),
+          new sap.m.IconTabFilter({
+            text: "Purchase Orders",
+            count: { path: "/metrics/purchaseOrderCount", formatter: formatInteger },
+            content: [purchaseOrdersTable]
+          }),
+          new sap.m.IconTabFilter({
+            text: "Invoices",
+            count: { path: "/metrics/invoiceCount", formatter: formatInteger },
+            content: [invoicesTable]
+          }),
+          new sap.m.IconTabFilter({
+            text: "Invoice Items",
+            count: { path: "/metrics/invoiceItemCount", formatter: formatInteger },
+            content: [invoiceItemsTable]
+          }),
+          new sap.m.IconTabFilter({
+            text: "Business Partners",
+            count: { path: "/metrics/partnerCount", formatter: formatInteger },
+            content: [partnersTable]
+          }),
+          new sap.m.IconTabFilter({
+            text: "BP Addresses",
+            count: { path: "/metrics/addressCount", formatter: formatInteger },
+            content: [addressesTable]
+          }),
+          new sap.m.IconTabFilter({
+            text: "BP Roles",
+            count: { path: "/metrics/roleCount", formatter: formatInteger },
+            content: [rolesTable]
+          })
+        ]
+      });
+      tabs.addStyleClass("axonTabBar");
+
+      var summaryStrip = new sap.m.MessageStrip({
+        visible: false,
+        type: "Error",
+        showIcon: true,
+        showCloseButton: false,
+        text: ""
+      });
+      summaryStrip.addStyleClass("axonMessage");
+
+      var summaryRow = new sap.m.HBox({
+        wrap: "Wrap",
+        items: [
+          new sap.m.ObjectStatus({
+            text: {
+              parts: ["/metrics/totalRecords", "/metrics/entitySetCount"],
+              formatter: function (total, sets) {
+                return "Loaded " + formatInteger(total) + " records across " + formatInteger(sets) + " entity sets";
+              }
+            },
+            state: "Success"
+          }),
+          new sap.m.ObjectStatus({
+            text: {
+              parts: ["/metrics/arabicaQuantity", "/metrics/arabicaUnit"],
+              formatter: function (quantity, unit) {
+                return "Arabica stock " + formatInteger(quantity) + " " + asText(unit);
+              }
+            },
+            state: {
+              parts: ["/metrics/arabicaQuantity"],
+              formatter: function (quantity) {
+                return toNumber(quantity) < 100 ? "Warning" : "Success";
+              }
+            }
+          }),
+          new sap.m.ObjectStatus({
+            text: {
+              parts: ["/metrics/openInvoiceCount"],
+              formatter: function (count) {
+                return "Open invoices " + formatInteger(count);
+              }
+            },
+            state: {
+              parts: ["/metrics/openInvoiceCount"],
+              formatter: function (count) {
+                return toNumber(count) > 0 ? "Warning" : "Success";
+              }
+            }
+          }),
+          new sap.m.ObjectStatus({
+            text: {
+              parts: ["/metrics/lowStockCount"],
+              formatter: function (count) {
+                return "Low stock lines " + formatInteger(count);
+              }
+            },
+            state: {
+              parts: ["/metrics/lowStockCount"],
+              formatter: function (count) {
+                return toNumber(count) > 0 ? "Warning" : "Success";
+              }
+            }
+          })
+        ]
+      });
+      summaryRow.addStyleClass("axonSummaryRow");
+
+      var metricGrid = new sap.ui.layout.Grid({
+        defaultSpan: "XL4 L4 M6 S12",
+        hSpacing: 1,
+        vSpacing: 1,
+        content: [
+          createMetricTile("Products", "/metrics/productCount", "items", "Good"),
+          createMetricTile("Stock Levels", "/metrics/stockCount", "lines", "Good"),
+          createMetricTile("Suppliers", "/metrics/supplierCount", "companies", "Good"),
+          createMetricTile("Purchase Orders", "/metrics/purchaseOrderCount", "docs", "Good"),
+          createMetricTile("Invoices", "/metrics/invoiceCount", "docs", "Good"),
+          createMetricTile("Invoice Items", "/metrics/invoiceItemCount", "lines", "Good"),
+          createMetricTile("Business Partners", "/metrics/partnerCount", "BPs", "Good"),
+          createMetricTile("BP Addresses", "/metrics/addressCount", "rows", "Good"),
+          createMetricTile("BP Roles", "/metrics/roleCount", "rows", "Good")
+        ]
+      });
+      metricGrid.addStyleClass("axonMetricGrid");
+
+      var shell = new sap.m.VBox({
+        width: "100%",
+        items: [
+          new sap.m.Text({
+            text: "Connected SAP OData records from the Axon warehouse service."
+          }),
+          new sap.m.Text({
+            text: {
+              parts: ["/metrics/totalRecords", "/metrics/entitySetCount"],
+              formatter: function (total, sets) {
+                return "Loaded " + formatInteger(total) + " records across " + formatInteger(sets) + " entity sets";
+              }
+            }
+          }),
+          summaryRow,
+          metricGrid,
+          summaryStrip,
+          tabs
+        ]
+      });
+      shell.addStyleClass("axonPageShell");
+
+      var page = new sap.m.Page({
+        customHeader: new sap.m.OverflowToolbar({
+          content: [
+            new sap.m.Title({ text: "Axon Warehouse SAP UI", level: "H1" }),
+            new sap.m.ToolbarSpacer(),
+            new sap.m.Button({
+              text: "Reload data",
+              icon: "sap-icon://refresh",
+              type: "Emphasized",
+              press: loadData
+            })
+          ]
+        }),
+        content: [shell]
+      });
+      page.setBusy(true);
+      page.setBusyIndicatorDelay(0);
+
+      var app = new sap.m.App({ pages: [page] });
+      app.placeAt("content");
+
+      async function loadEntity(path) {
+        var response = await fetch(root + path, { headers: headers });
+        if (!response.ok) {
+          throw new Error(path + " -> HTTP " + response.status);
+        }
+        var data = await response.json();
+        return data.value || [];
+      }
+
+      async function loadData() {
+        var loaders = [
+          { key: "products", label: "Products", request: "/Products?$expand=supplier" },
+          { key: "stockLevels", label: "Stock Levels", request: "/StockLevels?$expand=product" },
+          { key: "suppliers", label: "Suppliers", request: "/Suppliers" },
+          { key: "purchaseOrders", label: "Purchase Orders", request: "/PurchaseOrders?$expand=supplier" },
+          { key: "invoices", label: "Invoices", request: "/Invoices?$expand=supplier,Items" },
+          { key: "invoiceItems", label: "Invoice Items", request: "/InvoiceItems?$expand=invoice" },
+          { key: "partners", label: "Business Partners", request: "/A_BusinessPartner" },
+          { key: "addresses", label: "Business Partner Addresses", request: "/A_BusinessPartnerAddress?$expand=businessPartner" },
+          { key: "roles", label: "Business Partner Roles", request: "/A_BusinessPartnerRole?$expand=businessPartner" }
+        ];
+
+        page.setBusy(true);
+        summaryStrip.setVisible(false);
+        summaryStrip.setText("");
+
+        try {
+          var settled = await Promise.allSettled(loaders.map(function (loader) {
+            return loadEntity(loader.request);
+          }));
+
+          var nextState = createEmptyState();
+          var failures = [];
+
+          settled.forEach(function (result, index) {
+            var loader = loaders[index];
+            if (result.status === "fulfilled") {
+              nextState[loader.key] = result.value;
+            } else {
+              var reason = result.reason;
+              failures.push(loader.label + ": " + (reason && reason.message ? reason.message : String(reason)));
+            }
+          });
+
+          nextState.metrics = computeMetrics(nextState);
+          nextState.busy = false;
+          nextState.error = failures.length ? failures.join(" | ") : "";
+          model.setData(nextState);
+
+          if (failures.length) {
+            summaryStrip.setText("Some SAP entity sets failed to load: " + failures.join(" | "));
+            summaryStrip.setVisible(true);
+          }
+        } catch (error) {
+          var message = error && error.message ? error.message : String(error);
+          model.setProperty("/busy", false);
+          model.setProperty("/error", message);
+          summaryStrip.setText("Unable to load SAP OData data: " + message);
+          summaryStrip.setVisible(true);
+        } finally {
+          page.setBusy(false);
+        }
+      }
+
+      loadData();
     });
   </script>
 </body>

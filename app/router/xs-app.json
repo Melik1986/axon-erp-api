@@ -1,12 +1,7 @@
 {
-  "welcomeFile": "/index.html",
+  "welcomeFile": "/fiori.html",
   "authenticationMethod": "route",
   "routes": [
-    {
-      "source": "^/index.html$",
-      "localDir": "resources",
-      "authenticationType": "xsuaa"
-    },
     {
       "source": "^/fiori.html$",
       "localDir": "resources",
