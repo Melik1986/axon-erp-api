@@ -115,6 +115,14 @@ modules:
               ServiceInstanceName: axon-auth
               ServiceKeyName: axon-auth-key
               sap.cloud.service: axon.warehouse.ops
+            - Name: srv-api
+              Type: HTTP
+              URL: ~{srv-api/srv-url}
+              Authentication: NoAuthentication
+              ProxyType: Internet
+              HTML5.DynamicDestination: true
+              HTML5.ForwardAuthToken: true
+              WebIDEUsage: odata_gen
 
   # Portal content deployer: pushes CDM (cdm.json) to SAP Build Work Zone Standard
   # so that catalog, group, and site are created automatically on deploy.

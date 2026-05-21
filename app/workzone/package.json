@@ -1,0 +1,14 @@
+{
+  "name": "axon-portal-deployer",
+  "version": "1.0.0",
+  "description": "Content deployer for SAP Build Work Zone Standard",
+  "scripts": {
+    "start": "node --harmony node_modules/@sap/site-content-deployer/deploy.js"
+  },
+  "dependencies": {
+    "@sap/site-content-deployer": "1.9.24"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
