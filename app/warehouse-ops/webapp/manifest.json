@@ -29,6 +29,16 @@
             "parameters": {},
             "additionalParameters": "allowed"
           }
+        },
+        "WarehouseCatalog-display": {
+          "semanticObject": "WarehouseCatalog",
+          "action": "display",
+          "title": "{{warehouseCatalogTileTitle}}",
+          "subTitle": "{{warehouseCatalogTileSubtitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
         }
       }
     }
@@ -87,6 +97,11 @@
           "pattern": "Products({key}):?query:",
           "name": "WarehouseProductDetail",
           "target": ["WarehouseOpsList", "WarehouseProductDetail"]
+        },
+        {
+          "pattern": "BusinessPartners",
+          "name": "WarehouseCatalogList",
+          "target": ["WarehouseCatalogList"]
         }
       ],
       "targets": {
@@ -122,6 +137,23 @@
             "settings": {
               "contextPath": "/Products",
               "editableHeaderContent": true
+            }
+          }
+        },
+        "WarehouseCatalogList": {
+          "type": "Component",
+          "id": "WarehouseCatalogList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "contextPath": "/A_BusinessPartner",
+              "variantManagement": "Page",
+              "initialLoad": true,
+              "tableSettings": {
+                "type": "ResponsiveTable",
+                "selectAll": true,
+                "selectionMode": "Multi"
+              }
             }
           }
         }

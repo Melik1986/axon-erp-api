@@ -11,7 +11,7 @@
         "_version": "3.0.0",
         "identification": {
           "id": "axon-erp-api-catalog",
-          "title": "Axon Warehouse Operations",
+          "title": "Warehouse Operations",
           "entityType": "catalog"
         },
         "viz": [
@@ -37,6 +37,37 @@
             }
           }
         ]
+      },
+      {
+        "_version": "3.0.0",
+        "identification": {
+          "id": "axon-erp-api-catalog-bp",
+          "title": "Warehouse Catalog",
+          "entityType": "catalog"
+        },
+        "viz": [
+          {
+            "appId": "axon.warehouse.ops",
+            "vizId": "axon.warehouse.catalog-tile",
+            "vizConfig": {
+              "sap.flp": {
+                "target": {
+                  "appId": "axon.warehouse.ops",
+                  "inboundId": "WarehouseCatalog-display"
+                }
+              },
+              "sap.ui": {
+                "icons": {
+                  "icon": "sap-icon://contacts"
+                }
+              },
+              "sap.app": {
+                "title": "Business Partners",
+                "subTitle": "Suppliers and partners"
+              }
+            }
+          }
+        ]
       }
     ],
     "groups": [
@@ -52,6 +83,22 @@
             {
               "appId": "axon.warehouse.ops",
               "vizId": "axon.warehouse.ops-tile"
+            }
+          ]
+        }
+      },
+      {
+        "_version": "3.0.0",
+        "identification": {
+          "id": "axon-erp-api-group-bp",
+          "title": "Warehouse Catalog",
+          "entityType": "group"
+        },
+        "payload": {
+          "viz": [
+            {
+              "appId": "axon.warehouse.ops",
+              "vizId": "axon.warehouse.catalog-tile"
             }
           ]
         }
@@ -87,7 +134,8 @@
             }
           },
           "groupsOrder": [
-            "axon-erp-api-group"
+            "axon-erp-api-group",
+            "axon-erp-api-group-bp"
           ],
           "sap.cloud.portal": {
             "config": {

@@ -13,6 +13,7 @@ build-parameters:
         - npm ci
         - npx cds build --production
         - node scripts/patch-gen-srv.js
+        - node scripts/patch-workzone-deployer.js
 
 modules:
   - name: axon-odata-api
@@ -121,6 +122,15 @@ modules:
   - name: axon-portal-deployer
     type: com.sap.portal.content
     path: app/workzone
+    parameters:
+      no-route: true
+      health-check-type: none
+      memory: 256M
+      disk-quota: 512M
+      tasks:
+        - name: deploy
+          memory: 256M
+          command: npm start
     requires:
       - name: axon-launchpad
         parameters:
