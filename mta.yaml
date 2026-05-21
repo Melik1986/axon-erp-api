@@ -115,14 +115,6 @@ modules:
               ServiceInstanceName: axon-auth
               ServiceKeyName: axon-auth-key
               sap.cloud.service: axon.warehouse.ops
-            - Name: srv-api
-              Type: HTTP
-              URL: ~{srv-api/srv-url}
-              Authentication: NoAuthentication
-              ProxyType: Internet
-              HTML5.DynamicDestination: true
-              HTML5.ForwardAuthToken: true
-              WebIDEUsage: odata_gen
 
   # Portal content deployer: pushes CDM (cdm.json) to SAP Build Work Zone Standard
   # so that catalog, group, and site are created automatically on deploy.
@@ -160,6 +152,14 @@ resources:
                 ProxyType: Internet
                 URL: https://590c8b3dtrial.dt.launchpad.cfapps.us10.hana.ondemand.com
                 CEP.HTML5contentprovider: true
+              - Name: srv-api
+                Authentication: NoAuthentication
+                Type: HTTP
+                ProxyType: Internet
+                URL: https://590c8b3dtrial-590c8b3dtrial-dev-axon-odata-api.cfapps.us10-001.hana.ondemand.com
+                HTML5.DynamicDestination: true
+                HTML5.ForwardAuthToken: true
+                WebIDEUsage: odata_gen
 
   - name: axon-html5-host
     type: org.cloudfoundry.managed-service
