@@ -10,26 +10,36 @@ build-parameters:
   before-all:
     - builder: custom
       commands:
-        - npm ci
-        - npx cds build --production
-        - node scripts/patch-gen-srv.js
-        - node scripts/patch-workzone-deployer.js
+        - bash scripts/with-node24.sh npm ci
+        - bash scripts/with-node24.sh sh -c 'npx cds build --production && node scripts/patch-gen-srv.js'
 
 modules:
+  - name: axon-odata-api-db-deployer
+    type: hdb
+    path: gen/db
+    parameters:
+      memory: 256M
+      disk-quota: 512M
+      buildpack: nodejs_buildpack
+    requires:
+      - name: axon-warehouse-hdi
+
   - name: axon-odata-api
     type: nodejs
     path: gen/srv
     parameters:
-      memory: 256M
+      memory: 512M
       disk-quota: 512M
-      command: >-
-        rm -f axon-odata-api.db db.sqlite &&
-        ./node_modules/.bin/cds-deploy --to sqlite &&
-        cp -f db.sqlite axon-odata-api.db &&
-        npm start
+      buildpack: nodejs_buildpack
+      readiness-health-check-type: http
+      readiness-health-check-http-endpoint: /health
+      env:
+        NODE_ENV: production
+        CDS_ENV: production
     build-parameters:
       builder: npm
     requires:
+      - name: axon-warehouse-hdi
       - name: axon-auth
     provides:
       - name: srv-api
@@ -68,7 +78,8 @@ modules:
       commands:
         - npm install
         - npm run build
-      supported-platforms: []
+      supported-platforms:
+        []
 
   - name: axon-warehouse-ops-content
     type: com.sap.application.content
@@ -100,6 +111,7 @@ modules:
           service-key:
             name: axon-auth-key
       - name: srv-api
+      - name: app-api
     build-parameters:
       no-source: true
     parameters:
@@ -113,8 +125,12 @@ modules:
               sap.cloud.service: axon.warehouse.ops
             - Name: axon-warehouse-ops-auth
               Authentication: OAuth2UserTokenExchange
-              ServiceInstanceName: axon-auth
-              ServiceKeyName: axon-auth-key
+              TokenServiceInstanceName: axon-auth
+              TokenServiceKeyName: axon-auth-key
+              URL: ~{app-url}
+              HTML5.DynamicDestination: true
+              HTML5.ForwardAuthToken: true
+              WebIDEUsage: odata_gen
               sap.cloud.service: axon.warehouse.ops
 
   # Portal content deployer: pushes CDM (cdm.json) to SAP Build Work Zone Standard
@@ -132,6 +148,7 @@ modules:
           memory: 256M
           command: npm start
     requires:
+      - name: axon-auth
       - name: axon-launchpad
         parameters:
           content-target: true
@@ -140,6 +157,13 @@ modules:
 resources:
   - name: axon-auth
     type: org.cloudfoundry.existing-service
+
+  # HDI container on SAP HANA Cloud (requires instance mapping + Running — axon-warehouse-cf)
+  - name: axon-warehouse-hdi
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
 
   # SAP Build Work Zone Standard — existing service instance created via BTP cockpit
   - name: axon-launchpad
@@ -170,6 +194,18 @@ resources:
                 HTML5.DynamicDestination: true
                 HTML5.ForwardAuthToken: true
                 WebIDEUsage: odata_gen
+              # Fiori HTML5 runtime (sap.cloud.service) — must be visible in Connectivity → Destinations
+              - Name: axon-warehouse-ops-auth
+                Type: HTTP
+                ProxyType: Internet
+                URL: https://590c8b3dtrial-590c8b3dtrial-dev-axon-odata-api-app.cfapps.us10-001.hana.ondemand.com
+                Authentication: OAuth2UserTokenExchange
+                TokenServiceInstanceName: axon-auth
+                TokenServiceKeyName: axon-auth-key
+                HTML5.DynamicDestination: true
+                HTML5.ForwardAuthToken: true
+                WebIDEUsage: odata_gen
+                sap.cloud.service: axon.warehouse.ops
 
   - name: axon-html5-host
     type: org.cloudfoundry.managed-service

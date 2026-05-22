@@ -5,13 +5,13 @@
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
-      "version": "1.0.0"
+      "version": "1.0.3"
     },
     "title": "{{appTitle}}",
     "description": "{{appDescription}}",
     "dataSources": {
       "mainService": {
-        "uri": "/odata/v4/warehouse/",
+        "uri": "odata/v4/warehouse/",
         "type": "OData",
         "settings": {
           "odataVersion": "4.0"
@@ -47,6 +47,9 @@
     "public": true,
     "service": "axon.warehouse.ops"
   },
+  "sap.platform.cf": {
+    "oAuthRegistrationId": "axon-warehouse-ops-auth"
+  },
   "sap.ui": {
     "technology": "UI5",
     "deviceTypes": {
@@ -56,6 +59,7 @@
     }
   },
   "sap.ui5": {
+    "componentPreload": false,
     "dependencies": {
       "minUI5Version": "1.120.0",
       "libs": {
@@ -91,17 +95,24 @@
         {
           "pattern": "",
           "name": "WarehouseOpsList",
-          "target": ["WarehouseOpsList"]
+          "target": [
+            "WarehouseOpsList"
+          ]
         },
         {
           "pattern": "Products({key}):?query:",
           "name": "WarehouseProductDetail",
-          "target": ["WarehouseOpsList", "WarehouseProductDetail"]
+          "target": [
+            "WarehouseOpsList",
+            "WarehouseProductDetail"
+          ]
         },
         {
           "pattern": "BusinessPartners",
           "name": "WarehouseCatalogList",
-          "target": ["WarehouseCatalogList"]
+          "target": [
+            "WarehouseCatalogList"
+          ]
         }
       ],
       "targets": {

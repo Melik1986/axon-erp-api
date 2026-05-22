@@ -4,6 +4,10 @@
   "tenant-mode": "dedicated",
   "scopes": [
     {
+      "name": "uaa.user",
+      "description": "Default user scope (CAP authenticated-user)"
+    },
+    {
       "name": "$XSAPPNAME.admin",
       "description": "Admin"
     },
@@ -15,11 +19,17 @@
   "role-templates": [
     {
       "name": "Admin",
-      "scope-references": ["$XSAPPNAME.admin", "$XSAPPNAME.user"]
+      "scope-references": [
+        "$XSAPPNAME.admin",
+        "$XSAPPNAME.user"
+      ]
     },
     {
       "name": "User",
-      "scope-references": ["$XSAPPNAME.user"]
+      "scope-references": [
+        "uaa.user",
+        "$XSAPPNAME.user"
+      ]
     }
   ],
   "oauth2-configuration": {
@@ -28,5 +38,6 @@
       "https://*.applicationstudio.cloud.sap/**",
       "http://localhost:*/**"
     ]
-  }
+  },
+  "attributes": []
 }

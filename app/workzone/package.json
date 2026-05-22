@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "Content deployer for SAP Build Work Zone Standard",
   "scripts": {
-    "start": "node --harmony node_modules/@sap/site-content-deployer/deploy.js"
+    "start": "EXIT=1 node node_modules/@sap/portal-cf-content-deployer/src/index.js",
+    "postinstall": "node patch-portal-deployer.js"
   },
   "dependencies": {
-    "@sap/site-content-deployer": "1.20.0"
+    "@sap/portal-cf-content-deployer": "https://registry.npmjs.org/@sap/portal-cf-content-deployer/-/portal-cf-content-deployer-4.20.0-20220206072628.tgz"
   },
   "engines": {
     "node": ">=18"

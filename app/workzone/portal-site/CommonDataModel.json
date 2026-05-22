@@ -1,5 +1,4 @@
 {
-  "_version": "3.0.0",
   "identification": {
     "title": "axon-erp-api",
     "id": "axon-erp-api-workzone",
@@ -8,71 +7,71 @@
   "payload": {
     "catalogs": [
       {
-        "_version": "3.0.0",
         "identification": {
           "id": "axon-erp-api-catalog",
           "title": "Warehouse Operations",
           "entityType": "catalog"
         },
-        "viz": [
-          {
-            "appId": "axon.warehouse.ops",
-            "vizId": "axon.warehouse.ops-tile",
-            "vizConfig": {
-              "sap.flp": {
-                "target": {
-                  "appId": "axon.warehouse.ops",
-                  "inboundId": "WarehouseOps-display"
-                }
-              },
-              "sap.ui": {
-                "icons": {
-                  "icon": "sap-icon://inventory"
-                }
-              },
-              "sap.app": {
-                "title": "Warehouse Operations",
-                "subTitle": "Inventory and replenishment"
-              }
+        "payload": {
+          "viz": [
+            {
+              "appId": "axon.warehouse.ops",
+              "vizId": "WarehouseOps-display"
             }
-          }
-        ]
+          ]
+        }
       },
       {
-        "_version": "3.0.0",
         "identification": {
           "id": "axon-erp-api-catalog-bp",
           "title": "Warehouse Catalog",
           "entityType": "catalog"
         },
-        "viz": [
-          {
-            "appId": "axon.warehouse.ops",
-            "vizId": "axon.warehouse.catalog-tile",
-            "vizConfig": {
-              "sap.flp": {
-                "target": {
-                  "appId": "axon.warehouse.ops",
-                  "inboundId": "WarehouseCatalog-display"
-                }
-              },
-              "sap.ui": {
-                "icons": {
-                  "icon": "sap-icon://contacts"
-                }
-              },
-              "sap.app": {
-                "title": "Business Partners",
-                "subTitle": "Suppliers and partners"
-              }
+        "payload": {
+          "viz": [
+            {
+              "appId": "axon.warehouse.ops",
+              "vizId": "WarehouseCatalog-display"
             }
-          }
-        ]
+          ]
+        }
+      }
+    ],
+    "roles": [
+      {
+        "_version": "3.2.0",
+        "identification": {
+          "id": "Warehouse_Ops_Access",
+          "entityType": "role",
+          "title": "Warehouse Ops Access"
+        },
+        "payload": {
+          "apps": [
+            {
+              "id": "axon.warehouse.ops"
+            }
+          ],
+          "catalogs": [
+            {
+              "id": "axon-erp-api-catalog"
+            },
+            {
+              "id": "axon-erp-api-catalog-bp"
+            }
+          ],
+          "groups": [
+            {
+              "id": "axon-erp-api-group"
+            },
+            {
+              "id": "axon-erp-api-group-bp"
+            }
+          ]
+        }
       }
     ],
     "groups": [
       {
-        "_version": "3.0.0",
         "identification": {
           "id": "axon-erp-api-group",
           "title": "Warehouse Operations",
@@ -82,13 +81,12 @@
           "viz": [
             {
               "appId": "axon.warehouse.ops",
-              "vizId": "axon.warehouse.ops-tile"
+              "vizId": "WarehouseOps-display"
             }
           ]
         }
       },
       {
-        "_version": "3.0.0",
         "identification": {
           "id": "axon-erp-api-group-bp",
           "title": "Warehouse Catalog",
@@ -98,7 +96,7 @@
           "viz": [
             {
               "appId": "axon.warehouse.ops",
-              "vizId": "axon.warehouse.catalog-tile"
+              "vizId": "WarehouseCatalog-display"
             }
           ]
         }
@@ -106,12 +104,11 @@
     ],
     "sites": [
       {
-        "_version": "3.0.0",
         "identification": {
-          "id": "axon-erp-api-site",
+          "id": "b4c96273-a66c-47ab-be1b-f3ffa818d1f9",
           "entityType": "site",
           "title": "axon-erp-api",
-          "description": "A simple CAP project."
+          "description": "Axon warehouse demo site"
         },
         "payload": {
           "config": {

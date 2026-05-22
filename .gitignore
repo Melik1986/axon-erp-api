@@ -1,11 +1,13 @@
 node_modules/
 app/router/node_modules/
+.env
 gen/
 .gen/
 *.db
 db.sqlite
 db/*.sqlite
 mta_archives/
+mta-logs*/
 .axon-erp-api_mta_build_tmp/
 db.sqlite
 .cdsrc-private.json

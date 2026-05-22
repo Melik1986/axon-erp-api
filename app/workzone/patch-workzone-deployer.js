@@ -1,11 +1,11 @@
 const fs = require('fs');
 const path = require('path');
 
-const file = path.join(__dirname, '..', 'app', 'workzone', 'node_modules', '@sap', 'site-content-deployer', 'lib', 'deploy-tasks-manager.js');
+const file = path.join(__dirname, 'node_modules', '@sap', 'site-content-deployer', 'lib', 'deploy-tasks-manager.js');
 
 if (!fs.existsSync(file)) {
-  console.error('patch-workzone-deployer: deploy-tasks-manager.js not found at', file);
-  process.exit(1);
+  console.log('patch-workzone-deployer: deploy-tasks-manager.js not found yet, skipping');
+  process.exit(0);
 }
 
 let content = fs.readFileSync(file, 'utf8');

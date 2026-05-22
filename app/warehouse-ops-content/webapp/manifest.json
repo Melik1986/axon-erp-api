@@ -1,0 +1,20 @@
+{
+  "sap.app": {
+    "crossNavigation": {
+      "inbounds": {
+        "warehouse-ops-content-display": {
+          "semanticObject": "warehouse-ops-content",
+          "action": "display",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "axonerpapi.service"
+  }
+}
