@@ -78,8 +78,7 @@ modules:
       commands:
         - npm install
         - npm run build
-      supported-platforms:
-        []
+      supported-platforms: []
 
   - name: axon-warehouse-ops-content
     type: com.sap.application.content
@@ -127,9 +126,9 @@ modules:
               Authentication: OAuth2UserTokenExchange
               TokenServiceInstanceName: axon-auth
               TokenServiceKeyName: axon-auth-key
-              URL: ~{app-url}
+              URL: https://590c8b3dtrial-590c8b3dtrial-dev-axon-odata-api.cfapps.us10-001.hana.ondemand.com
               HTML5.DynamicDestination: true
-              HTML5.ForwardAuthToken: true
+              WebIDEEnabled: true
               WebIDEUsage: odata_gen
               sap.cloud.service: axon.warehouse.ops
 
@@ -198,12 +197,12 @@ resources:
               - Name: axon-warehouse-ops-auth
                 Type: HTTP
                 ProxyType: Internet
-                URL: https://590c8b3dtrial-590c8b3dtrial-dev-axon-odata-api-app.cfapps.us10-001.hana.ondemand.com
+                URL: https://590c8b3dtrial-590c8b3dtrial-dev-axon-odata-api.cfapps.us10-001.hana.ondemand.com
                 Authentication: OAuth2UserTokenExchange
                 TokenServiceInstanceName: axon-auth
                 TokenServiceKeyName: axon-auth-key
                 HTML5.DynamicDestination: true
-                HTML5.ForwardAuthToken: true
+                WebIDEEnabled: true
                 WebIDEUsage: odata_gen
                 sap.cloud.service: axon.warehouse.ops
 

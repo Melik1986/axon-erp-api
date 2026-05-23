@@ -15,6 +15,6 @@
   },
   "sap.cloud": {
     "public": true,
-    "service": "axonerpapi.service"
+    "service": "axon.warehouse.ops"
   }
 }

@@ -11,7 +11,9 @@
     "verify:cf": "scripts/with-node24.sh node scripts/verify-seed.mjs --base-url https://590c8b3dtrial-590c8b3dtrial-dev-axon-odata-api.cfapps.us10-001.hana.ondemand.com/odata/v4/warehouse",
     "verify:seed:ps": "powershell -File scripts/verify-seed.ps1",
     "build:mtar": "scripts/with-node24.sh sh -c 'npm run build && mbt build -p=cf'",
-    "deploy:cf": "npm run build:mtar && cf deploy mta_archives/axon-odata-api_1.0.0.mtar -f"
+    "deploy:cf": "npm run build:mtar && cf deploy mta_archives/axon-odata-api_1.0.0.mtar -f",
+    "format": "prettier --write \"**/*.{js,mjs,json,yaml,yml,html,css,md}\"",
+    "check:format": "prettier --check \"**/*.{js,mjs,json,yaml,yml,html,css,md}\""
   },
   "engines": {
     "node": ">=24"
@@ -24,7 +26,8 @@
     "@sap/xssec": "^4"
   },
   "devDependencies": {
-    "@sap/cds-dk": "^9"
+    "@sap/cds-dk": "^9",
+    "prettier": "3.8.1"
   },
   "overrides": {
     "qs": ">=6.15.2",

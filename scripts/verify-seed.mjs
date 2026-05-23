@@ -4,7 +4,10 @@ for (let i = 2; i < process.argv.length; i += 1) {
   if (arg.startsWith("--")) {
     const [key, inline] = arg.slice(2).split("=");
     args.set(key, inline ?? process.argv[i + 1] ?? "true");
-    if (inline === undefined && process.argv[i + 1]?.startsWith("--") === false) {
+    if (
+      inline === undefined &&
+      process.argv[i + 1]?.startsWith("--") === false
+    ) {
       i += 1;
     }
   }
@@ -50,7 +53,9 @@ async function request(path, init = {}) {
     body = text;
   }
   if (!response.ok) {
-    throw new Error(`${path} -> HTTP ${response.status}: ${text.slice(0, 300)}`);
+    throw new Error(
+      `${path} -> HTTP ${response.status}: ${text.slice(0, 300)}`,
+    );
   }
   return body;
 }
@@ -81,7 +86,8 @@ try {
   const metadata = await request("/$metadata", {
     headers: { Accept: "application/xml" },
   });
-  const xml = typeof metadata === "string" ? metadata : JSON.stringify(metadata);
+  const xml =
+    typeof metadata === "string" ? metadata : JSON.stringify(metadata);
   for (const marker of [
     "Products",
     "StockLevels",
@@ -161,7 +167,9 @@ if (write) {
       body: JSON.stringify(payload),
     });
     if (!data.ID || Number(data.Total) !== 3850) {
-      throw new Error(`unexpected invoice create response: ${JSON.stringify(data)}`);
+      throw new Error(
+        `unexpected invoice create response: ${JSON.stringify(data)}`,
+      );
     }
     ok("Axon photo-invoice payload creates Invoice with Total 3850");
   } catch (error) {

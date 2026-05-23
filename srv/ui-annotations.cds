@@ -8,7 +8,22 @@ annotate WarehouseService.Products with @(UI: {
     Title         : {Value: Name},
     Description   : {Value: description}
   },
-  SelectionFields: [Name, Sku, supplier_ID],
+  // SelectionFields omitted for demo: FE otherwise shows "Let's get results" without OData read.
+  SelectionPresentationVariant #Default: {
+    Text                : 'Default',
+    SelectionVariant    : {SelectOptions: []},
+    PresentationVariant : {
+      MaxItems      : 100,
+      SortOrder     : [{Property: Name, Descending: false}],
+      Visualizations: ['@UI.LineItem']
+    }
+  },
+  PresentationVariant #LoadAll: {
+    Text          : 'All products',
+    MaxItems      : 100,
+    SortOrder     : [{Property: Name, Descending: false}],
+    Visualizations: ['@UI.LineItem']
+  },
   LineItem: [
     {Value: Name,              Label: 'Product Name'},
     {Value: Sku,               Label: 'SKU'},

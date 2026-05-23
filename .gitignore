@@ -8,9 +8,25 @@ db.sqlite
 db/*.sqlite
 mta_archives/
 mta-logs*/
+mta-op-*/
+.codegraph/
 .axon-erp-api_mta_build_tmp/
 db.sqlite
 .cdsrc-private.json
+.xs-security-deploy.json
 *.sqlite-shm
 *.sqlite-wal
 app/router/default-env.json
+
+# IDE / agents (local)
+.cursor/
+.agents/
+.vscode/
+
+# Internal docs & runbooks
+docs/
+
+# Ad-hoc verify / ops (not product)
+scripts/verify-block-g-prereqs.mjs
+scripts/verify-cf-layers.mjs
+scripts/update-xsuaa-security.sh

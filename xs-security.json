@@ -19,17 +19,18 @@
   "role-templates": [
     {
       "name": "Admin",
-      "scope-references": [
-        "$XSAPPNAME.admin",
-        "$XSAPPNAME.user"
-      ]
+      "scope-references": ["$XSAPPNAME.admin", "$XSAPPNAME.user"]
     },
     {
       "name": "User",
-      "scope-references": [
-        "uaa.user",
-        "$XSAPPNAME.user"
-      ]
+      "scope-references": ["uaa.user", "$XSAPPNAME.user"]
+    }
+  ],
+  "role-collections": [
+    {
+      "name": "Warehouse_Ops_CAP_User",
+      "description": "CAP OData for axon.warehouse.ops (OAuth2UserTokenExchange to axon-odata-api)",
+      "role-template-references": ["$XSAPPNAME.User"]
     }
   ],
   "oauth2-configuration": {

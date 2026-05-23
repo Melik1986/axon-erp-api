@@ -2,17 +2,24 @@
   "authenticationMethod": "route",
   "routes": [
     {
-      "source": "^odata/v4/(.*)$",
+      "source": "^.*/odata/v4/warehouse/\\$metadata(.*)$",
+      "target": "/odata/v4/warehouse/$metadata",
+      "destination": "axon-warehouse-ops-auth",
+      "authenticationType": "xsuaa",
+      "csrfProtection": false
+    },
+    {
+      "source": "^.*/odata/v4/(.*)$",
       "target": "/odata/v4/$1",
       "destination": "axon-warehouse-ops-auth",
       "authenticationType": "xsuaa",
-      "csrfProtection": true
+      "csrfProtection": false
     },
     {
       "source": "^(.*)$",
+      "target": "$1",
       "service": "html5-apps-repo-rt",
-      "authenticationType": "xsuaa",
-      "target": "$1"
+      "authenticationType": "xsuaa"
     }
   ]
 }

@@ -68,14 +68,14 @@ npm run verify:seed -- --write
 
 ## Axon Tool Compatibility
 
-| Axon tool | CAP entity | Demo proof |
-| --- | --- | --- |
-| `get_stock` | `StockLevels` | `Arabica Premium 1kg -> 420 kg` |
-| `get_products` | `Products` | coffee catalog with SKU/price/stock |
-| `create_invoice` | `Invoices` + `InvoiceItems` | deep insert payload from photo invoice |
-| `get_partner_addresses` | `A_BusinessPartner/to_BusinessPartnerAddress` | BP `1000001` address navigation |
-| `update_partner_address` | `A_BusinessPartnerAddress` | PATCH by `BusinessPartner`, `AddressID` |
-| `assign_partner_role` | `A_BusinessPartnerRole` | POST role `FLVN01` to partner `1000003` |
+| Axon tool                | CAP entity                                    | Demo proof                              |
+| ------------------------ | --------------------------------------------- | --------------------------------------- |
+| `get_stock`              | `StockLevels`                                 | `Arabica Premium 1kg -> 420 kg`         |
+| `get_products`           | `Products`                                    | coffee catalog with SKU/price/stock     |
+| `create_invoice`         | `Invoices` + `InvoiceItems`                   | deep insert payload from photo invoice  |
+| `get_partner_addresses`  | `A_BusinessPartner/to_BusinessPartnerAddress` | BP `1000001` address navigation         |
+| `update_partner_address` | `A_BusinessPartnerAddress`                    | PATCH by `BusinessPartner`, `AddressID` |
+| `assign_partner_role`    | `A_BusinessPartnerRole`                       | POST role `FLVN01` to partner `1000003` |
 
 ## Deploy
 

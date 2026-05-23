@@ -5,7 +5,7 @@
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
-      "version": "1.0.3"
+      "version": "1.0.20"
     },
     "title": "{{appTitle}}",
     "description": "{{appDescription}}",
@@ -65,14 +65,22 @@
       "libs": {
         "sap.fe.templates": {},
         "sap.fe.core": {},
-        "sap.f": {},
-        "sap.m": {},
         "sap.ui.core": {}
+      }
+    },
+    "extends": {
+      "extensions": {
+        "sap.ui.controllerExtensions": {
+          "sap.fe.templates.ListReport.ListReportController": {
+            "controllerName": "axon.warehouse.ops.ext.controller.WarehouseOpsListExt"
+          }
+        }
       }
     },
     "models": {
       "": {
         "dataSource": "mainService",
+        "preload": true,
         "settings": {
           "synchronizationMode": "None",
           "operationMode": "Server",
@@ -88,31 +96,21 @@
       }
     },
     "routing": {
-      "config": {
-        "routerClass": "sap.f.routing.Router"
-      },
       "routes": [
         {
-          "pattern": "",
+          "pattern": ":?query:",
           "name": "WarehouseOpsList",
-          "target": [
-            "WarehouseOpsList"
-          ]
+          "target": "WarehouseOpsList"
         },
         {
           "pattern": "Products({key}):?query:",
           "name": "WarehouseProductDetail",
-          "target": [
-            "WarehouseOpsList",
-            "WarehouseProductDetail"
-          ]
+          "target": "WarehouseProductDetail"
         },
         {
           "pattern": "BusinessPartners",
           "name": "WarehouseCatalogList",
-          "target": [
-            "WarehouseCatalogList"
-          ]
+          "target": "WarehouseCatalogList"
         }
       ],
       "targets": {
@@ -124,7 +122,10 @@
             "settings": {
               "contextPath": "/Products",
               "variantManagement": "Page",
-              "initialLoad": true,
+              "initialLoad": "Enabled",
+              "liveMode": true,
+              "hideFilterBar": true,
+              "defaultTemplateAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#Default",
               "navigation": {
                 "Products": {
                   "detail": {
@@ -159,7 +160,7 @@
             "settings": {
               "contextPath": "/A_BusinessPartner",
               "variantManagement": "Page",
-              "initialLoad": true,
+              "initialLoad": "Enabled",
               "tableSettings": {
                 "type": "ResponsiveTable",
                 "selectAll": true,
@@ -168,7 +169,8 @@
             }
           }
         }
-      }
+      },
+      "config": {}
     },
     "contentDensities": {
       "compact": true,

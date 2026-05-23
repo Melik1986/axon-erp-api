@@ -1,0 +1,13 @@
+node_modules/
+**/node_modules/
+gen/
+.gen/
+mta_archives/
+.axon-erp-api_mta_build_tmp/
+.codegraph/
+package-lock.json
+**/package-lock.json
+db/data/
+*.db
+*.sqlite
+*.sqlite-*

@@ -130,10 +130,7 @@
               }
             }
           },
-          "groupsOrder": [
-            "axon-erp-api-group",
-            "axon-erp-api-group-bp"
-          ],
+          "groupsOrder": ["axon-erp-api-group", "axon-erp-api-group-bp"],
           "sap.cloud.portal": {
             "config": {
               "theme.id": "sap_horizon",
