@@ -35,6 +35,7 @@
   ],
   "oauth2-configuration": {
     "redirect-uris": [
+      "https://axon-app-staging.up.railway.app/api/erp/connect/callback",
       "https://*.cfapps.*.hana.ondemand.com/**",
       "https://*.applicationstudio.cloud.sap/**",
       "http://localhost:*/**"
