@@ -9,6 +9,11 @@
   "dependencies": {
     "@sap/portal-cf-content-deployer": "https://registry.npmjs.org/@sap/portal-cf-content-deployer/-/portal-cf-content-deployer-4.20.0-20220206072628.tgz"
   },
+  "overrides": {
+    "axios": "^0.31.1",
+    "form-data": "^3.0.4",
+    "jszip": "^3.8.0"
+  },
   "engines": {
     "node": ">=18"
   }
