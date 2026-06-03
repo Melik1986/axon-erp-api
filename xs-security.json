@@ -1,5 +1,4 @@
 {
-  "$schema": "https://raw.githubusercontent.com/SAP/cloud-security-xsuaa-integration/master/xs-security-schema.json",
   "xsappname": "axon-integration",
   "tenant-mode": "dedicated",
   "scopes": [
