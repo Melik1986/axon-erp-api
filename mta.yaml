@@ -105,6 +105,10 @@ modules:
         parameters:
           service-key:
             name: axon-html5-host-key
+      - name: axon-html5-rt
+        parameters:
+          service-key:
+            name: axon-html5-rt-key
       - name: axon-auth
         parameters:
           service-key:
@@ -115,6 +119,13 @@ modules:
       no-source: true
     parameters:
       content:
+        subaccount:
+          existing_destinations_policy: update
+          destinations:
+            - Name: axon-warehouse-cdm
+              ServiceInstanceName: axon-html5-rt
+              ServiceKeyName: axon-html5-rt-key
+              URL: https://html5-apps-repo-rt.cfapps.us10.hana.ondemand.com/applications/cdm/axon.warehouse.ops
         instance:
           existing_destinations_policy: update
           destinations:
@@ -132,27 +143,6 @@ modules:
               WebIDEUsage: odata_gen
               sap.cloud.service: axon.warehouse.ops
 
-  # Portal content deployer: pushes CommonDataModel.json (Warehouse_Ops_Access, 4 tiles).
-  # WZ integration path: SAP BTP cockpit + portal CDM — do NOT mix with html5 cdm.json content provider.
-  - name: axon-portal-deployer
-    type: com.sap.portal.content
-    path: app/workzone
-    parameters:
-      no-route: true
-      health-check-type: none
-      memory: 256M
-      disk-quota: 512M
-      tasks:
-        - name: deploy
-          memory: 256M
-          command: npm start
-    requires:
-      - name: axon-auth
-      - name: axon-launchpad
-        parameters:
-          content-target: true
-      - name: axon-html5-rt
-
 resources:
   - name: axon-auth
     type: org.cloudfoundry.existing-service
@@ -163,10 +153,6 @@ resources:
     parameters:
       service: hana
       service-plan: hdi-shared
-
-  # SAP Build Work Zone Standard — existing service instance created via BTP cockpit
-  - name: axon-launchpad
-    type: org.cloudfoundry.existing-service
 
   - name: axon-destination
     type: org.cloudfoundry.managed-service
@@ -179,12 +165,20 @@ resources:
           subaccount:
             existing_destinations_policy: update
             destinations:
+              - Name: axon-warehouse-cdm
+                Authentication: NoAuthentication
+                Type: HTTP
+                ProxyType: Internet
+                URL: https://html5-apps-repo-rt.cfapps.us10.hana.ondemand.com/applications/cdm/axon.warehouse.ops
               - Name: axon-workzone-runtime
                 Authentication: NoAuthentication
                 Type: HTTP
                 ProxyType: Internet
                 URL: https://590c8b3dtrial.launchpad.cfapps.us10.hana.ondemand.com
                 CEP.HTML5contentprovider: true
+          instance:
+            existing_destinations_policy: update
+            destinations:
               - Name: srv-api
                 Authentication: NoAuthentication
                 Type: HTTP
