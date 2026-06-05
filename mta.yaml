@@ -165,11 +165,6 @@ resources:
           subaccount:
             existing_destinations_policy: update
             destinations:
-              - Name: axon-warehouse-cdm
-                Authentication: NoAuthentication
-                Type: HTTP
-                ProxyType: Internet
-                URL: https://html5-apps-repo-rt.cfapps.us10.hana.ondemand.com/applications/cdm/axon.warehouse.ops
               - Name: axon-workzone-runtime
                 Authentication: NoAuthentication
                 Type: HTTP
@@ -187,18 +182,6 @@ resources:
                 HTML5.DynamicDestination: true
                 HTML5.ForwardAuthToken: true
                 WebIDEUsage: odata_gen
-              # Fiori HTML5 runtime (sap.cloud.service) — must be visible in Connectivity → Destinations
-              - Name: axon-warehouse-ops-auth
-                Type: HTTP
-                ProxyType: Internet
-                URL: https://590c8b3dtrial-590c8b3dtrial-dev-axon-odata-api.cfapps.us10-001.hana.ondemand.com
-                Authentication: OAuth2UserTokenExchange
-                TokenServiceInstanceName: axon-auth
-                TokenServiceKeyName: axon-auth-key
-                HTML5.DynamicDestination: true
-                WebIDEEnabled: true
-                WebIDEUsage: odata_gen
-                sap.cloud.service: axon.warehouse.ops
 
   - name: axon-html5-host
     type: org.cloudfoundry.managed-service
