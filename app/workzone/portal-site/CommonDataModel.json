@@ -7,7 +7,6 @@
   "payload": {
     "catalogs": [
       {
-        "_version": "3.2.0",
         "identification": {
           "id": "axon-erp-api-catalog",
           "title": "Warehouse Operations",
@@ -18,11 +17,33 @@
             {
               "appId": "axon.warehouse.ops",
               "vizId": "WarehouseOps-display"
-            },
+            }
+          ]
+        }
+      },
+      {
+        "identification": {
+          "id": "axon-erp-api-catalog-invoices",
+          "title": "Invoices",
+          "entityType": "catalog"
+        },
+        "payload": {
+          "viz": [
             {
               "appId": "axon.warehouse.ops",
               "vizId": "WarehouseInvoices-display"
-            },
+            }
+          ]
+        }
+      },
+      {
+        "identification": {
+          "id": "axon-erp-api-catalog-po",
+          "title": "Purchase Orders",
+          "entityType": "catalog"
+        },
+        "payload": {
+          "viz": [
             {
               "appId": "axon.warehouse.ops",
               "vizId": "WarehousePurchaseOrders-display"
@@ -31,7 +52,6 @@
         }
       },
       {
-        "_version": "3.2.0",
         "identification": {
           "id": "axon-erp-api-catalog-bp",
           "title": "Warehouse Catalog",
@@ -66,6 +86,12 @@
               "id": "axon-erp-api-catalog"
             },
             {
+              "id": "axon-erp-api-catalog-invoices"
+            },
+            {
+              "id": "axon-erp-api-catalog-po"
+            },
+            {
               "id": "axon-erp-api-catalog-bp"
             }
           ],
@@ -88,7 +114,6 @@
     ],
     "groups": [
       {
-        "_version": "3.2.0",
         "identification": {
           "id": "axon-erp-api-group",
           "title": "Warehouse Operations",
@@ -104,7 +129,6 @@
         }
       },
       {
-        "_version": "3.2.0",
         "identification": {
           "id": "axon-erp-api-group-invoices",
           "title": "Invoices",
@@ -120,7 +144,6 @@
         }
       },
       {
-        "_version": "3.2.0",
         "identification": {
           "id": "axon-erp-api-group-po",
           "title": "Purchase Orders",
@@ -136,7 +159,6 @@
         }
       },
       {
-        "_version": "3.2.0",
         "identification": {
           "id": "axon-erp-api-group-bp",
           "title": "Warehouse Catalog",
@@ -154,7 +176,6 @@
     ],
     "sites": [
       {
-        "_version": "3.2.0",
         "identification": {
           "id": "b4c96273-a66c-47ab-be1b-f3ffa818d1f9",
           "entityType": "site",

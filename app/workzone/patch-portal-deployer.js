@@ -30,47 +30,22 @@ function patchLaunchpadCredentials(filePath, label) {
   console.log(`already patched: ${label}`);
 }
 
-function patchDeployerRuntime(filePath) {
+function patchDeployerErrorLogging(filePath) {
   if (!fs.existsSync(filePath)) {
     return;
   }
   let content = fs.readFileSync(filePath, "utf8");
-  const replacements = [
-    ["glob = require('glob'),", "globSync = require('glob').globSync,"],
-    [
-      `                    glob(pattern, options, (err, files) => {
-                        files.forEach((filePath) => {
-                            let fileData = fs.readFileSync(filePath);
-
-                            //getting folder name 'portal-site', need to generate folder 'site'
-                            filePath = filePath.substring('portal-'.length);
-                            zip.file(filePath, fileData);
-                        });
-                        resolve(zip.generateNodeStream());
-                    });`,
-      `                    const files = globSync(pattern, options);
-                    files.forEach((filePath) => {
-                        let fileData = fs.readFileSync(filePath);
-                        filePath = filePath.substring('portal-'.length);
-                        zip.file(filePath, fileData);
-                    });
-                    resolve(zip.generateNodeStream());`,
-    ],
-    ["rimraf = require('rimraf'),", "rimraf = require('rimraf').rimraf,"],
-  ];
-  let changed = false;
-  for (const [oldBlock, newBlock] of replacements) {
-    if (content.includes(oldBlock)) {
-      content = content.replace(oldBlock, newBlock);
-      changed = true;
-    }
-  }
-  if (!changed) {
-    console.log("already patched: deployer.js runtime");
+  const oldError =
+    "            errorMessage = 'Deploy to portal service failed, got status = ' + err.response.status + ', data: ' + err.response.data;";
+  const newError =
+    "            errorMessage = 'Deploy to portal service failed, got status = ' + err.response.status + ', data: ' + JSON.stringify(err.response.data);";
+  if (!content.includes(oldError)) {
+    console.log("already patched: deployer.js error logging");
     return;
   }
+  content = content.replace(oldError, newError);
   fs.writeFileSync(filePath, content, "utf8");
-  console.log("patched: deployer.js runtime (glob/rimraf modern APIs)");
+  console.log("patched: deployer.js error logging");
 }
 
 function patchDeployerMetadata() {
@@ -81,9 +56,8 @@ function patchDeployerMetadata() {
   const packageJson = JSON.parse(fs.readFileSync(deployerPackageFile, "utf8"));
   packageJson.dependencies = {
     ...packageJson.dependencies,
-    axios: "1.16.1",
-    glob: "11.1.0",
-    rimraf: "5.0.10",
+    glob: "7.2.3",
+    rimraf: "3.0.2",
     "form-data": "3.0.4",
     jszip: "3.10.1",
   };
@@ -97,5 +71,5 @@ function patchDeployerMetadata() {
 
 patchLaunchpadCredentials(utilsFile, "utils.js");
 patchLaunchpadCredentials(deployerFile, "deployer.js");
-patchDeployerRuntime(deployerFile);
+patchDeployerErrorLogging(deployerFile);
 patchDeployerMetadata();

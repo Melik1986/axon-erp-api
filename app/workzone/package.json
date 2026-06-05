@@ -7,18 +7,15 @@
     "postinstall": "node patch-portal-deployer.js"
   },
   "dependencies": {
-    "@sap/portal-cf-content-deployer": "https://registry.npmjs.org/@sap/portal-cf-content-deployer/-/portal-cf-content-deployer-4.20.0-20220206072628.tgz",
-    "axios": "1.16.1"
+    "@sap/portal-cf-content-deployer": "https://registry.npmjs.org/@sap/portal-cf-content-deployer/-/portal-cf-content-deployer-4.20.0-20220206072628.tgz"
   },
   "overrides": {
     "@sap/portal-cf-content-deployer": {
-      "axios": "1.16.1",
-      "glob": "11.1.0",
-      "rimraf": "5.0.10"
+      "glob": "7.2.3",
+      "rimraf": "3.0.2"
     },
-    "axios": "1.16.1",
-    "glob": "11.1.0",
-    "rimraf": "5.0.10",
+    "glob": "7.2.3",
+    "rimraf": "3.0.2",
     "form-data": "^3.0.4",
     "jszip": "^3.8.0"
   },
