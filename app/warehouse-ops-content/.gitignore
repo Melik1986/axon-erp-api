@@ -1,1 +1,2 @@
-app-content/
+# Built by mbt from app/warehouse-ops/dist — do not commit
+app-content/*.zip

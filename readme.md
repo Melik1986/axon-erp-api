@@ -43,14 +43,14 @@ npm run build
 npm start
 ```
 
-In another terminal:
+In another terminal, smoke-check OData (local):
 
 ```bash
-npm run verify:seed
-npm run verify:seed -- --write
+curl -s "http://localhost:4004/odata/v4/warehouse/Products?\$top=1" | head
+curl -s "http://localhost:4004/odata/v4/warehouse/StockLevels?\$filter=contains(Name,'Arabica')"
 ```
 
-`--write` creates a smoke-test invoice with the same shape Axon sends:
+Example invoice payload shape for Axon `create_invoice`:
 
 ```json
 {
@@ -89,16 +89,8 @@ mbt build
 cf deploy mta_archives/axon-odata-api_1.0.0.mtar -f
 ```
 
-Then verify:
+After deploy:
 
 ```bash
-npm run verify:cf
-```
-
-If the CF route is protected by XSUAA and no browser session is available, pass a bearer token:
-
-```bash
-node scripts/verify-seed.mjs \
-  --base-url https://axon-odata-api.cfapps.us10-001.hana.ondemand.com/odata/v4/warehouse \
-  --token "$SAP_BEARER_TOKEN"
+curl -s "https://590c8b3dtrial-590c8b3dtrial-dev-axon-odata-api.cfapps.us10-001.hana.ondemand.com/health"
 ```
