@@ -35,9 +35,7 @@ sap.ui.define(["sap/fe/core/AppComponent"], function (AppComponent) {
       if (!router) {
         return;
       }
-      router.attachEventOnce("routeMatched", function () {
-        router.navTo(routeName, {}, undefined, true);
-      });
+      router.navTo(routeName, {}, true);
     },
   });
 });

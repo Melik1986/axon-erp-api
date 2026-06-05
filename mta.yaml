@@ -80,14 +80,6 @@ modules:
         - npm run build
       supported-platforms: []
 
-  # CDM for Work Zone content provider (sap.cloud.service axon.warehouse.ops)
-  - name: axon-workzone-cdm
-    type: html5
-    path: app/workzone
-    build-parameters:
-      build-result: .
-      supported-platforms: []
-
   - name: axon-warehouse-ops-content
     type: com.sap.application.content
     path: app/warehouse-ops-content
@@ -102,10 +94,6 @@ modules:
           artifacts:
             - warehouse-ops.zip
           target-path: app-content/
-        - name: axon-workzone-cdm
-          artifacts:
-            - cdm.json
-          target-path: app-content/
 
   - name: axon-destinations
     type: com.sap.application.content
@@ -117,10 +105,6 @@ modules:
         parameters:
           service-key:
             name: axon-html5-host-key
-      - name: axon-html5-rt
-        parameters:
-          service-key:
-            name: axon-html5-rt-key
       - name: axon-auth
         parameters:
           service-key:
@@ -131,13 +115,6 @@ modules:
       no-source: true
     parameters:
       content:
-        subaccount:
-          existing_destinations_policy: update
-          destinations:
-            - Name: axon-warehouse-ops-cdm
-              ServiceInstanceName: axon-html5-rt
-              ServiceKeyName: axon-html5-rt-key
-              URL: https://html5-apps-repo-rt.cfapps.us10.hana.ondemand.com/applications/cdm/axon.warehouse.ops
         instance:
           existing_destinations_policy: update
           destinations:
@@ -155,8 +132,8 @@ modules:
               WebIDEUsage: odata_gen
               sap.cloud.service: axon.warehouse.ops
 
-  # Portal content deployer: pushes CDM (cdm.json) to SAP Build Work Zone Standard
-  # so that catalog, group, and site are created automatically on deploy.
+  # Portal content deployer: pushes CommonDataModel.json (Warehouse_Ops_Access, 4 tiles).
+  # WZ integration path: SAP BTP cockpit + portal CDM — do NOT mix with html5 cdm.json content provider.
   - name: axon-portal-deployer
     type: com.sap.portal.content
     path: app/workzone
