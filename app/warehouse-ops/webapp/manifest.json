@@ -5,7 +5,7 @@
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
-      "version": "1.0.20"
+      "version": "1.0.21"
     },
     "title": "{{appTitle}}",
     "description": "{{appDescription}}",
@@ -35,6 +35,26 @@
           "action": "display",
           "title": "{{warehouseCatalogTileTitle}}",
           "subTitle": "{{warehouseCatalogTileSubtitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        },
+        "WarehouseInvoices-display": {
+          "semanticObject": "WarehouseInvoices",
+          "action": "display",
+          "title": "{{warehouseInvoicesTileTitle}}",
+          "subTitle": "{{warehouseInvoicesTileSubtitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        },
+        "WarehousePurchaseOrders-display": {
+          "semanticObject": "WarehousePurchaseOrders",
+          "action": "display",
+          "title": "{{warehousePurchaseOrdersTileTitle}}",
+          "subTitle": "{{warehousePurchaseOrdersTileSubtitle}}",
           "signature": {
             "parameters": {},
             "additionalParameters": "allowed"
@@ -111,6 +131,16 @@
           "pattern": "BusinessPartners",
           "name": "WarehouseCatalogList",
           "target": "WarehouseCatalogList"
+        },
+        {
+          "pattern": "Invoices:?query:",
+          "name": "WarehouseInvoicesList",
+          "target": "WarehouseInvoicesList"
+        },
+        {
+          "pattern": "PurchaseOrders:?query:",
+          "name": "WarehousePurchaseOrdersList",
+          "target": "WarehousePurchaseOrdersList"
         }
       ],
       "targets": {
@@ -161,6 +191,42 @@
               "contextPath": "/A_BusinessPartner",
               "variantManagement": "Page",
               "initialLoad": "Enabled",
+              "tableSettings": {
+                "type": "ResponsiveTable",
+                "selectAll": true,
+                "selectionMode": "Multi"
+              }
+            }
+          }
+        },
+        "WarehouseInvoicesList": {
+          "type": "Component",
+          "id": "WarehouseInvoicesList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "contextPath": "/Invoices",
+              "variantManagement": "Page",
+              "initialLoad": "Enabled",
+              "liveMode": true,
+              "tableSettings": {
+                "type": "ResponsiveTable",
+                "selectAll": true,
+                "selectionMode": "Multi"
+              }
+            }
+          }
+        },
+        "WarehousePurchaseOrdersList": {
+          "type": "Component",
+          "id": "WarehousePurchaseOrdersList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "contextPath": "/PurchaseOrders",
+              "variantManagement": "Page",
+              "initialLoad": "Enabled",
+              "liveMode": true,
               "tableSettings": {
                 "type": "ResponsiveTable",
                 "selectAll": true,

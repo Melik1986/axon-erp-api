@@ -23,6 +23,36 @@
       },
       {
         "identification": {
+          "id": "axon-erp-api-catalog-invoices",
+          "title": "Invoices",
+          "entityType": "catalog"
+        },
+        "payload": {
+          "viz": [
+            {
+              "appId": "axon.warehouse.ops",
+              "vizId": "WarehouseInvoices-display"
+            }
+          ]
+        }
+      },
+      {
+        "identification": {
+          "id": "axon-erp-api-catalog-po",
+          "title": "Purchase Orders",
+          "entityType": "catalog"
+        },
+        "payload": {
+          "viz": [
+            {
+              "appId": "axon.warehouse.ops",
+              "vizId": "WarehousePurchaseOrders-display"
+            }
+          ]
+        }
+      },
+      {
+        "identification": {
           "id": "axon-erp-api-catalog-bp",
           "title": "Warehouse Catalog",
           "entityType": "catalog"
@@ -56,12 +86,24 @@
               "id": "axon-erp-api-catalog"
             },
             {
+              "id": "axon-erp-api-catalog-invoices"
+            },
+            {
+              "id": "axon-erp-api-catalog-po"
+            },
+            {
               "id": "axon-erp-api-catalog-bp"
             }
           ],
           "groups": [
             {
               "id": "axon-erp-api-group"
+            },
+            {
+              "id": "axon-erp-api-group-invoices"
+            },
+            {
+              "id": "axon-erp-api-group-po"
             },
             {
               "id": "axon-erp-api-group-bp"
@@ -82,6 +124,36 @@
             {
               "appId": "axon.warehouse.ops",
               "vizId": "WarehouseOps-display"
+            }
+          ]
+        }
+      },
+      {
+        "identification": {
+          "id": "axon-erp-api-group-invoices",
+          "title": "Invoices",
+          "entityType": "group"
+        },
+        "payload": {
+          "viz": [
+            {
+              "appId": "axon.warehouse.ops",
+              "vizId": "WarehouseInvoices-display"
+            }
+          ]
+        }
+      },
+      {
+        "identification": {
+          "id": "axon-erp-api-group-po",
+          "title": "Purchase Orders",
+          "entityType": "group"
+        },
+        "payload": {
+          "viz": [
+            {
+              "appId": "axon.warehouse.ops",
+              "vizId": "WarehousePurchaseOrders-display"
             }
           ]
         }
@@ -130,7 +202,12 @@
               }
             }
           },
-          "groupsOrder": ["axon-erp-api-group", "axon-erp-api-group-bp"],
+          "groupsOrder": [
+            "axon-erp-api-group",
+            "axon-erp-api-group-invoices",
+            "axon-erp-api-group-po",
+            "axon-erp-api-group-bp"
+          ],
           "sap.cloud.portal": {
             "config": {
               "theme.id": "sap_horizon",

@@ -21,6 +21,13 @@ annotate WarehouseService.Invoices with @(
   sap: {creatable: true, updatable: true, deletable: true}
 );
 
+annotate WarehouseService.PurchaseOrders with @(
+  Capabilities.InsertRestrictions: {Insertable: true},
+  Capabilities.UpdateRestrictions: {Updatable: true},
+  Capabilities.DeleteRestrictions: {Deletable: true},
+  sap: {creatable: true, updatable: true, deletable: true}
+);
+
 annotate WarehouseService.A_BusinessPartner with @(
   Capabilities.InsertRestrictions: {Insertable: true},
   Capabilities.UpdateRestrictions: {Updatable: true},
