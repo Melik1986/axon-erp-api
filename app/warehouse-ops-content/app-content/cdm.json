@@ -1,16 +1,136 @@
 [
   {
+    "_version": "3.2",
+    "identification": {
+      "id": "axon.warehouse.ops",
+      "title": "{{appTitle}}",
+      "entityType": "businessapp"
+    },
+    "payload": {
+      "visualizations": {
+        "WarehouseOps-display": {
+          "vizType": "sap.ushell.StaticAppLauncher",
+          "vizConfig": {
+            "sap.app": {
+              "id": "axon.warehouse.ops",
+              "title": "Products",
+              "subTitle": "Inventory and replenishment"
+            },
+            "sap.ui": {
+              "icons": {
+                "icon": "sap-icon://product"
+              }
+            },
+            "sap.flp": {
+              "target": {
+                "inboundId": "WarehouseOps-display",
+                "type": "IBN"
+              }
+            }
+          }
+        },
+        "WarehouseInvoices-display": {
+          "vizType": "sap.ushell.StaticAppLauncher",
+          "vizConfig": {
+            "sap.app": {
+              "id": "axon.warehouse.ops",
+              "title": "Invoices",
+              "subTitle": "Sales invoices from Axon"
+            },
+            "sap.ui": {
+              "icons": {
+                "icon": "sap-icon://supplier-invoice"
+              }
+            },
+            "sap.flp": {
+              "target": {
+                "inboundId": "WarehouseInvoices-display",
+                "type": "IBN"
+              }
+            }
+          }
+        },
+        "WarehousePurchaseOrders-display": {
+          "vizType": "sap.ushell.StaticAppLauncher",
+          "vizConfig": {
+            "sap.app": {
+              "id": "axon.warehouse.ops",
+              "title": "Purchase Orders",
+              "subTitle": "Open and in-transit orders"
+            },
+            "sap.ui": {
+              "icons": {
+                "icon": "sap-icon://order-status"
+              }
+            },
+            "sap.flp": {
+              "target": {
+                "inboundId": "WarehousePurchaseOrders-display",
+                "type": "IBN"
+              }
+            }
+          }
+        },
+        "WarehouseCatalog-display": {
+          "vizType": "sap.ushell.StaticAppLauncher",
+          "vizConfig": {
+            "sap.app": {
+              "id": "axon.warehouse.ops",
+              "title": "Business Partners",
+              "subTitle": "Suppliers and partners"
+            },
+            "sap.ui": {
+              "icons": {
+                "icon": "sap-icon://business-partner"
+              }
+            },
+            "sap.flp": {
+              "target": {
+                "inboundId": "WarehouseCatalog-display",
+                "type": "IBN"
+              }
+            }
+          }
+        }
+      }
+    },
+    "texts": [
+      {
+        "locale": "",
+        "textDictionary": {
+          "appTitle": "Warehouse Operations"
+        }
+      }
+    ]
+  },
+  {
     "_version": "3.0",
     "identification": {
-      "id": "axon-erp-api-catalog",
+      "id": "catalog-warehouse-ops",
       "title": "{{title}}",
       "entityType": "catalog"
     },
     "payload": {
       "viz": [
         {
+          "id": "viz-products",
           "appId": "axon.warehouse.ops",
           "vizId": "WarehouseOps-display"
+        },
+        {
+          "id": "viz-invoices",
+          "appId": "axon.warehouse.ops",
+          "vizId": "WarehouseInvoices-display"
+        },
+        {
+          "id": "viz-po",
+          "appId": "axon.warehouse.ops",
+          "vizId": "WarehousePurchaseOrders-display"
+        },
+        {
+          "id": "viz-partners",
+          "appId": "axon.warehouse.ops",
+          "vizId": "WarehouseCatalog-display"
         }
       ]
     },
@@ -26,13 +146,39 @@
   {
     "_version": "3.0",
     "identification": {
-      "id": "axon-erp-api-catalog-invoices",
+      "id": "group-products",
       "title": "{{title}}",
-      "entityType": "catalog"
+      "entityType": "group"
     },
     "payload": {
       "viz": [
         {
+          "id": "viz-products",
+          "appId": "axon.warehouse.ops",
+          "vizId": "WarehouseOps-display"
+        }
+      ]
+    },
+    "texts": [
+      {
+        "locale": "",
+        "textDictionary": {
+          "title": "Products"
+        }
+      }
+    ]
+  },
+  {
+    "_version": "3.0",
+    "identification": {
+      "id": "group-invoices",
+      "title": "{{title}}",
+      "entityType": "group"
+    },
+    "payload": {
+      "viz": [
+        {
+          "id": "viz-invoices",
           "appId": "axon.warehouse.ops",
           "vizId": "WarehouseInvoices-display"
         }
@@ -50,13 +196,14 @@
   {
     "_version": "3.0",
     "identification": {
-      "id": "axon-erp-api-catalog-po",
+      "id": "group-po",
       "title": "{{title}}",
-      "entityType": "catalog"
+      "entityType": "group"
     },
     "payload": {
       "viz": [
         {
+          "id": "viz-po",
           "appId": "axon.warehouse.ops",
           "vizId": "WarehousePurchaseOrders-display"
         }
@@ -74,13 +221,14 @@
   {
     "_version": "3.0",
     "identification": {
-      "id": "axon-erp-api-catalog-bp",
+      "id": "group-partners",
       "title": "{{title}}",
-      "entityType": "catalog"
+      "entityType": "group"
     },
     "payload": {
       "viz": [
         {
+          "id": "viz-partners",
           "appId": "axon.warehouse.ops",
           "vizId": "WarehouseCatalog-display"
         }
@@ -90,103 +238,7 @@
       {
         "locale": "",
         "textDictionary": {
-          "title": "Warehouse Catalog"
-        }
-      }
-    ]
-  },
-  {
-    "_version": "3.0",
-    "identification": {
-      "id": "axon-erp-api-group",
-      "title": "{{title}}",
-      "entityType": "group"
-    },
-    "payload": {
-      "viz": [
-        {
-          "appId": "axon.warehouse.ops",
-          "vizId": "WarehouseOps-display"
-        }
-      ]
-    },
-    "texts": [
-      {
-        "locale": "",
-        "textDictionary": {
-          "title": "Warehouse Operations"
-        }
-      }
-    ]
-  },
-  {
-    "_version": "3.0",
-    "identification": {
-      "id": "axon-erp-api-group-invoices",
-      "title": "{{title}}",
-      "entityType": "group"
-    },
-    "payload": {
-      "viz": [
-        {
-          "appId": "axon.warehouse.ops",
-          "vizId": "WarehouseInvoices-display"
-        }
-      ]
-    },
-    "texts": [
-      {
-        "locale": "",
-        "textDictionary": {
-          "title": "Invoices"
-        }
-      }
-    ]
-  },
-  {
-    "_version": "3.0",
-    "identification": {
-      "id": "axon-erp-api-group-po",
-      "title": "{{title}}",
-      "entityType": "group"
-    },
-    "payload": {
-      "viz": [
-        {
-          "appId": "axon.warehouse.ops",
-          "vizId": "WarehousePurchaseOrders-display"
-        }
-      ]
-    },
-    "texts": [
-      {
-        "locale": "",
-        "textDictionary": {
-          "title": "Purchase Orders"
-        }
-      }
-    ]
-  },
-  {
-    "_version": "3.0",
-    "identification": {
-      "id": "axon-erp-api-group-bp",
-      "title": "{{title}}",
-      "entityType": "group"
-    },
-    "payload": {
-      "viz": [
-        {
-          "appId": "axon.warehouse.ops",
-          "vizId": "WarehouseCatalog-display"
-        }
-      ]
-    },
-    "texts": [
-      {
-        "locale": "",
-        "textDictionary": {
-          "title": "Warehouse Catalog"
+          "title": "Business Partners"
         }
       }
     ]
@@ -206,30 +258,21 @@
       ],
       "catalogs": [
         {
-          "id": "axon-erp-api-catalog"
-        },
-        {
-          "id": "axon-erp-api-catalog-invoices"
-        },
-        {
-          "id": "axon-erp-api-catalog-po"
-        },
-        {
-          "id": "axon-erp-api-catalog-bp"
+          "id": "catalog-warehouse-ops"
         }
       ],
       "groups": [
         {
-          "id": "axon-erp-api-group"
+          "id": "group-invoices"
         },
         {
-          "id": "axon-erp-api-group-invoices"
+          "id": "group-po"
         },
         {
-          "id": "axon-erp-api-group-po"
+          "id": "group-products"
         },
         {
-          "id": "axon-erp-api-group-bp"
+          "id": "group-partners"
         }
       ]
     }

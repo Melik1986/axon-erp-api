@@ -18,6 +18,7 @@ db.sqlite
 *.sqlite-wal
 app/router/default-env.json
 
+
 # IDE / agents (local)
 .cursor/
 .agents/
@@ -30,3 +31,5 @@ docs/
 scripts/verify-block-g-prereqs.mjs
 scripts/verify-cf-layers.mjs
 scripts/update-xsuaa-security.sh
+scripts/workzone-post-deploy.sh
+scripts/verify-cdm-endpoint.mjs

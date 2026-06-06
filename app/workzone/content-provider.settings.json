@@ -1,0 +1,23 @@
+{
+  "title": "axon warehouse cdm",
+  "id": "axon_warehouse_cdm",
+  "designTimeDestination": "axon-warehouse-cdm",
+  "runtimeDestination": "axon-workzone-runtime",
+  "runtimeDestinationForOData": "useDefaultRuntimeDestination",
+  "contentAdditionMode": "automaticAllContentItems",
+  "provisionAuthorizationsViaIdentityProvisioning": false,
+  "includeGroupAndCatalogAssignmentsToRoles": false,
+  "notes": {
+    "provisionAuthorizationsViaIdentityProvisioning": "Must be false for HTML5 CDM provider. When true, ~cdm_* BTP role collections are NOT created and btp assign fails.",
+    "includeGroupAndCatalogAssignmentsToRoles": "false exposes all 4 CDM groups/catalogs from provider. true requires role payload links — broken when IPS is off and role import shows Apps(1) only.",
+    "expectedRoleCollectionAfterFetch": "~cdm_Warehouse_Ops_Access",
+    "cdmRoleId": "Warehouse_Ops_Access",
+    "siteId": "b4c96273-a66c-47ab-be1b-f3ffa818d1f9",
+    "siteName": "warehouse-ops",
+    "doNotUse": [
+      "HTML5 Apps channel for axon.warehouse.ops (duplicate app, no vizId)",
+      "Manual Create Group in Content Manager (tiles without vizId → all open Products)",
+      "Bookmark-only demo URLs"
+    ]
+  }
+}

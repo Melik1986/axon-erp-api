@@ -93,4 +93,39 @@ After deploy:
 
 ```bash
 curl -s "https://590c8b3dtrial-590c8b3dtrial-dev-axon-odata-api.cfapps.us10-001.hana.ondemand.com/health"
+npm run verify:cdm
 ```
+
+## Work Zone (CDM path — repo = cloud)
+
+Source of truth: `app/warehouse-ops-content/app-content/cdm.json` — **businessapp** with 4 `StaticAppLauncher` visualizations (`inboundId` = manifest inbound keys), 1 catalog, 4 groups (1 viz each), 1 role.  
+Deployed by MTA module `axon-warehouse-ops-content` → CDM endpoint `.../applications/cdm/axon.warehouse.ops`.
+
+**Invalid paths (do not use):**
+
+- Bookmark 4 intent URLs — not 4 Home groups.
+- Manual **Create → Group** in Content Manager — app without `vizId` → every tile opens default route (`Products`), same records everywhere.
+
+**CLI deploy chain:**
+
+```bash
+npm run deploy:cf          # publishes app + cdm.json to HTML5 repo
+npm run verify:cdm         # local cdm.json == cloud endpoint (10 entities incl. businessapp)
+npm run workzone:post-deploy   # btp assign ~cdm_Warehouse_Ops_Access when RC exists
+```
+
+Content provider settings (one-time tenant config, documented in repo):  
+`app/workzone/content-provider.settings.json`
+
+| Setting | Value |
+| --- | --- |
+| Design-time destination | `axon-warehouse-cdm` |
+| Runtime destination | `axon-workzone-runtime` |
+| Automatic addition of all content items | **ON** |
+| Provision authorizations via IPS | **OFF** (required for `~cdm_*` RC on trial) |
+| Include group/catalog assignments to roles | **OFF** (all 4 CDM groups from provider) |
+
+After provider **Fetch updated content**, BTP must show role collection `~cdm_Warehouse_Ops_Access`.  
+Remove any **local** group on site `warehouse-ops` and do not duplicate the app via **HTML5 Apps** channel.
+
+Site: `https://590c8b3dtrial.launchpad.cfapps.us10.hana.ondemand.com/site?siteId=b4c96273-a66c-47ab-be1b-f3ffa818d1f9`
