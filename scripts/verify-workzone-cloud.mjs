@@ -5,7 +5,7 @@
 import { execSync } from "node:child_process";
 import { readFileSync, existsSync } from "node:fs";
 
-const EXPECTED_VERSION = "1.0.30";
+const EXPECTED_VERSION = "1.0.31";
 const CLOUD_SERVICE = "axon.warehouse.ops";
 
 function run(cmd) {

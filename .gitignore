@@ -28,6 +28,14 @@ app/router/default-env.json
 docs/
 
 # Ad-hoc verify / ops (not product)
+scripts/*.mjs
 scripts/verify-block-g-prereqs.mjs
 scripts/verify-cf-layers.mjs
 scripts/update-xsuaa-security.sh
+scripts/validate-workzone-cloud.mjs
+scripts/verify-workzone-site.mjs
+scripts/validate-manifest.mjs
+scripts/diagnose-workzone-channel.mjs
+
+# Temporary files
+/tmp/

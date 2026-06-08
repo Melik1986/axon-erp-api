@@ -5,7 +5,7 @@
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
-      "version": "1.0.30"
+      "version": "1.0.31"
     },
     "title": "{{appTitle}}",
     "description": "{{appDescription}}",
@@ -24,8 +24,8 @@
           "semanticObject": "WarehouseOps",
           "action": "display",
           "icon": "sap-icon://inventory",
-          "title": "{{warehouseOpsTileTitle}}",
-          "subTitle": "{{warehouseOpsTileSubtitle}}",
+          "title": "Warehouse Operations",
+          "subTitle": "Inventory and replenishment",
           "signature": {
             "parameters": {},
             "additionalParameters": "allowed"
@@ -35,8 +35,8 @@
           "semanticObject": "WarehouseCatalog",
           "action": "display",
           "icon": "sap-icon://business-partner",
-          "title": "{{warehouseCatalogTileTitle}}",
-          "subTitle": "{{warehouseCatalogTileSubtitle}}",
+          "title": "Business Partners",
+          "subTitle": "Suppliers and partners",
           "signature": {
             "parameters": {},
             "additionalParameters": "allowed"
@@ -46,8 +46,8 @@
           "semanticObject": "WarehouseInvoices",
           "action": "display",
           "icon": "sap-icon://money-bills",
-          "title": "{{warehouseInvoicesTileTitle}}",
-          "subTitle": "{{warehouseInvoicesTileSubtitle}}",
+          "title": "Invoices",
+          "subTitle": "Sales invoices from Axon",
           "signature": {
             "parameters": {},
             "additionalParameters": "allowed"
@@ -57,8 +57,8 @@
           "semanticObject": "WarehousePurchaseOrders",
           "action": "display",
           "icon": "sap-icon://cart",
-          "title": "{{warehousePurchaseOrdersTileTitle}}",
-          "subTitle": "{{warehousePurchaseOrdersTileSubtitle}}",
+          "title": "Purchase Orders",
+          "subTitle": "Open and in-transit orders",
           "signature": {
             "parameters": {},
             "additionalParameters": "allowed"

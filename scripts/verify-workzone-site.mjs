@@ -7,7 +7,7 @@ import { existsSync } from "node:fs";
 
 const SITE_ID = "b4c96273-a66c-47ab-be1b-f3ffa818d1f9";
 const EXPECTED_APP_HOST = "a4ef3c28-f91e-4923-b12a-fdfb994691e5";
-const EXPECTED_VERSION = "1.0.30";
+const EXPECTED_VERSION = "1.0.31";
 const SITE_URL = `https://590c8b3dtrial.launchpad.cfapps.us10.hana.ondemand.com/site?siteId=${SITE_ID}`;
 const ODATA_HEALTH =
   "https://590c8b3dtrial-590c8b3dtrial-dev-axon-odata-api.cfapps.us10-001.hana.ondemand.com/health";

@@ -17,6 +17,7 @@
     "workzone:verify": "node scripts/verify-workzone-site.mjs",
     "workzone:verify-cloud": "node scripts/verify-workzone-cloud.mjs",
     "workzone:trace": "node scripts/trace-workzone-path.mjs",
+    "workzone:diagnose": "node scripts/diagnose-workzone-channel.mjs",
     "format": "prettier --write \"**/*.{js,mjs,json,yaml,yml,html,css,md}\"",
     "check:format": "prettier --check \"**/*.{js,mjs,json,yaml,yml,html,css,md}\""
   },

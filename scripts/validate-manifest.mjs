@@ -49,6 +49,9 @@ for (const key of inboundKeys) {
   if (!inbound.icon) {
     fail(`inbound ${key} missing icon (FLP tile requirement)`);
   }
+  if (/\{\{/.test(inbound.title ?? "") || /\{\{/.test(inbound.subTitle ?? "")) {
+    fail(`inbound ${key} uses i18n placeholders — WZ saas_approuter channel may not resolve them`);
+  }
 }
 ok(`${EXPECTED_INBOUNDS} crossNavigation inbounds with semanticObject, action, icon`);
 
