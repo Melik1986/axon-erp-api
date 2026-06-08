@@ -131,11 +131,19 @@ modules:
             - Name: axon-warehouse-ops-html5-runtime
               ServiceInstanceName: axon-html5-rt
               ServiceKeyName: axon-html5-rt-key
+            - Name: axon-warehouse-ops-auth
+              URL: https://590c8b3dtrial-590c8b3dtrial-dev-axon-odata-api.cfapps.us10-001.hana.ondemand.com
+              Authentication: OAuth2ClientCredentials
+              TokenServiceInstanceName: axon-auth
+              TokenServiceKeyName: axon-auth-key
+              HTML5.DynamicDestination: true
+              WebIDEEnabled: true
+              WebIDEUsage: odata_gen
         instance:
           existing_destinations_policy: update
           destinations:
             - Name: axon-warehouse-ops-auth
-              Authentication: OAuth2UserTokenExchange
+              Authentication: OAuth2ClientCredentials
               TokenServiceInstanceName: axon-auth
               TokenServiceKeyName: axon-auth-key
               URL: https://590c8b3dtrial-590c8b3dtrial-dev-axon-odata-api.cfapps.us10-001.hana.ondemand.com
@@ -176,7 +184,7 @@ resources:
                 Type: HTTP
                 ProxyType: Internet
                 URL: https://590c8b3dtrial-590c8b3dtrial-dev-axon-odata-api.cfapps.us10-001.hana.ondemand.com
-                Authentication: OAuth2UserTokenExchange
+                Authentication: OAuth2ClientCredentials
                 TokenServiceInstanceName: axon-auth
                 TokenServiceKeyName: axon-auth-key
                 HTML5.DynamicDestination: true
