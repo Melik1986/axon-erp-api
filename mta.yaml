@@ -5,6 +5,7 @@ description: Axon warehouse CAP OData + approuter (Fiori via Work Zone)
 
 parameters:
   enable-parallel-deployments: true
+  deploy_mode: html5-repo
 
 build-parameters:
   before-all:
@@ -12,6 +13,7 @@ build-parameters:
       commands:
         - bash scripts/with-node24.sh npm ci
         - bash scripts/with-node24.sh sh -c 'npx cds build --production && node scripts/patch-gen-srv.js'
+        - mkdir -p app/warehouse-ops-content/app-content
 
 modules:
   - name: axon-odata-api-db-deployer
@@ -122,17 +124,16 @@ modules:
         subaccount:
           existing_destinations_policy: update
           destinations:
-            - Name: axon-warehouse-cdm
-              ServiceInstanceName: axon-html5-rt
-              ServiceKeyName: axon-html5-rt-key
-              URL: https://html5-apps-repo-rt.cfapps.us10.hana.ondemand.com/applications/cdm/axon.warehouse.ops
-        instance:
-          existing_destinations_policy: update
-          destinations:
             - Name: axon-warehouse-ops-html5-repository
               ServiceInstanceName: axon-html5-host
               ServiceKeyName: axon-html5-host-key
               sap.cloud.service: axon.warehouse.ops
+            - Name: axon-warehouse-ops-html5-runtime
+              ServiceInstanceName: axon-html5-rt
+              ServiceKeyName: axon-html5-rt-key
+        instance:
+          existing_destinations_policy: update
+          destinations:
             - Name: axon-warehouse-ops-auth
               Authentication: OAuth2UserTokenExchange
               TokenServiceInstanceName: axon-auth
@@ -141,13 +142,11 @@ modules:
               HTML5.DynamicDestination: true
               WebIDEEnabled: true
               WebIDEUsage: odata_gen
-              sap.cloud.service: axon.warehouse.ops
 
 resources:
   - name: axon-auth
     type: org.cloudfoundry.existing-service
 
-  # HDI container on SAP HANA Cloud (requires instance mapping + Running — axon-warehouse-cf)
   - name: axon-warehouse-hdi
     type: com.sap.xs.hdi-container
     parameters:
@@ -165,12 +164,24 @@ resources:
           subaccount:
             existing_destinations_policy: update
             destinations:
-              - Name: axon-workzone-runtime
+              - Name: srv-api
                 Authentication: NoAuthentication
                 Type: HTTP
                 ProxyType: Internet
-                URL: https://590c8b3dtrial.launchpad.cfapps.us10.hana.ondemand.com
-                CEP.HTML5contentprovider: true
+                URL: https://590c8b3dtrial-590c8b3dtrial-dev-axon-odata-api.cfapps.us10-001.hana.ondemand.com
+                HTML5.DynamicDestination: true
+                HTML5.ForwardAuthToken: true
+                WebIDEUsage: odata_gen
+              - Name: axon-warehouse-ops-auth
+                Type: HTTP
+                ProxyType: Internet
+                URL: https://590c8b3dtrial-590c8b3dtrial-dev-axon-odata-api.cfapps.us10-001.hana.ondemand.com
+                Authentication: OAuth2UserTokenExchange
+                TokenServiceInstanceName: axon-auth
+                TokenServiceKeyName: axon-auth-key
+                HTML5.DynamicDestination: true
+                WebIDEEnabled: true
+                WebIDEUsage: odata_gen
           instance:
             existing_destinations_policy: update
             destinations:
@@ -194,17 +205,3 @@ resources:
     parameters:
       service: html5-apps-repo
       service-plan: app-runtime
-
-  # Uncomment after `cf create-service html5-apps-repo app-host axon-html5-host`
-  # and `cf create-service html5-apps-repo app-runtime axon-html5-rt`, then add
-  # html5-apps-repo-rt require on axon-odata-api-app and ui-deployer module.
-  # - name: axon-html5-host
-  #   type: org.cloudfoundry.managed-service
-  #   parameters:
-  #     service: html5-apps-repo
-  #     service-plan: app-host
-  # - name: axon-html5-rt
-  #   type: org.cloudfoundry.managed-service
-  #   parameters:
-  #     service: html5-apps-repo
-  #     service-plan: app-runtime

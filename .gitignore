@@ -31,5 +31,3 @@ docs/
 scripts/verify-block-g-prereqs.mjs
 scripts/verify-cf-layers.mjs
 scripts/update-xsuaa-security.sh
-scripts/workzone-post-deploy.sh
-scripts/verify-cdm-endpoint.mjs

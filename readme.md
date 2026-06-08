@@ -93,39 +93,32 @@ After deploy:
 
 ```bash
 curl -s "https://590c8b3dtrial-590c8b3dtrial-dev-axon-odata-api.cfapps.us10-001.hana.ondemand.com/health"
-npm run verify:cdm
+npm run workzone:verify
 ```
 
-## Work Zone (CDM path — repo = cloud)
+## Work Zone (app-only — no cdm.json)
 
-Source of truth: `app/warehouse-ops-content/app-content/cdm.json` — **businessapp** with 4 `StaticAppLauncher` visualizations (`inboundId` = manifest inbound keys), 1 catalog, 4 groups (1 viz each), 1 role.  
-Deployed by MTA module `axon-warehouse-ops-content` → CDM endpoint `.../applications/cdm/axon.warehouse.ops`.
+Layout via Content Manager (Everyone + manual app assignment). No `cdm.json` — avoids HTML5 channel parser/cache stuck on 20/05/2026.
 
-**Invalid paths (do not use):**
+| Module | Target | Payload |
+| --- | --- | --- |
+| `axon-warehouse-ops-content` | `axon-html5-host` | `warehouse-ops.zip` only |
 
-- Bookmark 4 intent URLs — not 4 Home groups.
-- Manual **Create → Group** in Content Manager — app without `vizId` → every tile opens default route (`Products`), same records everywhere.
+Bump `manifest.json` `applicationVersion` on each content deploy (currently **1.0.27**).
 
-**CLI deploy chain:**
+**Naming:** Cockpit shows Application Name `axonwarehouseops` (dots stripped from `sap.app.id`) and Business Solution `axon.warehouse.ops` (`sap.cloud.service`) — this is normal, not duplicate IDs.
+
+| Destination | Role |
+| --- | --- |
+| `axon-warehouse-ops-html5-repository` | DT — **only** subaccount dest with `sap.cloud.service=axon.warehouse.ops` |
+| `axon-warehouse-ops-html5-runtime` | RT — technical; must **not** use `axon.warehouse.ops` as cloud service |
+| `axon-warehouse-ops-auth` | OData backend for xs-app — **no** `sap.cloud.service` |
 
 ```bash
-npm run deploy:cf          # publishes app + cdm.json to HTML5 repo
-npm run verify:cdm         # local cdm.json == cloud endpoint (10 entities incl. businessapp)
-npm run workzone:post-deploy   # btp assign ~cdm_Warehouse_Ops_Access when RC exists
+npm run deploy:content:cf   # HTML5 zip only
+npm run workzone:verify && npm run workzone:verify-cloud
 ```
 
-Content provider settings (one-time tenant config, documented in repo):  
-`app/workzone/content-provider.settings.json`
-
-| Setting | Value |
-| --- | --- |
-| Design-time destination | `axon-warehouse-cdm` |
-| Runtime destination | `axon-workzone-runtime` |
-| Automatic addition of all content items | **ON** |
-| Provision authorizations via IPS | **OFF** (required for `~cdm_*` RC on trial) |
-| Include group/catalog assignments to roles | **OFF** (all 4 CDM groups from provider) |
-
-After provider **Fetch updated content**, BTP must show role collection `~cdm_Warehouse_Ops_Access`.  
-Remove any **local** group on site `warehouse-ops` and do not duplicate the app via **HTML5 Apps** channel.
+Cockpit: HTML5 Apps → Fetch → Content Explorer → add `axon.warehouse.ops` → Everyone.
 
 Site: `https://590c8b3dtrial.launchpad.cfapps.us10.hana.ondemand.com/site?siteId=b4c96273-a66c-47ab-be1b-f3ffa818d1f9`

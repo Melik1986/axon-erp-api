@@ -3,86 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Axon Warehouse – SAP Fiori</title>
-    <script>
-      window["sap-ushell-config"] = {
-        defaultRenderer: "fiori2",
-        renderers: {
-          fiori2: {
-            componentData: {
-              config: {
-                rootIntent: "Shell-home",
-              },
-            },
-          },
-        },
-        services: {
-          ClientSideTargetResolution: {
-            adapter: {
-              config: {
-                inbounds: {
-                  "WarehouseOps-display": {
-                    semanticObject: "WarehouseOps",
-                    action: "display",
-                    title: "Warehouse Operations",
-                    subTitle: "Inventory & Replenishment",
-                    icon: "sap-icon://inventory",
-                    resolutionResult: {
-                      applicationType: "SAPUI5",
-                      additionalInformation:
-                        "SAPUI5.Component=axon.warehouse.ops",
-                      url: "/warehouse-ops/",
-                      navigationMode: "inplace",
-                    },
-                    signature: {
-                      parameters: {},
-                      additionalParameters: "allowed",
-                    },
-                  },
-                },
-              },
-            },
-          },
-          LaunchPage: {
-            adapter: {
-              config: {
-                groups: [
-                  {
-                    id: "warehouse-group",
-                    title: "Warehouse Operations",
-                    isPreset: true,
-                    isVisible: true,
-                    isGroupLocked: false,
-                    tiles: [
-                      {
-                        id: "warehouse-tile",
-                        tileType: "sap.ushell.ui.tile.StaticVisualization",
-                        properties: {
-                          title: "Warehouse Operations",
-                          subtitle: "Inventory & Replenishment",
-                          info: "Live OData",
-                          icon: "sap-icon://inventory",
-                          targetURL: "#WarehouseOps-display",
-                        },
-                      },
-                    ],
-                  },
-                ],
-              },
-            },
-          },
-        },
-      };
-    </script>
-    <script
-      id="sap-ui-bootstrap"
-      src="https://ui5.sap.com/test-resources/sap/ushell/bootstrap/sandbox.js"
-      data-sap-ui-async="true"
-      data-sap-ui-theme="sap_horizon"
-      data-sap-ui-preload="async"
-      data-sap-ui-resourceroots='{"axon.warehouse.ops": "/warehouse-ops/"}'
-      data-sap-ui-frameOptions="allow"
-    ></script>
+    <title>Axon Warehouse – redirect</title>
+    <meta
+      http-equiv="refresh"
+      content="0; url=https://590c8b3dtrial.launchpad.cfapps.us10.hana.ondemand.com/site?siteId=b4c96273-a66c-47ab-be1b-f3ffa818d1f9"
+    />
   </head>
-  <body class="sapUiBody" id="content"></body>
+  <body>
+    <p>
+      Local FLP sandbox removed. Use
+      <a
+        href="https://590c8b3dtrial.launchpad.cfapps.us10.hana.ondemand.com/site?siteId=b4c96273-a66c-47ab-be1b-f3ffa818d1f9"
+        >warehouse-ops Work Zone site</a
+      >.
+    </p>
+  </body>
 </html>

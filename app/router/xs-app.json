@@ -8,11 +8,6 @@
       "authenticationType": "xsuaa"
     },
     {
-      "source": "^/warehouse-ops/(.*)$",
-      "localDir": "resources/warehouse-ops",
-      "authenticationType": "xsuaa"
-    },
-    {
       "source": "^/odata/v4/(.*)$",
       "destination": "srv-api",
       "authenticationType": "xsuaa"

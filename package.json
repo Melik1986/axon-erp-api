@@ -9,9 +9,14 @@
     "deploy": "scripts/with-node24.sh cds deploy --to sqlite",
     "build:mtar": "scripts/with-node24.sh sh -c 'npm run build && npx mbt build -p=cf'",
     "deploy:cf": "npm run build:mtar && cf deploy mta_archives/axon-odata-api_1.0.0.mtar -f",
-    "verify:cdm": "node scripts/verify-cdm-endpoint.mjs",
-    "workzone:post-deploy": "bash scripts/workzone-post-deploy.sh",
-    "workzone:assign": "bash scripts/workzone-post-deploy.sh",
+    "validate:manifest": "node scripts/validate-manifest.mjs",
+    "deploy:content:cf": "node scripts/validate-manifest.mjs && npm run build:mtar && cf deploy mta_archives/axon-odata-api_1.0.0.mtar -f -m axon-warehouse-ops-content,axon-destinations",
+    "fix:workzone-destinations": "node scripts/fix-workzone-destinations.mjs",
+    "clean:html5:cf": "node scripts/clean-html5-repo.mjs",
+    "reset:content:cf": "node scripts/clean-html5-repo.mjs && npm run deploy:content:cf",
+    "workzone:verify": "node scripts/verify-workzone-site.mjs",
+    "workzone:verify-cloud": "node scripts/verify-workzone-cloud.mjs",
+    "workzone:trace": "node scripts/trace-workzone-path.mjs",
     "format": "prettier --write \"**/*.{js,mjs,json,yaml,yml,html,css,md}\"",
     "check:format": "prettier --check \"**/*.{js,mjs,json,yaml,yml,html,css,md}\""
   },
@@ -30,11 +35,11 @@
     "prettier": "3.8.1"
   },
   "overrides": {
-    "qs": ">=6.15.2",
-    "ws": ">=8.20.1",
+    "qs": "6.15.2",
+    "ws": "8.20.1",
     "@sap/cds-dk": {
-      "qs": ">=6.15.2",
-      "ws": ">=8.20.1"
+      "qs": "6.15.2",
+      "ws": "8.20.1"
     }
   },
   "private": true,
@@ -74,9 +79,7 @@
           "kind": "xsuaa"
         }
       },
-      "html5-repo": true,
-      "workzone": true,
-      "portal": true
+      "html5-repo": true
     },
     "odata": {
       "version": "v4"

@@ -5,7 +5,7 @@
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
-      "version": "1.0.25"
+      "version": "1.0.30"
     },
     "title": "{{appTitle}}",
     "description": "{{appDescription}}",
@@ -23,6 +23,7 @@
         "WarehouseOps-display": {
           "semanticObject": "WarehouseOps",
           "action": "display",
+          "icon": "sap-icon://inventory",
           "title": "{{warehouseOpsTileTitle}}",
           "subTitle": "{{warehouseOpsTileSubtitle}}",
           "signature": {
@@ -33,6 +34,7 @@
         "WarehouseCatalog-display": {
           "semanticObject": "WarehouseCatalog",
           "action": "display",
+          "icon": "sap-icon://business-partner",
           "title": "{{warehouseCatalogTileTitle}}",
           "subTitle": "{{warehouseCatalogTileSubtitle}}",
           "signature": {
@@ -43,6 +45,7 @@
         "WarehouseInvoices-display": {
           "semanticObject": "WarehouseInvoices",
           "action": "display",
+          "icon": "sap-icon://money-bills",
           "title": "{{warehouseInvoicesTileTitle}}",
           "subTitle": "{{warehouseInvoicesTileSubtitle}}",
           "signature": {
@@ -53,6 +56,7 @@
         "WarehousePurchaseOrders-display": {
           "semanticObject": "WarehousePurchaseOrders",
           "action": "display",
+          "icon": "sap-icon://cart",
           "title": "{{warehousePurchaseOrdersTileTitle}}",
           "subTitle": "{{warehousePurchaseOrdersTileSubtitle}}",
           "signature": {
