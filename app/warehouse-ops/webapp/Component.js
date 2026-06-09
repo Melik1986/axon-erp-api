@@ -8,8 +8,20 @@ sap.ui.define(["sap/fe/core/AppComponent"], function (AppComponent) {
     WarehouseOps: "WarehouseOpsList",
   };
 
+  function readShellHash() {
+    let hash = window.location.hash || "";
+    try {
+      if (window.parent && window.parent !== window) {
+        hash = window.parent.location.hash || hash;
+      }
+    } catch {
+      /* same-origin only; ignore cross-origin parent */
+    }
+    return hash;
+  }
+
   function resolveRouteFromHash() {
-    const hash = window.location.hash || "";
+    const hash = readShellHash();
     const entries = Object.entries(HASH_INTENT_ROUTE_MAP).sort(
       (left, right) => right[0].length - left[0].length,
     );
@@ -30,25 +42,66 @@ sap.ui.define(["sap/fe/core/AppComponent"], function (AppComponent) {
     metadata: { manifest: "json" },
 
     init: function () {
+      this._activeInboundRoute = null;
+      this._boundHashChange = this._onShellHashChange.bind(this);
       this._pendingInboundRoute = this._resolveInboundRouteName();
       AppComponent.prototype.init.apply(this, arguments);
-      this._applyInboundRoute();
+      this._attachShellHashListener();
+      this._syncInboundRoute();
+    },
+
+    onExit: function () {
+      this._detachShellHashListener();
+      if (AppComponent.prototype.onExit) {
+        AppComponent.prototype.onExit.apply(this, arguments);
+      }
+    },
+
+    _attachShellHashListener: function () {
+      window.addEventListener("hashchange", this._boundHashChange);
+      try {
+        if (window.parent && window.parent !== window) {
+          window.parent.addEventListener("hashchange", this._boundHashChange);
+        }
+      } catch {
+        /* ignore */
+      }
+    },
+
+    _detachShellHashListener: function () {
+      window.removeEventListener("hashchange", this._boundHashChange);
+      try {
+        if (window.parent && window.parent !== window) {
+          window.parent.removeEventListener("hashchange", this._boundHashChange);
+        }
+      } catch {
+        /* ignore */
+      }
+    },
+
+    _onShellHashChange: function () {
+      this._syncInboundRoute();
     },
 
     _resolveInboundRouteName: function () {
-      const startupParameters = this.getComponentData()?.startupParameters;
-      return resolveRouteFromStartup(startupParameters) || resolveRouteFromHash();
+      return (
+        resolveRouteFromHash() ||
+        resolveRouteFromStartup(this.getComponentData()?.startupParameters)
+      );
     },
 
-    _applyInboundRoute: function () {
+    _syncInboundRoute: function () {
       const routeName = this._pendingInboundRoute || this._resolveInboundRouteName();
-      if (!routeName) {
+      this._pendingInboundRoute = null;
+      if (!routeName || routeName === this._activeInboundRoute) {
         return;
       }
       const router = this.getRouter();
       if (!router) {
+        this._pendingInboundRoute = routeName;
         return;
       }
+      this._activeInboundRoute = routeName;
       router.navTo(routeName, {}, undefined, true);
     },
   });
