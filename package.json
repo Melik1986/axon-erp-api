@@ -80,6 +80,12 @@
                 "Admin",
                 "authenticated-user"
               ]
+            },
+            "vstah_agent": {
+              "password": "demo-password",
+              "roles": [
+                "authenticated-user"
+              ]
             }
           }
         },

@@ -1,16 +1,15 @@
 const cds = require("@sap/cds");
+const { handleStockAdjust, toNumber } = require("./lib/stock-adjust");
+const { registerPurchaseOrderHandlers } = require("./lib/purchase-order");
 
-const DEFAULT_SUPPLIER_NAME = "ABC GmbH";
-
-function toNumber(value) {
-  const parsed = Number(value);
-  return Number.isFinite(parsed) ? parsed : 0;
-}
+const { SELECT, UPDATE } = cds.ql;
+const DEFAULT_SUPPLIER_NAME = "Siemens Industrial Automation AG";
 
 function invoiceTotal(items) {
-  return (items || []).reduce((sum, item) => {
-    return sum + toNumber(item.Quantity) * toNumber(item.Price);
-  }, 0);
+  return (items || []).reduce(
+    (sum, item) => sum + toNumber(item.Quantity) * toNumber(item.Price),
+    0,
+  );
 }
 
 function normalizeInvoiceItems(items) {
@@ -35,9 +34,17 @@ module.exports = cds.service.impl(function () {
     Products,
     Invoices,
     Suppliers,
+    StockLevels,
+    PurchaseOrders,
     A_BusinessPartner,
     A_BusinessPartnerRole,
   } = this.entities;
+
+  registerPurchaseOrderHandlers(this, {
+    Products,
+    StockLevels,
+    PurchaseOrders,
+  });
 
   this.before("CREATE", Products, (req) => {
     const data = req.data;
@@ -46,19 +53,20 @@ module.exports = cds.service.impl(function () {
     data.Quantity ??= 0;
     data.Unit ??= "pcs";
     data.IsService ??= false;
+    data.Product ??= data.Sku;
+    data.InternationalArticleNumber ??= data.Sku;
   });
 
   this.before("CREATE", Invoices, async (req) => {
     const data = req.data;
     data.Items = normalizeInvoiceItems(data.Items);
-    const total = invoiceTotal(data.Items);
+    data.Total ??= invoiceTotal(data.Items);
+    data.amount ??= data.Total;
     data.CustomerName ??= DEFAULT_SUPPLIER_NAME;
     data.currency ??= "EUR";
     data.status ??= "OPEN";
     data.Date ??= new Date().toISOString().slice(0, 10);
     data.Number ??= `INV-${Date.now()}`;
-    data.Total ??= total;
-    data.amount ??= data.Total;
     data.supplier_ID ??= await resolveSupplierId(Suppliers, data.CustomerName);
   });
 
@@ -69,23 +77,19 @@ module.exports = cds.service.impl(function () {
   });
 
   this.on("CREATE", A_BusinessPartnerRole, async (req, next) => {
-    const { BusinessPartner, BusinessPartnerRole } = req.data;
     const existing = await SELECT.one.from(A_BusinessPartnerRole).where({
-      BusinessPartner,
-      BusinessPartnerRole,
+      BusinessPartner: req.data.BusinessPartner,
+      BusinessPartnerRole: req.data.BusinessPartnerRole,
     });
-    if (existing) {
-      return existing;
-    }
-    return next();
+    return existing || next();
   });
 
   this.on("PostInvoice", Invoices, async (req) => {
     const id = req.params?.[0]?.ID;
-    if (!id) {
-      req.error(400, "Invoice ID is required");
-    }
+    if (!id) req.error(400, "Invoice ID is required");
     await UPDATE(Invoices, id).with({ status: "POSTED" });
     return SELECT.one.from(Invoices).where({ ID: id });
   });
+
+  this.on("adjust", async (req) => handleStockAdjust(StockLevels, req.data, req));
 });

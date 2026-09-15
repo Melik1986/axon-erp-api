@@ -1,6 +1,3 @@
 BusinessPartner;BusinessPartnerFullName;OrganizationBPName1;BusinessPartnerCategory;Country;CityName
-1000001;ABC GmbH;ABC GmbH;2;DE;Berlin
-1000002;Nordic Supply AB;Nordic Supply AB;2;SE;Stockholm
-1000003;Demo Customer Ltd;Demo Customer Ltd;1;GB;London
-1000004;ItalParts S.r.l.;ItalParts S.r.l.;2;IT;Milan
-1000005;US Industrial Co.;US Industrial Co.;2;US;Chicago
+V10001;Siemens Industrial Automation AG;Siemens Industrial Automation AG;2;DE;Nuernberg
+C20001;Duisburger Maschinenbau GmbH;Duisburger Maschinenbau GmbH;1;DE;Duisburg

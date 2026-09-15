@@ -13,22 +13,26 @@ entity Suppliers : cuid, managed {
 }
 
 entity Products : cuid, managed {
-  Name        : String(120);
-  description : String(500);
-  Price       : Decimal(15, 2);
-  currency    : String(3);
-  Sku         : String(80);
-  Quantity    : Integer default 0;
-  Unit        : String(10) default 'pcs';
-  IsService   : Boolean default false;
-  IdempotencyKey : String(120);
-  supplier    : Association to Suppliers;
-  stockLevels : Association to many StockLevels
-                  on stockLevels.product = $self;
+  Name                         : String(160);
+  description                  : String(500);
+  Price                        : Decimal(15, 2);
+  currency                     : String(3);
+  Sku                          : String(80);
+  Product                      : String(50);
+  InternationalArticleNumber   : String(40);
+  Quantity                     : Integer default 0;
+  Unit                         : String(10) default 'pcs';
+  IsService                    : Boolean default false;
+  ManageSerialNumbers          : Boolean default false;
+  ManageBatchNumbers           : Boolean default false;
+  IdempotencyKey               : String(120);
+  supplier                     : Association to Suppliers;
+  stockLevels                  : Association to many StockLevels
+                                   on stockLevels.product = $self;
 }
 
 entity StockLevels : cuid, managed {
-  Name              : String(120);
+  Name              : String(160);
   Quantity          : Integer default 0;
   Unit              : String(10) default 'pcs';
   warehouseLocation : String(40);
@@ -36,11 +40,26 @@ entity StockLevels : cuid, managed {
 }
 
 entity PurchaseOrders : cuid, managed {
-  status       : String(20) default 'OPEN';
-  deliveryDate : Date;
-  totalAmount  : Decimal(15, 2);
-  currency     : String(3);
-  supplier     : Association to Suppliers;
+  status                 : String(20) default 'OPEN';
+  deliveryDate           : Date;
+  totalAmount            : Decimal(15, 2);
+  currency               : String(3);
+  comment                : String(500);
+  supplier               : Association to Suppliers;
+  to_PurchaseOrderItem   : Composition of many A_PurchaseOrderItem
+                             on to_PurchaseOrderItem.purchaseOrder = $self;
+}
+
+entity A_PurchaseOrderItem : cuid {
+  Material                     : String(50);
+  SupplierMaterialNumber       : String(80);
+  InternationalArticleNumber   : String(40);
+  OrderQuantity                : Decimal(15, 3);
+  NetPriceAmount               : Decimal(15, 2);
+  WarehouseCode                : String(8) default '01';
+  SerialNumber                 : String(100);
+  BatchNumber                  : String(100);
+  purchaseOrder                : Association to PurchaseOrders;
 }
 
 entity Invoices : cuid, managed {
@@ -102,12 +121,13 @@ entity A_Supplier as projection on Suppliers {
 };
 
 entity A_Product as projection on Products {
-  ID       as Product,
-  Name     as ProductName,
-  Price    as NetAmount,
-  currency as TransactionCurrency,
-  Sku      as ProductExternalID,
-  Quantity as BaseUnit
+  ID                         as Product,
+  Name                       as ProductName,
+  Price                      as NetAmount,
+  currency                   as TransactionCurrency,
+  Sku                        as ProductExternalID,
+  InternationalArticleNumber as InternationalArticleNumber,
+  Quantity                   as BaseUnit
 };
 
 entity A_MaterialStock as projection on StockLevels {

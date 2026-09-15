@@ -1,7 +1,10 @@
-using WarehouseService from './warehouse-service';
+using { axon.warehouse as wh } from '../db/schema';
+
+// Shared UI annotations: inherited by WarehouseService AND BusinessOneService
+// so $fiori-preview on either root has LineItem columns.
 
 // ─── Products ────────────────────────────────────────────────────────────────
-annotate WarehouseService.Products with @(UI: {
+annotate wh.Products with @(UI: {
   HeaderInfo: {
     TypeName      : 'Product',
     TypeNamePlural: 'Products',
@@ -73,7 +76,7 @@ annotate WarehouseService.Products with @(UI: {
 });
 
 // ─── StockLevels ─────────────────────────────────────────────────────────────
-annotate WarehouseService.StockLevels with @(UI: {
+annotate wh.StockLevels with @(UI: {
   HeaderInfo: {
     TypeName      : 'Stock Level',
     TypeNamePlural: 'Stock Levels',
@@ -122,7 +125,7 @@ annotate WarehouseService.StockLevels with @(UI: {
 });
 
 // ─── Suppliers ───────────────────────────────────────────────────────────────
-annotate WarehouseService.Suppliers with @(UI: {
+annotate wh.Suppliers with @(UI: {
   HeaderInfo: {
     TypeName      : 'Supplier',
     TypeNamePlural: 'Suppliers',
@@ -151,7 +154,7 @@ annotate WarehouseService.Suppliers with @(UI: {
 });
 
 // ─── PurchaseOrders ──────────────────────────────────────────────────────────
-annotate WarehouseService.PurchaseOrders with @(UI: {
+annotate wh.PurchaseOrders with @(UI: {
   HeaderInfo: {
     TypeName      : 'Purchase Order',
     TypeNamePlural: 'Purchase Orders',
@@ -200,7 +203,7 @@ annotate WarehouseService.PurchaseOrders with @(UI: {
 });
 
 // ─── Invoices ─────────────────────────────────────────────────────────────────
-annotate WarehouseService.Invoices with @(UI: {
+annotate wh.Invoices with @(UI: {
   HeaderInfo: {
     TypeName      : 'Invoice',
     TypeNamePlural: 'Invoices',
@@ -255,7 +258,7 @@ annotate WarehouseService.Invoices with @(UI: {
 });
 
 // ─── InvoiceItems ───────────────────────────────────────────────────────────
-annotate WarehouseService.InvoiceItems with @(UI: {
+annotate wh.InvoiceItems with @(UI: {
   HeaderInfo: {
     TypeName      : 'Invoice Item',
     TypeNamePlural: 'Invoice Items',
@@ -271,7 +274,7 @@ annotate WarehouseService.InvoiceItems with @(UI: {
 });
 
 // ─── A_BusinessPartner ───────────────────────────────────────────────────────
-annotate WarehouseService.A_BusinessPartner with @(UI: {
+annotate wh.A_BusinessPartner with @(UI: {
   HeaderInfo: {
     TypeName      : 'Business Partner',
     TypeNamePlural: 'Business Partners',
@@ -308,7 +311,7 @@ annotate WarehouseService.A_BusinessPartner with @(UI: {
 });
 
 // ─── A_BusinessPartnerAddress ────────────────────────────────────────────────
-annotate WarehouseService.A_BusinessPartnerAddress with @(UI: {
+annotate wh.A_BusinessPartnerAddress with @(UI: {
   HeaderInfo: {
     TypeName      : 'BP Address',
     TypeNamePlural: 'BP Addresses',
@@ -327,7 +330,7 @@ annotate WarehouseService.A_BusinessPartnerAddress with @(UI: {
 });
 
 // ─── A_BusinessPartnerRole ───────────────────────────────────────────────────
-annotate WarehouseService.A_BusinessPartnerRole with @(UI: {
+annotate wh.A_BusinessPartnerRole with @(UI: {
   HeaderInfo: {
     TypeName      : 'BP Role',
     TypeNamePlural: 'BP Roles',

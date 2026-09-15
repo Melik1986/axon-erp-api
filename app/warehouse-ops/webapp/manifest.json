@@ -11,7 +11,7 @@
     "description": "{{appDescription}}",
     "dataSources": {
       "mainService": {
-        "uri": "odata/v4/warehouse/",
+        "uri": "/odata/v4/warehouse/",
         "type": "OData",
         "settings": {
           "odataVersion": "4.0"
@@ -24,8 +24,8 @@
           "semanticObject": "WarehouseOps",
           "action": "display",
           "icon": "sap-icon://inventory",
-          "title": "Warehouse Operations",
-          "subTitle": "Inventory and replenishment",
+          "title": "Products",
+          "subTitle": "Catalog and inventory",
           "signature": {
             "parameters": {
               "sap-route": {
@@ -89,6 +89,25 @@
                 "required": false,
                 "defaultValue": {
                   "value": "WarehousePurchaseOrdersList",
+                  "format": "plain"
+                }
+              }
+            },
+            "additionalParameters": "allowed"
+          }
+        },
+        "WarehouseStock-display": {
+          "semanticObject": "WarehouseStock",
+          "action": "display",
+          "icon": "sap-icon://warehouse",
+          "title": "Stock",
+          "subTitle": "On-hand by warehouse 01 / 02 / 03",
+          "signature": {
+            "parameters": {
+              "sap-route": {
+                "required": false,
+                "defaultValue": {
+                  "value": "WarehouseStockList",
                   "format": "plain"
                 }
               }
@@ -177,6 +196,11 @@
           "pattern": "PurchaseOrders:?query:",
           "name": "WarehousePurchaseOrdersList",
           "target": "WarehousePurchaseOrdersList"
+        },
+        {
+          "pattern": "StockLevels:?query:",
+          "name": "WarehouseStockList",
+          "target": "WarehouseStockList"
         }
       ],
       "targets": {
@@ -260,6 +284,24 @@
           "options": {
             "settings": {
               "contextPath": "/PurchaseOrders",
+              "variantManagement": "Page",
+              "initialLoad": "Enabled",
+              "liveMode": true,
+              "tableSettings": {
+                "type": "ResponsiveTable",
+                "selectAll": true,
+                "selectionMode": "Multi"
+              }
+            }
+          }
+        },
+        "WarehouseStockList": {
+          "type": "Component",
+          "id": "WarehouseStockList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "contextPath": "/StockLevels",
               "variantManagement": "Page",
               "initialLoad": "Enabled",
               "liveMode": true,

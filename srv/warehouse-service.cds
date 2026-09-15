@@ -15,6 +15,7 @@ service WarehouseService @(requires: 'authenticated-user') {
     action PostInvoice(IdempotencyKey: String) returns Invoices;
   };
   entity InvoiceItems             as select from wh.InvoiceItems;
+  entity A_PurchaseOrderItem      as select from wh.A_PurchaseOrderItem;
   entity A_Supplier               as select from wh.A_Supplier;
   entity A_Product                as select from wh.A_Product;
   entity A_MaterialStock          as select from wh.A_MaterialStock;
@@ -23,4 +24,12 @@ service WarehouseService @(requires: 'authenticated-user') {
   entity A_BusinessPartner        as select from wh.A_BusinessPartner;
   entity A_BusinessPartnerAddress as select from wh.A_BusinessPartnerAddress;
   entity A_BusinessPartnerRole    as select from wh.A_BusinessPartnerRole;
+
+  action adjust(
+    ProductId      : String,
+    ProductName    : String,
+    Quantity       : Integer,
+    Reason         : String,
+    IdempotencyKey : String
+  ) returns StockLevels;
 }

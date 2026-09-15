@@ -26,10 +26,11 @@ sap.ui.define(
             }
             model.attachRequestCompleted((event) => {
               const url = event.getParameter("url") || "";
-              if (url.includes("$batch")) {
+              if (url.includes("$batch") || url.includes("Products") || url.includes("$metadata")) {
                 setTimeout(() => afterBatch(this), 80);
               }
             });
+            setTimeout(() => afterBatch(this), 300);
           },
 
           onAfterRendering() {

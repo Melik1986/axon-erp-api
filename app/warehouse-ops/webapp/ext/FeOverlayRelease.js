@@ -2,7 +2,7 @@ sap.ui.define([], function () {
   "use strict";
 
   const OVERLAY =
-    ".sapFePlaceholderContainer,.sapUiBlockLayer,.sapUiLocalBusyIndicatorSizeBig,.sapUiBLy";
+    ".sapFePlaceholderContainer,.sapUiBlockLayer,.sapUiLocalBusyIndicatorSizeBig,.sapUiBLy,.sapUiLocalBusyIndicator";
 
   function getDocument(domRef) {
     if (domRef?.ownerDocument) {
@@ -23,7 +23,7 @@ sap.ui.define([], function () {
       return true;
     }
     const text = doc.body?.innerText || "";
-    return /\(\d+\)/.test(text) && text.includes("Product");
+    return /\(\d+\)/.test(text) && /Product/i.test(text);
   }
 
   function releaseFromDom(domRef) {
@@ -31,7 +31,10 @@ sap.ui.define([], function () {
     if (!hasTableData(doc)) {
       return false;
     }
-    doc.querySelectorAll(OVERLAY).forEach((node) => node.remove());
+    doc.querySelectorAll(OVERLAY).forEach((node) => {
+      node.style.setProperty("display", "none", "important");
+      node.remove();
+    });
     doc.querySelectorAll('[aria-busy="true"]').forEach((node) => {
       node.setAttribute("aria-busy", "false");
     });
@@ -45,7 +48,7 @@ sap.ui.define([], function () {
         clearInterval(timer);
       }
       ticks += 1;
-    }, 200);
+    }, 150);
   }
 
   return {

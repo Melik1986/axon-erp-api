@@ -1,21 +1,106 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" style="height: 100%">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Axon Warehouse – redirect</title>
-    <meta
-      http-equiv="refresh"
-      content="0; url=https://590c8b3dtrial.launchpad.cfapps.us10.hana.ondemand.com/site?siteId=b4c96273-a66c-47ab-be1b-f3ffa818d1f9"
-    />
+    <title>Vstah Automation — SAP Fiori Launchpad</title>
+    <style>
+      html,
+      body,
+      #content {
+        height: 100%;
+        margin: 0;
+      }
+      .sapUiBlockLayer,
+      .sapUiBLy,
+      .sapFePlaceholderContainer,
+      .sapUiLocalBusyIndicatorSizeBig {
+        display: none !important;
+        pointer-events: none !important;
+      }
+    </style>
+    <script>
+      window["sap-ushell-config"] = {
+        defaultRenderer: "fiori2",
+        renderers: {
+          fiori2: {
+            componentData: {
+              config: {
+                enableSearch: false,
+                enablePersonalization: false,
+                enableNotifications: false,
+                enableSetTheme: true,
+                enableSetLanguage: true,
+              },
+            },
+          },
+        },
+        applications: {
+          "WarehouseOps-display": {
+            title: "Products",
+            description: "Catalog and inventory",
+            additionalInformation: "SAPUI5.Component=axon.warehouse.ops",
+            applicationType: "URL",
+            url: "/warehouse-ops/webapp/",
+            navigationMode: "embedded",
+          },
+          "WarehouseCatalog-display": {
+            title: "Business Partners",
+            description: "Suppliers and partners",
+            additionalInformation: "SAPUI5.Component=axon.warehouse.ops",
+            applicationType: "URL",
+            url: "/warehouse-ops/webapp/",
+            navigationMode: "embedded",
+          },
+          "WarehouseInvoices-display": {
+            title: "Invoices",
+            description: "Sales invoices",
+            additionalInformation: "SAPUI5.Component=axon.warehouse.ops",
+            applicationType: "URL",
+            url: "/warehouse-ops/webapp/",
+            navigationMode: "embedded",
+          },
+          "WarehousePurchaseOrders-display": {
+            title: "Purchase Orders",
+            description: "Open and in-transit orders",
+            additionalInformation: "SAPUI5.Component=axon.warehouse.ops",
+            applicationType: "URL",
+            url: "/warehouse-ops/webapp/",
+            navigationMode: "embedded",
+          },
+          "WarehouseStock-display": {
+            title: "Stock",
+            description: "On-hand by warehouse 01 / 02 / 03",
+            additionalInformation: "SAPUI5.Component=axon.warehouse.ops",
+            applicationType: "URL",
+            url: "/warehouse-ops/webapp/",
+            navigationMode: "embedded",
+          },
+        },
+      };
+    </script>
+    <script
+      id="sap-ushell-bootstrap"
+      src="https://ui5.sap.com/1.120.37/test-resources/sap/ushell/bootstrap/sandbox.js"
+    ></script>
+    <script
+      id="sap-ui-bootstrap"
+      src="https://ui5.sap.com/1.120.37/resources/sap-ui-core.js"
+      data-sap-ui-libs="sap.m,sap.fe.core,sap.fe.templates,sap.ushell"
+      data-sap-ui-theme="sap_horizon"
+      data-sap-ui-compatVersion="edge"
+      data-sap-ui-async="true"
+      data-sap-ui-preload="async"
+      data-sap-ui-language="en"
+      data-sap-ui-xx-supportedLanguages="en,de"
+      data-sap-ui-frameOptions="allow"
+      data-sap-ui-resourceroots='{"axon.warehouse.ops":"/warehouse-ops/webapp/"}'
+    ></script>
+    <script>
+      sap.ui.getCore().attachInit(function () {
+        sap.ushell.Container.createRenderer().placeAt("content");
+      });
+    </script>
   </head>
-  <body>
-    <p>
-      Local FLP sandbox removed. Use
-      <a
-        href="https://590c8b3dtrial.launchpad.cfapps.us10.hana.ondemand.com/site?siteId=b4c96273-a66c-47ab-be1b-f3ffa818d1f9"
-        >warehouse-ops Work Zone site</a
-      >.
-    </p>
-  </body>
+  <body class="sapUiBody sapUiSizeCompact" id="content"></body>
 </html>
