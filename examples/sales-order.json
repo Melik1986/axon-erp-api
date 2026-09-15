@@ -1,0 +1,16 @@
+{
+  "CardCode": "C20001",
+  "DocDueDate": "2026-09-16",
+  "DocumentLines": [
+    {
+      "ItemCode": "IND-DRV-001",
+      "Quantity": 1,
+      "WarehouseCode": "01"
+    },
+    {
+      "ItemCode": "IND-CBL-050",
+      "Quantity": 2,
+      "WarehouseCode": "01"
+    }
+  ]
+}

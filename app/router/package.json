@@ -3,15 +3,24 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "@sap/approuter": "22.0.0"
+    "@sap/approuter": "23.0.0"
   },
   "overrides": {
-    "qs": ">=6.15.2"
+    "axios": "1.18.0",
+    "body-parser": "2.3.0",
+    "compression": "1.8.2",
+    "decode-uri-component": "0.5.0",
+    "fast-uri": "3.1.7",
+    "form-data": "4.0.6",
+    "moment": "2.31.0",
+    "qs": "6.16.0",
+    "ws": "7.5.11"
   },
   "scripts": {
+    "postinstall": "node scripts/patch-node-forge-cve-2026-85393.mjs",
     "start": "node node_modules/@sap/approuter/approuter.js"
   },
   "engines": {
-    "node": ">=20"
+    "node": "^22.0.0 || ^24.0.0"
   }
 }

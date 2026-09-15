@@ -1,0 +1,18 @@
+{
+  "CardCode": "V10001",
+  "DocDate": "2026-09-15",
+  "DocumentLines": [
+    {
+      "ItemCode": "IND-DRV-001",
+      "Quantity": 1,
+      "WarehouseCode": "01",
+      "SerialNumbers": [{ "InternalSerialNumber": "SN-2026-X1" }]
+    },
+    {
+      "ItemCode": "IND-SNS-010",
+      "Quantity": 5,
+      "WarehouseCode": "01",
+      "BatchNumbers": [{ "BatchNumber": "BATCH-88", "Quantity": 5 }]
+    }
+  ]
+}

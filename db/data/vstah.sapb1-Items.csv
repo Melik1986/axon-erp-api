@@ -1,0 +1,4 @@
+ItemCode;ItemName;ManageSerialNumbers;ManageBatchNumbers;PurchasePrice;SalesPrice;InventoryUoM
+IND-DRV-001;Frequenzumrichter 7.5 kW;true;false;650.00;980.00;pcs
+IND-SNS-010;Optischer Positionssensor;false;true;42.00;68.00;pcs
+IND-CBL-050;Geschirmtes Steuerkabel 100m;false;false;85.00;140.00;coil

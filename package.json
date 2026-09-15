@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "CAP warehouse OData mock for Axon SAP connector",
   "scripts": {
+    "postinstall": "node scripts/patch-cds-dk-security-deps.mjs",
     "start": "scripts/with-node24.sh cds-serve",
     "watch": "scripts/with-node24.sh cds watch",
     "build": "scripts/with-node24.sh sh -c 'npx cds build --production && node scripts/patch-gen-srv.js'",
@@ -18,6 +19,7 @@
     "workzone:verify-cloud": "node scripts/verify-workzone-cloud.mjs",
     "workzone:trace": "node scripts/trace-workzone-path.mjs",
     "workzone:diagnose": "node scripts/diagnose-workzone-channel.mjs",
+    "test": "node --test",
     "format": "prettier --write \"**/*.{js,mjs,json,yaml,yml,html,css,md}\"",
     "check:format": "prettier --check \"**/*.{js,mjs,json,yaml,yml,html,css,md}\""
   },
@@ -32,15 +34,20 @@
     "@sap/xssec": "^4"
   },
   "devDependencies": {
-    "@sap/cds-dk": "^9",
-    "prettier": "3.8.1"
+    "@sap/cds-dk": "9.9.6",
+    "prettier": "3.8.1",
+    "ws": "8.21.3"
   },
   "overrides": {
-    "qs": "6.15.2",
-    "ws": "8.20.1",
+    "qs": "6.16.0",
+    "ws": "8.21.3",
+    "body-parser": "2.3.0",
+    "proxy-addr": "2.0.8",
     "@sap/cds-dk": {
-      "qs": "6.15.2",
-      "ws": "8.20.1"
+      "qs": "6.16.0",
+      "ws": "8.21.3",
+      "body-parser": "2.3.0",
+      "proxy-addr": "2.0.8"
     }
   },
   "private": true,

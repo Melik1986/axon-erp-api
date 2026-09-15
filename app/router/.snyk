@@ -1,0 +1,16 @@
+# Snyk policy for approuter module.
+# https://snyk.io
+version: v1.25.1
+ignore:
+  SNYK-JS-NODEFORGE-19635204:
+    - '*':
+        reason: >-
+          CVE-2026-85393 / node-forge through 1.4.0 — no npm release yet
+          (Fixed in: Not fixed). @sap/approuter@23.0.0 pins node-forge@1.4.0.
+          Mitigated locally by postinstall
+          scripts/patch-node-forge-cve-2026-85393.mjs which rejects DigestAlgorithm
+          SEQUENCE values with extra ASN.1 children. Revisit when node-forge
+          >=1.4.1 (or Snyk Fixed-in) is published; then drop this ignore and the
+          patch script.
+        expires: '2026-12-15T00:00:00.000Z'
+patch: {}

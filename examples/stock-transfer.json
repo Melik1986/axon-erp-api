@@ -1,0 +1,11 @@
+{
+  "FromWarehouse": "01",
+  "ToWarehouse": "02",
+  "StockTransferLines": [
+    {
+      "ItemCode": "IND-SNS-010",
+      "Quantity": 3,
+      "BatchNumbers": [{ "BatchNumber": "BATCH-88", "Quantity": 3 }]
+    }
+  ]
+}

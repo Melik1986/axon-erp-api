@@ -1,25 +1,10 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
 version: v1.25.1
-ignore:
-  SNYK-JS-WS-8111006:
-    - node_modules/@sap/cds-dk:
-        reason: >-
-          ws@8.20.0 is pre-bundled inside @sap/cds-dk's tarball (lockfile
-          resolved: undefined) — npm overrides cannot replace it. @sap/cds-dk
-          is a devDependency only; it is never installed in production CF
-          deployments (gen/srv is deployed without devDependencies). Risk is
-          limited to local development environment. Fix requires SAP to release
-          an updated @sap/cds-dk with ws>=8.20.1.
-        expires: '2027-05-19T00:00:00.000Z'
-  SNYK-JS-QS-16721866:
-    - node_modules/@sap/cds-dk:
-        reason: >-
-          qs@6.15.1 is pre-bundled inside @sap/cds-dk's tarball (lockfile
-          resolved: undefined) — npm overrides cannot replace it. The
-          production dependency path (@sap/cds -> express -> qs) is fixed at
-          qs@6.15.2 via package.json overrides. The remaining qs@6.15.1 is
-          exclusively reachable through @sap/cds-dk which is a devDependency
-          not deployed to production. Fix requires SAP to release an updated
-          @sap/cds-dk.
-        expires: '2027-05-19T00:00:00.000Z'
+# Production runtime (@sap/cds → express) is pinned via package.json overrides:
+#   qs@6.16.0, body-parser@2.3.0, proxy-addr@2.0.8, ws@8.21.3
+# @sap/cds-dk ships prebundled nested copies (lockfile resolved: undefined).
+# postinstall scripts/patch-cds-dk-security-deps.mjs removes those nested
+# vulnerable packages so Node resolves the overridden root versions.
+# No active ignores required after that patch.
+ignore: {}
 patch: {}

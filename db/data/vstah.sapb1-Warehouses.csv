@@ -1,0 +1,4 @@
+WarehouseCode;WarehouseName;Location
+01;Zentrallager;Hauptlager
+02;QS-Prüflager;Qualitätskontrolle
+03;Warenausgang;Versand

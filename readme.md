@@ -1,13 +1,17 @@
 # Axon ERP API
 
-CAP warehouse OData demo for the Axon SAP connector.
+CAP OData API stand for the Vstah AI / SAP Business One warehouse demo.
 
-The service is designed for investor demos:
+The primary demo surface models a German industrial automation distributor:
 
-- Axon mobile asks by voice: "How much Arabica is in stock?"
-- Axon reads `StockLevels` through SAP OData and returns `420 kg`.
-- Axon mobile creates an invoice from a photo payload through `POST /Invoices`.
-- Browser demo shows the resulting records in SAP Fiori-style UI.
+- SAP Business One-compatible session login at `/b1s/v2/Login`;
+- three warehouses, two business partners, and three tracked items;
+- goods receipt with serial and batch numbers;
+- stock lookup and transfer between warehouses;
+- customer sales order creation from a mobile voice command.
+
+The original Axon-compatible `WarehouseService` remains available under
+`/odata/v4/warehouse/` for the existing mobile connector and Fiori sample.
 
 ## OData Root
 
@@ -22,6 +26,61 @@ Cloud Foundry:
 ```text
 https://axon-odata-api.cfapps.us10-001.hana.ondemand.com/odata/v4/warehouse/
 ```
+
+## SAP Business One Service Layer Demo
+
+The mock exposes the Service Layer-compatible prefix requested by the TЗ. In
+local development the same CAP service is also available at
+`/odata/v4/b1s/v2/`; the `/b1s/v2/` alias is the mobile/API entry point.
+
+```text
+http://localhost:4004/b1s/v2/Login
+http://localhost:4004/b1s/v2/Warehouses
+http://localhost:4004/b1s/v2/BusinessPartners
+http://localhost:4004/b1s/v2/Items
+http://localhost:4004/b1s/v2/ItemWarehouseInfoCollection
+```
+
+Login and preserve both returned cookies:
+
+```bash
+curl -i -c cookies.txt \\
+  -H 'Content-Type: application/json' \\
+  -d '{"CompanyDB":"SBODEMODE","UserName":"vstah_agent","Password":"demo-password"}' \\
+  http://localhost:4004/b1s/v2/Login
+```
+
+The password defaults to `demo-password` for the local mock and can be
+overridden with `SAP_B1_AGENT_PASSWORD`.
+
+### TЗ smoke scenario
+
+Use the cookies from Login for the following requests:
+
+```bash
+curl -s -b cookies.txt \\
+  "http://localhost:4004/b1s/v2/ItemWarehouseInfoCollection?\$filter=ItemCode%20eq%20'IND-SNS-010'%20and%20WarehouseCode%20eq%20'01'"
+
+curl -s -b cookies.txt -X POST \\
+  -H 'Content-Type: application/json' \\
+  -d @examples/purchase-delivery-note.json \\
+  http://localhost:4004/b1s/v2/PurchaseDeliveryNotes
+
+curl -s -b cookies.txt -X POST \\
+  -H 'Content-Type: application/json' \\
+  -d @examples/stock-transfer.json \\
+  http://localhost:4004/b1s/v2/StockTransfers
+
+curl -s -b cookies.txt -X POST \\
+  -H 'Content-Type: application/json' \\
+  -d @examples/sales-order.json \\
+  http://localhost:4004/b1s/v2/Orders
+```
+
+The seeded scenario uses `V10001`, `C20001`, `IND-DRV-001`,
+`IND-SNS-010`, `IND-CBL-050`, and warehouses `01`, `02`, `03`. The first
+created documents are deterministic for a fresh database: receipt `402`,
+transfer `87`, and order `712` with total `1260.00 EUR`.
 
 ## Demo URLs
 
@@ -100,19 +159,19 @@ npm run workzone:verify
 
 Layout via Content Manager (Everyone + manual app assignment). No `cdm.json` — avoids HTML5 channel parser/cache stuck on 20/05/2026.
 
-| Module | Target | Payload |
-| --- | --- | --- |
+| Module                       | Target            | Payload                  |
+| ---------------------------- | ----------------- | ------------------------ |
 | `axon-warehouse-ops-content` | `axon-html5-host` | `warehouse-ops.zip` only |
 
 Bump `manifest.json` `applicationVersion` on each content deploy (currently **1.0.27**).
 
 **Naming:** Cockpit shows Application Name `axonwarehouseops` (dots stripped from `sap.app.id`) and Business Solution `axon.warehouse.ops` (`sap.cloud.service`) — this is normal, not duplicate IDs.
 
-| Destination | Role |
-| --- | --- |
+| Destination                           | Role                                                                      |
+| ------------------------------------- | ------------------------------------------------------------------------- |
 | `axon-warehouse-ops-html5-repository` | DT — **only** subaccount dest with `sap.cloud.service=axon.warehouse.ops` |
-| `axon-warehouse-ops-html5-runtime` | RT — technical; must **not** use `axon.warehouse.ops` as cloud service |
-| `axon-warehouse-ops-auth` | OData backend for xs-app — **no** `sap.cloud.service` |
+| `axon-warehouse-ops-html5-runtime`    | RT — technical; must **not** use `axon.warehouse.ops` as cloud service    |
+| `axon-warehouse-ops-auth`             | OData backend for xs-app — **no** `sap.cloud.service`                     |
 
 ```bash
 npm run deploy:content:cf   # HTML5 zip only
